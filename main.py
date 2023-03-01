@@ -32,7 +32,7 @@ if "load_state" not in st.session_state:
 if a or st.session_state.load_state:
     st.session_state.load_state=True
     for url in enumerate(ytplay.video_urls):
-        download(url, "720p")
+        download(query, "720p")
         st.write(f"{number} {title}")
         with open(q,'rb' ) as f:
             st.download_button("Save Audio",f,file_name=f"{title}.mp3")
