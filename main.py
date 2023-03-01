@@ -26,7 +26,7 @@ st.title("Download Youtube Video")
 query=st.text_input("Youtube Video or Playlist URL")
 a=st.button("Start Downloading 🙂") 
 results=YoutubeSearch(query, max_results=1).to_dict()
-title=results [0]["title"]
+title=results[0]["title"]
 if a: 
     download(query, res="720p")
     st.write(f"{title}")
