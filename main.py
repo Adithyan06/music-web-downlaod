@@ -15,7 +15,7 @@ def download (query,res):
     a = audio.download()
     global q
     q=Path(a)
-    q=q.rename(q.with_name(f"{number} {title}.mp3"))
+    q=q.rename(q.with_name(f"{title}.mp3"))
 
 st.set_page_config(page_title="Download Now",page_icon="images/logo.png",menu_items={
     "Get help": "https://github.com/dudegladiator/YoutubeDownloader",
