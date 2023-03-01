@@ -24,10 +24,7 @@ st.set_page_config(page_title="Download Now",page_icon="images/logo.png",menu_it
 })
 st.title("Download Youtube Video")
 query=st.text_input("Youtube Video or Playlist URL")
-a=st.button("Start Downloading 🙂") 
-results = YoutubeSearch(query, max_results=1).to_dict()
-title = results[0]["title"]
-if a: 
+a=st.button("Start Downloading 🙂")  
     download(query, res="720p")
     st.write(f"{title}")
     with open(q,'rb' ) as f:
