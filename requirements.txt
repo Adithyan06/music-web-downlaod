@@ -1,0 +1,9 @@
+requests
+ffmpeg
+yt-dlp==2022.04.08
+youtube_search
+streamlit==1.15.1
+streamlit_lottie==0.0.2
+pytube
+pathlib
+ffmpeg-python
