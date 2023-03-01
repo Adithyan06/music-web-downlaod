@@ -27,9 +27,8 @@ st.set_page_config(page_title="Download Now",page_icon="images/logo.png",menu_it
 st.title("Download Youtube Video")
 query=st.text_input("Youtube Video or Playlist URL")
 a=st.button("Start Downloading 🙂")  
-if a:
-    number+=1
+if a: 
     download(query, "720p")
-    st.write(f"{number} {title}")
+    st.write(f"{title}")
     with open(q,'rb' ) as f:
         st.download_button("Save Audio",f,file_name=f"{title}.mp3")
