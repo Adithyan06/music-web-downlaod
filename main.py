@@ -9,7 +9,7 @@ def download (query,res):
     results = YoutubeSearch(query, max_results=1).to_dict()
     link = f"https://youtube.com{results[0]['url_suffix']}"
     title = results[0]["title"]
-    yt = YouTube(link)
+    yt = YouTube(query)
      
     audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag)
     a = audio.download()
