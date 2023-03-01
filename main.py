@@ -27,12 +27,9 @@ st.set_page_config(page_title="Download Now",page_icon="images/logo.png",menu_it
 st.title("Download Youtube Video")
 query=st.text_input("Youtube Video or Playlist URL")
 a=st.button("Start Downloading 🙂")  
-if "load_state" not in st.session_state:
-    st.session_state.load_state = False
-if a or st.session_state.load_state:
-    st.session_state.load_state=True
-    for url in enumerate(ytplay.video_urls):
-        download(query, "720p")
-        st.write(f"{number} {title}")
-        with open(q,'rb' ) as f:
-            st.download_button("Save Audio",f,file_name=f"{title}.mp3")
+if a:
+    number+=1
+    download(query, "720p")
+    st.write(f"{number} {title}")
+    with open(q,'rb' ) as f:
+        st.download_button("Save Audio",f,file_name=f"{title}.mp3")
