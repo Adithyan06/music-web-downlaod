@@ -7,7 +7,6 @@ from youtube_search import YoutubeSearch
 st.cache()
 def download (query,res):
     results = YoutubeSearch(query, max_results=1).to_dict()
-    count += 1
     link = f"https://youtube.com{results[0]['url_suffix']}"
     title = results[0]["title"]
     yt = YouTube(link)
