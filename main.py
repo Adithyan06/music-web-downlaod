@@ -28,3 +28,15 @@ st.title("Download Youtube Video")
 global number
 number=random.randrange(1,1000)
 query=st.text_input("Youtube Video or Playlist URL")
+
+ a=st.button("Start Downloading")  
+ if "load_state" not in st.session_state:
+     st.session_state.load_state = False
+ if a or st.session_state.load_state:
+     st.session_state.load_state=True
+     for i , url in enumerate(ytplay.video_urls,random.randrange(1,1000)):
+         number=i
+         download(url, "720p", option)
+         st.write(f"{number} {title}")
+         with open(q,'rb' ) as f:
+             st.download_button("Save Audio",f,file_name=f"{i} {title}.mp3")
