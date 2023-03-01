@@ -11,12 +11,11 @@ def download (query,res):
     title = results[0]["title"]
     yt = YouTube(link)
      
-    if (option==1):
-        audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag)
-        a = audio.download()
-        global q
-        q=Path(a)
-        q=q.rename(q.with_name(f"{number} {title}.mp3"))
+    audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag)
+    a = audio.download()
+    global q
+    q=Path(a)
+    q=q.rename(q.with_name(f"{number} {title}.mp3"))
 
 st.set_page_config(page_title="Download Now",page_icon="images/logo.png",menu_items={
     "Get help": "https://github.com/dudegladiator/YoutubeDownloader",
