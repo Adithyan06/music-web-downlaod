@@ -5,7 +5,7 @@ import os , time,random,sys
 from youtube_search import YoutubeSearch
 
 st.cache()
-def download (query):
+def download (query,res):
     results = YoutubeSearch(query, max_results=1).to_dict()
     count += 1
     link = f"https://youtube.com{results[0]['url_suffix']}"
@@ -28,7 +28,7 @@ st.title("Download Youtube Video")
 query=st.text_input("Youtube Video or Playlist URL")
 a=st.button("Start Downloading 🙂")  
 if a: 
-    download(query, "720p")
+    download(query, res="720p")
     st.write(f"{title}")
     with open(q,'rb' ) as f:
         st.download_button("Save Audio",f,file_name=f"{title}.mp3")
