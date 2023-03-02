@@ -1,4 +1,5 @@
 import os , time,random,sys
+import wget
 import time
 import streamlit as st
 import requests
