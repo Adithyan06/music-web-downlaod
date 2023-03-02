@@ -53,10 +53,11 @@ def download (query,res):
         return
         try:
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            info_dict = ydl.extract_info(link, download=False)
-            audio = ydl.prepare_filename(info_dict)
-            ydl.process_info(info_dict)
+                info_dict = ydl.extract_info(link, download=False)
+                audio = ydl.prepare_filename(info_dict)
+                ydl.process_info(info_dict)
 
-            a=st.button("Start Downloading 🙂")  
-            st.audio(audio)
-            st.download_button("Save Audio",audio,file_name=f"{title}.mp3")
+                a=st.button("Start Downloading 🙂")  
+                if a:
+                    st.audio(audio)
+                    st.download_button("Save Audio",audio,file_name=f"{title}.mp3")
