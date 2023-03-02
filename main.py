@@ -55,6 +55,5 @@ if(st.button('Submit')):
              v = ydl.download(link)
 #            st.video(v)
              st.download_button("Save Audio",v,file_name=f"{title}.mp4") 
-#    except Exception as e:
-#        st.error("Something Wrong")
-#        print(e)
+     except Exception:
+         st.error("Something Wrong")
