@@ -3,6 +3,7 @@ from pathlib import Path
 from pytube import YouTube
 import os , time,random,sys
 import time
+import wget
 import yt_dlp
 from youtube_search import YoutubeSearch
 
@@ -56,4 +57,5 @@ if(st.button('Submit')):
              info_dict = ydl.extract_info(link, download=False)
              audio = ydl.prepare_filename(info_dict)
              ydl.process_info(info_dict)
-             st.audio(audio)
+             w = wget.download(audio)
+             st.audio(w)
