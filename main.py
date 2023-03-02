@@ -41,7 +41,9 @@ song = st.selectbox(
 
 st.audio(song)
 st.write("[MP3: Mutiny Radio](http://nthmost.net:8000/mutiny-studio)")
-e = download(link, res="720p")
-# st.write(f"{title}")
-#    with open(q,'rb' ) as f:
-st.download_button("Save Audio",e,file_name=f"{title}.mp3")
+if a:
+     number+=1
+     e = download(query, res="720p")
+     st.write(f"{title}")
+     with open(q,'rb' ) as f:
+         st.download_button("Save Audio",e,file_name=f"{title}.mp3")
