@@ -56,9 +56,9 @@ if(st.button('Submit')):
      try:
          with yt_dlp.YoutubeDL(ydl_opts) as ydl:
              info_dict = ydl.extract_info(link, download=False)
-             audio = ydl.prepare_filename(info_dict)
+             audios = ydl.prepare_filename(info_dict)
              ydl.process_info(info_dict)
              st.audio(a)
-             st.download_button("Save Audio",w,file_name=f"{title}.mp3") 
+             st.download_button("Save Audio",audios,file_name=f"{title}.mp3") 
      except Exception:
          st.error("Something Wrong")               
