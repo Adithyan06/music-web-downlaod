@@ -7,6 +7,7 @@ import subprocess
 from typing import List
 import uuid
 import traceback
+import spotdl
 
 st.cache()
 def download_from_spotify(download_path: str, query: List[str]):
