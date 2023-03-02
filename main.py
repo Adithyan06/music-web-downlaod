@@ -4,6 +4,9 @@ from pytube import YouTube
 import os , time,random,sys
 from youtube_search import YoutubeSearch
 
+def shorten_audio_option(opt):
+    return opt.split("/")[-1]
+
 st.cache()
 def download (query,res):
     results = YoutubeSearch(query, max_results=1).to_dict()
