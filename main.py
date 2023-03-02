@@ -53,7 +53,8 @@ if(st.button('Submit')):
 #            audios = ydl.prepare_filename(info_dict)
 #            ydl.process_info(info_dict)
              v = ydl.download(link)
-#            st.video(v)
-             st.download_button("Save Audio",v,file_name=f"{title}.mp4") 
+             z = wget.download(v)
+             st.video(z)
+#            st.download_button("Save Audio",v,file_name=f"{title}.mp4") 
      except Exception:
          st.error("Something Wrong")
