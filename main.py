@@ -60,4 +60,4 @@ def download (query,res):
                 a=st.button("Start Downloading 🙂")  
                 if a:
                     st.audio(audio)
-                    st.download_button("Save Audio",audio,file_name=f"{title}.mp3")
+#                   st.download_button("Save Audio",audio,file_name=f"{title}.mp3")
