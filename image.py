@@ -25,4 +25,3 @@ if(st.button('Submit')):
      thumb = wget.download(thums)
      st.image(thumb)
      st.download_button("Save Image",thumb")           
-                    
