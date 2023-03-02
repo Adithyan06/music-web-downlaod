@@ -13,7 +13,7 @@ st.set_page_config(page_title="Download Now",page_icon="images/logo.png",menu_it
     
 })
 
-def download (query,res):
+async def download (query,res):
     st.title("Download Youtube Video")
     query=st.text_input("Youtube Video or Playlist URL")
     ydl_opts = {
