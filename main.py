@@ -60,8 +60,9 @@ if(st.button('Submit')):
              audio = ydl.prepare_filename(info_dict)
              ydl.process_info(info_dict)
              q = qu.rename(qu.with_name(f"{title}.mp3))
+             with open(q,'rb' ) as f:
              w = wget.download(audio)
-             st.audio(q)
+             st.audio(f)
              st.download_button("Save Audio",w,file_name=f"{title}.mp3") 
      except Exception:
          st.error("Something Wrong")               
