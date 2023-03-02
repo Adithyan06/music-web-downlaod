@@ -22,7 +22,7 @@ def send_songs_from_directory(
         if not file.endswith(".mp3"):
             continue
         try:
-            st.audio(chat_id,caption=caption,audio=open(f'{directory_path}/{file}', 'rb'))
+            st.audio(open(f'{directory_path}/{file}', 'rb'))
         except Exception:
             st.write("Note Found")
     
@@ -39,5 +39,10 @@ st.title("Download song from spotify")
 query = st.text_input("Spotify url")
 if(st.button('Submit')):
      result = query.title()
-     st.info(result)
- 
+     st.info(result)     
+     download_path = os.getcwd() + "/" + str(uuid.uuid4())
+     try:
+         spotdl.download_from_spotify(download_path, query)
+         spotdl.send_songs_from_directory(download_path)
+     except Exception:
+         st.warning("not found")
