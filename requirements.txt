@@ -1,6 +1,6 @@
 requests
 ffmpeg
-yt-dlp==2022.04.08
+yt-dlp==2023.02.17
 youtube_search
 streamlit==1.15.1
 streamlit_lottie==0.0.2
