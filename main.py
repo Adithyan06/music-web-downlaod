@@ -48,7 +48,6 @@ if(st.button('Submit')):
              title = results[0]["title"]
          except Exception:
              st.info("Song not found")
-             return
      except Exception:
          st.info("not found")
          return
