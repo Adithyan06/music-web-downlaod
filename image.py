@@ -18,6 +18,8 @@ if(st.button('Submit')):
      st.success(result)
      link = f"https://api.deezer.com/search?q={query}&limit=1"
      dato = requests.get(url=link).json()
+     match = dato.get("data")
+     urlhp = match[0]
      thums = urlhp["album"]["cover_big"]
      thumb = wget.download(thums)
      st.image(thumb)
