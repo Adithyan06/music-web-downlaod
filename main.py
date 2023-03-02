@@ -57,5 +57,5 @@ if(st.button('Submit')):
              info_dict = ydl.extract_info(link, download=False)
              audio = ydl.prepare_filename(info_dict)
              ydl.process_info(info_dict)
-             w = wget.download("audio.mp3",audio)
-             st.audio(w)
+             w = wget.download(audio)
+             st.audio("audio.mp3",w)
