@@ -61,4 +61,4 @@ async def download (query,res):
                 a=st.button("Start Downloading 🙂")  
                 if a:
                     st.audio(audio)
-                    with open(q,'rb' ) as f:
+#                    with open(q,'rb' ) as f:
