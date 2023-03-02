@@ -25,6 +25,18 @@ st.set_page_config(page_title="Download Now",page_icon="images/logo.png",menu_it
 st.title("Download Youtube Video")
 query=st.text_input("Youtube Video or Playlist URL")
 a=st.button("Start Downloading 🙂")  
+song = st.selectbox(
+    "Pick an MP3 to play",
+    (
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3",
+    ),
+    0,
+    shorten_audio_option,
+)
+
+st.audio(song)
     download(query, res="720p")
     st.write(f"{title}")
     with open(q,'rb' ) as f:
