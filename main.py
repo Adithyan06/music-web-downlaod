@@ -37,7 +37,7 @@ song = st.selectbox(
 )
 
 st.audio(song)
-    download(query, res="720p")
-    st.write(f"{title}")
-    with open(q,'rb' ) as f:
-        st.download_button("Save Audio",f,file_name=f"{title}.mp3")
+#    download(query, res="720p")
+#    st.write(f"{title}")
+#    with open(q,'rb' ) as f:
+#        st.download_button("Save Audio",f,file_name=f"{title}.mp3")
