@@ -14,7 +14,7 @@ st.set_page_config(page_title="Download Now or later",page_icon="images/logo.png
     
 })
 
-st.title("Download Youtube Video")
+st.title("Download Youtube Audio")
 query = st.text_input("Youtube Video or Playlist URL")
 yt = YouTube(query)
 audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag)
