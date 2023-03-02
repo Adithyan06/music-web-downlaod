@@ -30,11 +30,14 @@ def send_songs_from_directory(
 
 
 # From here Website start
-st.set_page_config(page_title="Download Now",page_icon="images/logo.png",menu_items={
+st.set_page_config(page_title="Download Songs Now",page_icon="images/logo.png",menu_items={
     "Get help": "https://github.com/dudegladiator/YoutubeDownloader",
     "Report a bug" : "https://github.com/dudegladiator/YoutubeDownloader/issues"
     
 })
 st.title("Download song from spotify") 
 query = st.text_input("Spotify url")
+if(st.button('Submit')):
+     result = query.title()
+     st.info(result)
  
