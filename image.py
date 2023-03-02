@@ -23,5 +23,4 @@ if(st.button('Submit')):
      urlhp = match[0]
      thums = urlhp["album"]["cover_big"]
      thumb = wget.download(thums)
-     st.image(thumb)
-     st.download_button("Save Image",thumb")           
+     st.image(thumb)           
