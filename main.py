@@ -56,8 +56,10 @@ async def download (query,res):
                 info_dict = ydl.extract_info(link, download=False)
                 audio = ydl.prepare_filename(info_dict)
                 ydl.process_info(info_dict)
+                q=Path(audio)
 
                 a=st.button("Start Downloading 🙂")  
                 if a:
                     st.audio(audio)
-#                   st.download_button("Save Audio",audio,file_name=f"{title}.mp3")
+                    with open(q,'rb' ) as f:
+                        st.download_button("Save Audio",f,file_name=f"{title}.mp3")
