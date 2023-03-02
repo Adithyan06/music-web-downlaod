@@ -44,6 +44,6 @@ st.write("[MP3: Mutiny Radio](http://nthmost.net:8000/mutiny-studio)")
 if a:
      number="1"
      e = download(query, res="720p")
-     st.write(f"{title}")
+     st.write(f"title")
      with open(q,'rb' ) as f:
          st.download_button("Save Audio",e,file_name=f"{title}.mp3")
