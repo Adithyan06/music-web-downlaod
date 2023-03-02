@@ -40,6 +40,7 @@ song = st.selectbox(
 )
 
 st.audio(song)
+st.write("[MP3: Mutiny Radio](http://nthmost.net:8000/mutiny-studio)")
 #    download(query, res="720p")
 #    st.write(f"{title}")
 #    with open(q,'rb' ) as f:
