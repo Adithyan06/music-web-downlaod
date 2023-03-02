@@ -12,8 +12,8 @@ st.set_page_config(page_title="Download Now",page_icon="kannan/logo.png",menu_it
 })                       
 
 st.cache()
-st.title("Download Cover Images of any Song")
-query = st.text_input("Enter a Movie Name")
+st.title("Download Cover Images of any Song 🥳")
+query = st.text_input("Enter a Song Name 🎶")
 if(st.button('Submit')):
      result = query.title()
      st.success(result)
