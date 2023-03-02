@@ -47,7 +47,7 @@ if(st.button('Submit')):
              st.info("Song not found")
      except Exception:
          st.info("not found")
-   
+     try:
          with yt_dlp.YoutubeDL() as ydl:
 #            info_dict = ydl.extract_info(link, download=False)
 #            audios = ydl.prepare_filename(info_dict)
