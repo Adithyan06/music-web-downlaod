@@ -48,11 +48,12 @@ if(st.button('Submit')):
      except Exception:
          st.info("not found")
      try:
-         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-             info_dict = ydl.extract_info(link, download=False)
-             audios = ydl.prepare_filename(info_dict)
-             ydl.process_info(info_dict)
-             st.video(audios)
-             st.download_button("Save Audio",a,file_name=f"{title}.mp4") 
+         with yt_dlp.YoutubeDL() as ydl:
+#            info_dict = ydl.extract_info(link, download=False)
+#            audios = ydl.prepare_filename(info_dict)
+#            ydl.process_info(info_dict)
+             v = ydl.download(query)
+             st.video(v)
+#            st.download_button("Save Audio",a,file_name=f"{title}.mp4") 
      except Exception:
          st.error("Something Wrong")               
