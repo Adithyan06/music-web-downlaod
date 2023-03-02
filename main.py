@@ -21,22 +21,16 @@ audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/w
 a = audio.download()
 if(st.button('Submit')):
      ydl_opts = {
-             "format": "bestaudio",
+             "format": "bv+ba/b",
              "addmetadata": True,
              "key": "FFmpegMetadata",
              "prefer_ffmpeg": True,
              "geo_bypass": True,
              "nocheckcertificate": True,
-             "postprocessors": [
-                 { 
-                     "key": "FFmpegExtractAudio",
-                     "preferredcodec": "mp3",
-                     "preferredquality": "320",
-                 }
-             ],
-                     "outtmpl": "%(alt_title)s.mp3",
-                     "quiet": True,
-                     "logtostderr": False,
+             "postprocessors": [{"key": "FFmpegVideoConvertor", "preferedformat": "mp4"}],
+             "outtmpl": "%(alt_title)s.mp4",
+             "quiet": True,
+             "logtostderr": False,
      }
      try:
          results = []
@@ -58,7 +52,7 @@ if(st.button('Submit')):
              info_dict = ydl.extract_info(link, download=False)
              audios = ydl.prepare_filename(info_dict)
              ydl.process_info(info_dict)
-             st.audio(a)
-             st.download_button("Save Audio",audios,file_name=f"{title}.mp3") 
+             st.video(audios)
+             st.download_button("Save Audio",audios,file_name=f"{title}.mp4") 
      except Exception:
          st.error("Something Wrong")               
