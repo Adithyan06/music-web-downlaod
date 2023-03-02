@@ -16,6 +16,10 @@ st.set_page_config(page_title="Download Now or later",page_icon="images/logo.png
 
 st.title("Download Youtube Video")
 query = st.text_input("Youtube Video or Playlist URL")
+yt = YouTube(query)
+audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag)
+a = audio.download()
+qu = Path(a)
 if(st.button('Submit')):
      ydl_opts = {
              "format": "bestaudio",
@@ -55,7 +59,9 @@ if(st.button('Submit')):
              info_dict = ydl.extract_info(link, download=False)
              audio = ydl.prepare_filename(info_dict)
              ydl.process_info(info_dict)
+             q = qu.rename(qu.with_name(f"{title}.mp3))
              w = wget.download(audio)
+             st.audio(q)
              st.download_button("Save Audio",w,file_name=f"{title}.mp3") 
      except Exception:
          st.error("Something Wrong")               
