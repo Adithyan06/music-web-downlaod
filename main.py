@@ -4,46 +4,57 @@ from pytube import YouTube
 import os , time,random,sys
 from youtube_search import YoutubeSearch
 
-def shorten_audio_option(opt):
-    return opt.split("/")[-1]
-
 st.cache()
-def download (query,res):
-    results = YoutubeSearch(query, max_results=1).to_dict()
-    link = f"https://youtube.com{results[0]['url_suffix']}"
-    title = results[0]["title"]
-    yt = YouTube(link)
-     
-    audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag)
-    a = audio.download()
-    global q
-    q=Path(a)
-    q=q.rename(q.with_name(f"{title}.mp3"))
-
 st.set_page_config(page_title="Download Now",page_icon="images/logo.png",menu_items={
     "Get help": "https://github.com/dudegladiator/YoutubeDownloader",
     "Report a bug" : "https://github.com/dudegladiator/YoutubeDownloader/issues"
     
 })
-st.title("Download Youtube Video")
-query=st.text_input("Youtube Video or Playlist URL")
-a=st.button("Start Downloading 🙂")  
-song = st.selectbox(
-    "Pick an MP3 to play",
-    (
-        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3",
-    ),
-    0,
-    shorten_audio_option,
-)
 
-st.audio(song)
-st.write("[MP3: Mutiny Radio](http://nthmost.net:8000/mutiny-studio)")
-if a:
-     number="1"
-     e = download(query, res="720p")
-     st.write(f"title")
-     with open(q,'rb' ) as f:
-         st.download_button("Save Audio",e,file_name=f"{title}.mp3")
+def download (query,res):
+    st.title("Download Youtube Video")
+    query=st.text_input("Youtube Video or Playlist URL")
+    ydl_opts = {
+            "format": "bestaudio",
+            "addmetadata": True,
+            "key": "FFmpegMetadata",
+            "prefer_ffmpeg": True,
+            "geo_bypass": True,
+            "nocheckcertificate": True,
+            "postprocessors": [
+                {
+                    "key": "FFmpegExtractAudio",
+                    "preferredcodec": "mp3",
+                    "preferredquality": "320",
+                }
+            ],
+            "outtmpl": "%(alt_title)s.mp3",
+            "quiet": True,
+            "logtostderr": False,
+    }
+    try:
+        results = []
+        count = 0
+        while len(results) == 0 and count < 6:
+            if count>0:
+                time.sleep(1)
+            results = YoutubeSearch(query, max_results=1).to_dict()
+            count += 1
+        try:
+            link = f"https://youtube.com{results[0]['url_suffix']}"
+            title = results[0]["title"]
+        except Exception:
+            st.info("Song not found")
+            return
+    except Exception:
+        st.info("not found")
+        return
+        try:
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            info_dict = ydl.extract_info(link, download=False)
+            audio = ydl.prepare_filename(info_dict)
+            ydl.process_info(info_dict)
+
+            a=st.button("Start Downloading 🙂")  
+            st.audio(audio)
+            st.download_button("Save Audio",audio,file_name=f"{title}.mp3")
