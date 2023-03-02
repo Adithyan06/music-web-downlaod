@@ -7,7 +7,7 @@ import yt_dlp
 from youtube_search import YoutubeSearch
 
 st.cache()
-st.set_page_config(page_title="Download Now",page_icon="images/logo.png",menu_items={
+st.set_page_config(page_title="Download Now or later",page_icon="images/logo.png",menu_items={
     "Get help": "https://github.com/dudegladiator/YoutubeDownloader",
     "Report a bug" : "https://github.com/dudegladiator/YoutubeDownloader/issues"
     
@@ -62,4 +62,3 @@ async def download (query,res):
                 if a:
                     st.audio(audio)
                     with open(q,'rb' ) as f:
-                        st.download_button("Save Audio",f,file_name=f"{title}.mp3")
