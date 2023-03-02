@@ -44,5 +44,6 @@ if(st.button('Submit')):
      try:
          spotdl.download_from_spotify(download_path, query)
          spotdl.send_songs_from_directory(download_path)
-     except Exception:
+     except Exception as e:
+         print(e)
          st.warning("not found")
