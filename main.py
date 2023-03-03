@@ -16,9 +16,7 @@ st.set_page_config(page_title="Download Now or later",page_icon="images/logo.png
 
 st.title("Download Youtube Audio")
 query = st.text_input("Youtube Video or Playlist URL")
-yt = YouTube(query)
-audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag)
-a = audio.download()
+
 if(st.button('Submit')):
      ydl_opts = {
              "format": "bv+ba/b",
@@ -43,6 +41,9 @@ if(st.button('Submit')):
          try:
              link = f"https://youtube.com{results[0]['url_suffix']}"
              title = results[0]["title"]
+             yt = YouTube(link)
+             audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag)
+             a = audio.download()
          except Exception:
              st.info("Song not found")
      except Exception:
@@ -53,7 +54,7 @@ if(st.button('Submit')):
              audios = ydl.prepare_filename(info_dict)
              ydl.process_info(info_dict)
              v = ydl.download(link)
-             st.video(v)
-             st.download_button("Save Audio",audios,file_name=f"{title}.mp4") 
+             st.video(a)
+             st.download_button("Save Audio",a,file_name=f"{title}.mp4") 
      except Exception:
              st.write("Song not found")
