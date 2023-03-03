@@ -1,0 +1,3 @@
+pip install ffmpeg
+pip install spotdl
+spotdl --download-ffmpeg
