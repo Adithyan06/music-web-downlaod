@@ -4,6 +4,7 @@ from pytube import YouTube
 import os , time,random,sys
 import time
 import wget
+import ffmpeg
 import yt_dlp
 from youtube_search import YoutubeSearch
 
