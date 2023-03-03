@@ -26,7 +26,7 @@ if(st.button('Submit')):
      download_path = os.getcwd() + "/" + str(uuid.uuid4())
      try:
          spotdl.download_from_spotify(download_path, query)
-         spotdl.send_songs_from_directory(download_path)
+         spotdl.send_songs_from_directory(download_path, query)
      except Exception as e:
          print(e)
          st.write(e)
