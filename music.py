@@ -7,28 +7,10 @@ import subprocess
 from typing import List
 import uuid
 import traceback
-import spotdl
+
+from handlers import spotdl
 
 st.cache()
-def download_from_spotify(download_path: str, query: List[str]):
-    os.mkdir(download_path)
-    os.chdir(download_path)
-    os.system(f'spotdl {query}')
-    os.chdir("..")
-
-def send_songs_from_directory(
-    directory_path: str,query):
-    directory = os.listdir(directory_path)
-    for file in directory:
-        if not file.endswith(".mp3"):
-            continue
-        try:
-            st.audio(open(f'{directory_path}/{file}', 'rb'))
-        except Exception:
-            st.write("Note Found")
-    
-    subprocess.run(['rm', '-r', directory_path])  
-
 
 # From here Website start
 st.set_page_config(page_title="Download Songs Now",page_icon="images/logo.png",menu_items={
