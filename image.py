@@ -15,8 +15,8 @@ def search(query):
        
 def lyrics(query):
         fin = search(query)
-        text = f'**🎶 Successfully Extracted Lyrics Of {song} 🎶**\n\n\n\n'
-        text += f'`{fin["lyrics"]}`'
+        text = f'**🎶 Successfully Extracted Lyrics Of {query} 🎶**\n\n\n\n'
+        text += f'{fin["lyrics"]}'
         return text
 
 st.set_page_config(page_title="Download Now",page_icon="kannan/logo.png",menu_items={
