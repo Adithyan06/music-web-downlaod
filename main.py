@@ -45,6 +45,8 @@ if(st.button('Submit')):
              yt = YouTube(link)
              audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag)
              a = audio.download()
+             file = a.replace(f"{a}", f"{title}.mp3")
+             os.rename(a, file)
          except Exception:
              st.info("Song not found")
      except Exception:
@@ -55,7 +57,7 @@ if(st.button('Submit')):
              audios = ydl.prepare_filename(info_dict)
              ydl.process_info(info_dict)
              v = ydl.download(link)
-             st.video(a)
+             st.audio(a)
 #            st.download_button("Save Audio",,file_name=f"{title}.mp4") 
      except Exception as e:
              st.write(e)
