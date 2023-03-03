@@ -11,6 +11,7 @@ import traceback
 from handlers import spotdl
 
 st.cache()
+spotdl --download-ffmpeg
 
 # From here Website start
 st.set_page_config(page_title="Download Songs Now",page_icon="images/logo.png",menu_items={
