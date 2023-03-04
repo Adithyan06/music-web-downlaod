@@ -17,7 +17,8 @@ st.set_page_config(page_title="Download Now or later",page_icon="images/logo.png
 
 st.title("Download Youtube Audio")
 query = st.text_input("Youtube Video or Playlist URL")
-res = st.selectbox("Select The resolution",("1080p","720p","360p","240p","144p"))
+option = st.selectbox("Audio(1) or Video(2)",(1,2))
+
 if(st.button('Submit')):
      ydl_opts = {
              "format": "bv+ba/b",
@@ -43,29 +44,27 @@ if(st.button('Submit')):
              link = f"https://youtube.com{results[0]['url_suffix']}"
              title = results[0]["title"]
              yt = YouTube(link)
-             audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag)
-             a = audio.download()
-#            ma = Path(a)
-#            ma=ma.rename(ma.with_name(f"{title}.mp3"))
-             video = yt.streams.get_by_itag(yt.streams.filter(res=res , progressive="True" )[0].itag)      
-             hi = video.download()           
-             p = Path(hi)
-             p=p.rename(p.with_name(f"{title}.mp4"))
-         except Exception:
+             if (option==2):
+                 res = st.selectbox("Select The resolution",("1080p","720p","360p","240p","144p"))
+                 video = yt.streams.get_by_itag(yt.streams.filter(res=res , progressive="True" )[0].itag)      
+                 hi = video.download()           
+                 p = Path(hi)
+                 p=p.rename(p.with_name(f"{title}.mp4"))
+                 with open(p,'rb' ) as f:                
+                     st.write(f"{title}")
+#                    st.video(f)
+                     st.download_button("Save Video", data=f, file_name=f"{title}.mp4") 
+             else:
+                   audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag)
+                   a = audio.download()
+                   ma = Path(a)
+                   ma=ma.rename(ma.with_name(f"{title}.mp3"))   
+                   with open(ma,'rb' ) as s:                
+                       st.write(f"{title}")
+#                      st.audio(s)
+                       st.download_button("Save Audio", data=s, file_name=f"{title}.mp3")      
+         except Exception as e:
              st.info("Song not found")
+             st.write(e)
      except Exception:
          st.info("not found")
-     try:
-         with yt_dlp.YoutubeDL() as ydl:
-             info_dict = ydl.extract_info(link, download=False)
-             videos = ydl.prepare_filename(info_dict)
-             ydl.process_info(info_dict)
-             v = ydl.download(link)
-             with open(p,'rb' ) as f:                
-                 st.write(f"{title}")
-#                st.video(f)
-                 st.download_button("Save Video", data=f, file_name=f"{title}.mp4") 
-#                with open(ma,'rb' ) as z:
-#                    st.audio(z)
-     except Exception as e:
-             st.write(e)
