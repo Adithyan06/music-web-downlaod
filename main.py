@@ -36,22 +36,22 @@ try:
                      video = yt.streams.get_by_itag(yt.streams.filter(res=res , progressive="True" )[0].itag)      
                      hi = video.download()           
                      p = Path(hi)
-                     p=p.rename(p.with_name(f"{yt.title}.mp4"))
+                     p=p.rename(p.with_name(f"{yt.title[:33]}.mp4"))
                      with open(p,'rb' ) as f:                
-                         st.write(f"{yt.title[:34]}")
+                         st.write(f"{yt.title}")
                          st.video(f)
-                         st.download_button("Save Video", data=f, file_name=f"{yt.title}.mp4") 
+                         st.download_button("Save Video", data=f, file_name=f"{title[:33]}.mp4") 
           else:
                if(st.button('Submit')):
                    st.info("Please Wait....")
                    audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag)
                    a = audio.download()
                    ma = Path(a)
-                   ma=ma.rename(ma.with_name(f"{yt.title}.mp3"))   
+                   ma=ma.rename(ma.with_name(f"{title[:33]}.mp3"))   
                    with open(ma,'rb' ) as s:                
-                       st.write(f"{yt.title}")
+                       st.write(f"{title[:33]}")
                        st.audio(s)
-                       st.download_button("Save Audio", data=s, file_name=f"{yt.title}.mp3")     
+                       st.download_button("Save Audio", data=s, file_name=f"{yt.title[:33]}.mp3")     
       except Exception as e:
           st.info("Song not found")
           st.write(e)
