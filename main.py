@@ -17,7 +17,7 @@ st.set_page_config(page_title="Download Now or later",page_icon="images/logo.png
 
 st.title("Download Youtube Audio")
 query = st.text_input("Youtube Video or Playlist URL")
-option = st.selectbox("Audio(1) or Video(2)",(1,2))
+option = st.radio("Select Type: ", ('Audio', 'Video'))
 
 if(st.button('Submit')):
      ydl_opts = {
@@ -44,7 +44,7 @@ if(st.button('Submit')):
              link = f"https://youtube.com{results[0]['url_suffix']}"
              title = results[0]["title"]
              yt = YouTube(link)
-             if (option==2):
+             if (option==Video):
                  res = st.selectbox("Select The resolution",("1080p","720p","360p","240p","144p"))
                  video = yt.streams.get_by_itag(yt.streams.filter(res=res , progressive="True" )[0].itag)      
                  hi = video.download()           
