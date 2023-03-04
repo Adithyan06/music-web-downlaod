@@ -29,7 +29,7 @@ try:
           link = f"https://youtube.com{results[0]['url_suffix']}"
           title = results[0]["title"]
           yt = YouTube(link)
-          ys = yt.streams.get_highest_resolution()
+          ys = yt.streams.get_highest_resolution(res="1080p")
           if (option == 'Video 🎥'):
                 res = st.selectbox("Select The resolution",("1080p","720p","360p","240p","144p"))
                 if(st.button('Submit')):
