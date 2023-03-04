@@ -51,7 +51,7 @@ try:
                    ma = Path(a)
                    ma=ma.rename(ma.with_name(f"{title}.mp3"))   
                    with open(ma,'rb' ) as s:                
-                       st.write{f"{title}")
+                       st.write(f"{title}")
                        st.audio(s)
                        st.download_button("Save Audio", data=s, file_name=f"{title}.mp3")     
       except Exception as e:
