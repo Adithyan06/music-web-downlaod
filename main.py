@@ -61,7 +61,7 @@ if(st.button('Submit')):
              videos = ydl.prepare_filename(info_dict)
              ydl.process_info(info_dict)
              v = ydl.download(link)
-             with open(q,'rb' ) as f:
+             with open(p,'rb' ) as f:
 #                st.video(f)
                  st.write(f"{title}")
                  st.download_button("Save Audio", data=f, file_name=f"{title}.mp4") 
