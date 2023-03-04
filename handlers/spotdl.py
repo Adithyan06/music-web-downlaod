@@ -3,6 +3,7 @@ import ffmpeg
 import subprocess
 from typing import List
 import streamlit as st
+import yt-dlp
 
 def download_from_spotify(download_path: str, query: List[str]):
     os.mkdir(download_path)
@@ -18,6 +19,7 @@ def send_songs_from_directory(
             continue
         try:
             st.audio(open(f'{directory_path}/{file}', 'rb'))
+            st.download_button(label='Save Audio', data=(open(f'{directory_path}/{file}', 'rb')),file_name="song.mp3")
         except Exception:
             st.write("Note Found")
     
