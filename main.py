@@ -14,7 +14,7 @@ st.set_page_config(page_title="Download Any songs now !!",page_icon="images/logo
     
 })
 
-lottie_coding = load_lottieurl(https://assets6.lottiefiles.com/private_files/lf30_YcIv9u.json")
+lottie_coding = load_lottieurl("https://assets6.lottiefiles.com/private_files/lf30_YcIv9u.json")
 st.title("Download Youtube Audio")
 image_column = st.columns((1))
 with image_column:
