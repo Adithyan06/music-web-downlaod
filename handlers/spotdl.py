@@ -24,5 +24,5 @@ def send_songs_from_directory(
         except Exception:
             st.write("Note Found")
     
-    subprocess.run(["yt_dlp","ffmpeg", '-r', directory_path])  
+    subprocess.run(["ffmpeg", '-r', directory_path])  
 
