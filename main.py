@@ -38,7 +38,7 @@ try:
                      p = Path(hi)
                      p=p.rename(p.with_name(f"{yt.title}.mp4"))
                      with open(p,'rb' ) as f:                
-                         st.write(f"{yt.title[:35]}")
+                         st.write(f"{yt.title[:34]}")
                          st.video(f)
                          st.download_button("Save Video", data=f, file_name=f"{yt.title}.mp4") 
           else:
