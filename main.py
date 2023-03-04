@@ -44,7 +44,7 @@ if(st.button('Submit')):
              link = f"https://youtube.com{results[0]['url_suffix']}"
              title = results[0]["title"]
              yt = YouTube(link)
-             if (option==Video):
+             if (option == 'Video'):
                  res = st.selectbox("Select The resolution",("1080p","720p","360p","240p","144p"))
                  video = yt.streams.get_by_itag(yt.streams.filter(res=res , progressive="True" )[0].itag)      
                  hi = video.download()           
