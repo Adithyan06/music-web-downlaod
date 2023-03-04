@@ -17,7 +17,7 @@ st.set_page_config(page_title="Download Now or later",page_icon="images/logo.png
 
 st.title("Download Youtube Audio")
 query = st.text_input("Youtube Video or Playlist URL")
-option = st.radio("Select Type: ", ('Audio', 'Video'))
+option = st.radio("Select Type: ", ('Audio 🎶', 'Video 🎥'))
 try:
       results = []
       count = 0
@@ -39,7 +39,7 @@ try:
                      p=p.rename(p.with_name(f"{title}.mp4"))
                      with open(p,'rb' ) as f:                
                          st.write(f"{title}")
-#                        st.video(f)
+                         st.video(f)
                          st.download_button("Save Video", data=f, file_name=f"{title}.mp4") 
           else:
                if(st.button('Submit')):
