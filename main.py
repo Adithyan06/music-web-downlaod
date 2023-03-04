@@ -29,7 +29,7 @@ try:
           link = f"https://youtube.com{results[0]['url_suffix']}"
           title = results[0]["title"]
           yt = YouTube(link)
-          ys = yt.streams.get_highest_resolution(res="1080p")
+          ys = yt.streams.get_highest_resolution()
           if (option == 'Video 🎥'):
                 res = st.selectbox("Select The resolution",("1080p","720p","360p","240p","144p"))
                 if(st.button('Submit')):
@@ -39,7 +39,7 @@ try:
                      p = Path(hi)
                      p=p.rename(p.with_name(f"{title}.mp4"))
                      with open(p,'rb' ) as f:                
-                         st.write(f"{title}")
+                         st.write(f"{yt.title}")
                          st.video(f)
                          st.download_button("Save Video", data=f, file_name=f"{title}.mp4") 
                          if (res == "1080p"):
