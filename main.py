@@ -12,10 +12,10 @@ st.set_page_config(page_title="Download Any songs now !!",page_icon="images/logo
 })
 
 
-st.title("Download Youtube Audio") 
+st.title("Download any Songs You Want!") 
 st.caption("Download any Video/Audio Songs.Just copy the name or YouTube link of the song you want 🥳")
 
-query = st.text_input("Youtube Video or Playlist URL")
+query = st.text_input("Song Name or YouTube URL")
 option = st.radio("Select Type: ", ('Audio 🎶', 'Video 🎥'))
 try:
       results = []
@@ -43,7 +43,7 @@ try:
                          st.download_button("Save Video", data=f, file_name=f"{title}.mp4") 
           else:
                if(st.button('Submit')):
-                   st.info("Please Wait....")
+                   b = st.info("Please Wait....")
                    audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag)
                    a = audio.download()
                    ma = Path(a)
@@ -51,7 +51,8 @@ try:
                    with open(ma,'rb' ) as s:                
                        st.write(f"{title}")
                        st.audio(s)
-                       st.download_button("Save Audio", data=s, file_name=f"{title}.mp3")      
+                       st.download_button("Save Audio", data=s, file_name=f"{title}.mp3")     
+                       b.delete() 
       except Exception as e:
           st.info("Song not found")
           st.write(e)
