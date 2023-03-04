@@ -28,7 +28,7 @@ try:
       try:
           link = f"https://youtube.com{results[0]['url_suffix']}"
           title = results[0]["title"]
-          artist = results[0]["artist"]
+          alt_title = results[0]["alt_title"]
           yt = YouTube(link)
           if (option == 'Video 🎥'):
                 res = st.selectbox("Select The resolution",("720p","360p","240p","144p"))
@@ -39,7 +39,7 @@ try:
                      p = Path(hi)
                      p=p.rename(p.with_name(f"{title}.mp4"))
                      with open(p,'rb' ) as f:                
-                         st.write(f"{title}")
+                         st.write(f"{alt_title}")
                          st.video(f)
                          st.write(f"{artist}")
                          st.download_button("Save Video", data=f, file_name=f"{title}.mp4") 
@@ -51,7 +51,7 @@ try:
                    ma = Path(a)
                    ma=ma.rename(ma.with_name(f"{title}.mp3"))   
                    with open(ma,'rb' ) as s:                
-                       st.write(f"{title}")
+                       st.write{f"{title}")
                        st.audio(s)
                        st.download_button("Save Audio", data=s, file_name=f"{title}.mp3")     
       except Exception as e:
