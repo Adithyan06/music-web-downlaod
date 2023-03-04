@@ -5,21 +5,16 @@ import os , time,random,sys
 import time
 import ffmpeg
 from youtube_search import YoutubeSearch
-from streamlit_lottie import st_lottie
 
 st.cache()
 st.set_page_config(page_title="Download Any songs now !!",page_icon="images/logo.png",menu_items={
     "Get help": "https://github.com/dudegladiator/YoutubeDownloader"    
 })
 
-lottie_coding = load_lottieurl("https://assets4.lottiefiles.com/packages/lf20_qSkIccSXCE.json")
-image_column, text_column = st.columns((1, 2))
-with text_column:
-        st.title("Download Youtube Audio") 
-with image_column:
-        st_lottie(lottie_coding, height=300, key="coding")
 
+st.title("Download Youtube Audio") 
 st.caption("Download any Video/Audio Songs.Just copy the name or YouTube link of the song you want 🥳")
+
 query = st.text_input("Youtube Video or Playlist URL")
 option = st.radio("Select Type: ", ('Audio 🎶', 'Video 🎥'))
 try:
