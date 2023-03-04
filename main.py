@@ -12,7 +12,7 @@ st.set_page_config(page_title="Download Any songs now !!",page_icon="images/logo
 })
 
 
-st.title("Download any Songs You Want!") 
+st.title("Download any Songs You Want 🤩") 
 st.caption("Download any Video/Audio Songs.Just copy the name or YouTube link of the song you want 🥳")
 
 query = st.text_input("Song Name or YouTube URL")
@@ -28,6 +28,7 @@ try:
       try:
           link = f"https://youtube.com{results[0]['url_suffix']}"
           title = results[0]["title"]
+          artist = results[0]["artist"]
           yt = YouTube(link)
           if (option == 'Video 🎥'):
                 res = st.selectbox("Select The resolution",("720p","360p","240p","144p"))
@@ -40,6 +41,7 @@ try:
                      with open(p,'rb' ) as f:                
                          st.write(f"{title}")
                          st.video(f)
+                         st.write(f"{artist}")
                          st.download_button("Save Video", data=f, file_name=f"{title}.mp4") 
           else:
                if(st.button('Submit')):
@@ -52,7 +54,6 @@ try:
                        st.write(f"{title}")
                        st.audio(s)
                        st.download_button("Save Audio", data=s, file_name=f"{title}.mp3")     
-                       b.delete() 
       except Exception as e:
           st.info("Song not found")
           st.write(e)
