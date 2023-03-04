@@ -1,1 +1,3 @@
 ffmpeg
+yt-dlp
+spotdl
