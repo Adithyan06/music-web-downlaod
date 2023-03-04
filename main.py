@@ -63,7 +63,7 @@ if(st.button('Submit')):
              v = ydl.download(link)
              with open(p,'rb' ) as f:                
                  st.write(f"{title}")
-                 st.video(f)
+#                st.video(f)
                  st.download_button("Save Video", data=f, file_name=f"{title}.mp4") 
 #                with open(ma,'rb' ) as z:
 #                    st.audio(z)
