@@ -19,9 +19,9 @@ def send_songs_from_directory(
             continue
         try:
             st.audio(open(f'{directory_path}/{file}', 'rb'))
-            st.download_button(label='Save Audio', data=(open(f'{directory_path}/{file}', 'rb')),file_name="song.mp3")
+            st.download_button(label='Save Audio', data=(open(f'{directory_path}/{file}', 'rb')),file_name={file}.mp3")
         except Exception:
             st.write("Note Found")
     
-    subprocess.run(['ffmpeg','rm', '-r', directory_path])  
+    subprocess.run(['ffmpeg', '-r', directory_path])  
 
