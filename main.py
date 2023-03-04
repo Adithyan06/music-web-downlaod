@@ -9,9 +9,7 @@ from streamlit_lottie import st_lottie
 
 st.cache()
 st.set_page_config(page_title="Download Any songs now !!",page_icon="images/logo.png",menu_items={
-    "Get help": "https://github.com/dudegladiator/YoutubeDownloader",
-    "Report a bug" : ""
-    
+    "Get help": "https://github.com/dudegladiator/YoutubeDownloader"    
 })
 
 lottie_coding = load_lottieurl("https://assets6.lottiefiles.com/private_files/lf30_YcIv9u.json")
