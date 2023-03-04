@@ -3,7 +3,7 @@ import ffmpeg
 import subprocess
 from typing import List
 import streamlit as st
-import yt-dlp
+import yt_dlp
 
 def download_from_spotify(download_path: str, query: List[str]):
     os.mkdir(download_path)
