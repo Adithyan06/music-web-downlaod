@@ -17,7 +17,7 @@ st.set_page_config(page_title="Download Now or later",page_icon="images/logo.png
 
 st.title("Download Youtube Audio")
 query = st.text_input("Youtube Video or Playlist URL")
-
+res = st.selectbox("Select The resolution",("720p","144p","240p","360p"))
 if(st.button('Submit')):
      ydl_opts = {
              "format": "bv+ba/b",
@@ -47,14 +47,14 @@ if(st.button('Submit')):
              a = audio.download()
              file = a.replace(f"{a}", f"{title}.mp3")
              os.rename(a, file)
-             video = yt.streams.get_by_itag(yt.streams.filter(res="720p" , progressive="True" )[0].itag)      
+             video = yt.streams.get_by_itag(yt.streams.filter(res=res , progressive="True" )[0].itag)      
              hi = video.download()
          except Exception:
              st.info("Song not found")
      except Exception:
          st.info("not found")
      try:
-         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+         with yt_dlp.YoutubeDL() as ydl:
              info_dict = ydl.extract_info(link, download=False)
              videos = ydl.prepare_filename(info_dict)
              ydl.process_info(info_dict)
