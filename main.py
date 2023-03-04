@@ -59,7 +59,7 @@ if(st.button('Submit')):
              videos = ydl.prepare_filename(info_dict)
              ydl.process_info(info_dict)
              v = ydl.download(link)
-             st.video(videos)
+             st.video(v)
 #            st.download_button("Save Audio",audios,file_name=f"{title}.mp4") 
      except Exception as e:
              st.write(e)
