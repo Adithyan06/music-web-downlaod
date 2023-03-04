@@ -18,7 +18,7 @@ def send_songs_from_directory(
         if not file.endswith(".mp3"):
             continue
         try:
-            st.write(f"file")
+            st.write(f"{file}")
             st.audio(open(f'{directory_path}/{file}', 'rb'))
             st.download_button(label='Save Audio', data=(open(f'{directory_path}/{file}', 'rb')),file_name=f"{file}")
         except Exception:
