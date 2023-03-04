@@ -45,8 +45,8 @@ if(st.button('Submit')):
              yt = YouTube(link)
              audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag)
              a = audio.download()
-             ma = Path(a)
-             ma=ma.rename(ma.with_name(f"{title}.mp3"))
+#            ma = Path(a)
+#            ma=ma.rename(ma.with_name(f"{title}.mp3"))
              video = yt.streams.get_by_itag(yt.streams.filter(res=res , progressive="True" )[0].itag)      
              hi = video.download()           
              p = Path(hi)
@@ -65,7 +65,7 @@ if(st.button('Submit')):
                  st.write(f"{title}")
                  st.video(f)
                  st.download_button("Save Video", data=f, file_name=f"{title}.mp4") 
-                 with open(ma,'rb' ) as z:
-                     st.audio(z)
+#                with open(ma,'rb' ) as z:
+#                    st.audio(z)
      except Exception as e:
              st.write(e)
