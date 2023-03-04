@@ -14,9 +14,7 @@ st.set_page_config(page_title="Download Any songs now !!",page_icon="images/logo
 
 lottie_coding = load_lottieurl("https://assets6.lottiefiles.com/private_files/lf30_YcIv9u.json")
 st.title("Download Youtube Audio")
-image_column = st.columns((1))
-with image_column:
-        st_lottie(lottie_coding, height=300, key="music")
+st.image(lottie_coding)
 st.caption("Download any Video/Audio Songs.Just copy the name or YouTube link of the song you want 🥳")
 query = st.text_input("Youtube Video or Playlist URL")
 option = st.radio("Select Type: ", ('Audio 🎶', 'Video 🎥'))
