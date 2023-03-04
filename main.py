@@ -30,7 +30,7 @@ try:
           title = results[0]["title"]
           yt = YouTube(link)
           if (option == 'Video 🎥'):
-                res = st.selectbox("Select The resolution",("1080p","720p","360p","240p","144p"))
+                res = st.selectbox("Select The resolution",("720p","360p","240p","144p"))
                 if(st.button('Submit')):
                      st.info("Please Wait....")
                      video = yt.streams.get_by_itag(yt.streams.filter(res=res , progressive="True" )[0].itag)      
@@ -38,7 +38,7 @@ try:
                      p = Path(hi)
                      p=p.rename(p.with_name(f"{yt.title}.mp4"))
                      with open(p,'rb' ) as f:                
-                         st.write(f"{yt.title}")
+                         st.write(f"{yt.title[:35]}")
                          st.video(f)
                          st.download_button("Save Video", data=f, file_name=f"{yt.title}.mp4") 
           else:
