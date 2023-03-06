@@ -81,7 +81,7 @@ try:
 #                  a = audio.download()
 #                  ma = Path(a)
 #                  ma=ma.rename(ma.with_name(f"{title[:33]}.mp3"))   
-                   with open(bla,'rb' ) as s:                
+#                  with open(bla,'rb' ) as s:                
                        st.write(f"{title[:33]}")
                        st.audio(s)
                        st.download_button("Save Audio", data=s, file_name=f"{yt.title[:33]}.mp3")     
