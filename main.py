@@ -6,6 +6,7 @@ from random import randint
 import os, random, sys
 import time
 import ffmpeg
+import uuid
 from youtube_search import YoutubeSearch
 
 async def download_songs(query, download_directory='.'):
@@ -62,6 +63,7 @@ try:
           yt = YouTube(link)
           randomdir = f"/tmp/{str(randint(1,100000000))}"
           os.mkdir(randomdir)
+          download_path = os.getcwd() + "/" + str(uuid.uuid4())
           if (option == 'Video 🎥'):
                 res = st.selectbox("Select The resolution",("720p","360p","240p","144p"))
                 if(st.button('Submit')):
@@ -77,7 +79,7 @@ try:
           else:
                if(st.button('Submit')):
                    st.info("Please Wait....")
-                   bla=download_songs(query,download_directory='.')
+                   bla=download_songs(query,download_path)
 #                  audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag)
 #                  a = audio.download()
 #                  ma = Path(a)
