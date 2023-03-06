@@ -1,10 +1,42 @@
 import streamlit as st
 from pathlib import Path
 from pytube import YouTube
+from yt_dlp import YoutubeDL
+from random import randint
 import os , time,random,sys
 import time
 import ffmpeg
 from youtube_search import YoutubeSearch
+
+async def download_songs(query, download_directory='.'):
+    ydl_opts = {
+        'format': "bestaudio/best",
+        'default_search': 'ytsearch',
+        'noplaylist': True,
+        "nocheckcertificate": True,
+        "outtmpl": f"{download_directory}/%(title)s.mp3",
+        "quiet": True,
+        "addmetadata": True,
+        "prefer_ffmpeg": True,
+        "geo_bypass": True,
+
+        "nocheckcertificate": True,
+    }
+
+    with YoutubeDL(ydl_opts) as ydl:
+        try:
+            video = ydl.extract_info(f"ytsearch:{query}", download=False)['entries'][0]['id']
+            info = ydl.extract_info(video)
+            filename = ydl.prepare_filename(info)
+            if not filename:
+               print(f"Track Not Found⚠️")
+            else:
+                path_link = filename
+                return path_link
+        except Exception as e:
+            pass
+            print(e)
+    return video 
 
 st.cache()
 st.set_page_config(page_title="Download Any songs now !!",page_icon="images/logo.png",menu_items={
@@ -28,6 +60,8 @@ try:
           link = f"https://youtube.com{results[0]['url_suffix']}"
           title = results[0]["title"]
           yt = YouTube(link)
+          randomdir = f"/tmp/{str(randint(1,100000000))}"
+              os.mkdir(randomdir)
           if (option == 'Video 🎥'):
                 res = st.selectbox("Select The resolution",("720p","360p","240p","144p"))
                 if(st.button('Submit')):
@@ -43,14 +77,15 @@ try:
           else:
                if(st.button('Submit')):
                    st.info("Please Wait....")
-                   audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag)
-                   a = audio.download()
-                   ma = Path(a)
-                   ma=ma.rename(ma.with_name(f"{title[:33]}.mp3"))   
-                   with open(ma,'rb' ) as s:                
+                   bla = await download_songs(query,randomdir)
+#                  audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag)
+#                  a = audio.download()
+#                  ma = Path(a)
+#                  ma=ma.rename(ma.with_name(f"{title[:33]}.mp3"))   
+#                  with open(ma,'rb' ) as s:                
                        st.write(f"{title[:33]}")
-                       st.audio(s)
-                       st.download_button("Save Audio", data=s, file_name=f"{yt.title[:33]}.mp3")     
+                       st.audio(bla)
+                       st.download_button("Save Audio", data=bla, file_name=f"{yt.title[:33]}.mp3")     
       except Exception as e:
           st.info("Song not found")
           st.write(e)
