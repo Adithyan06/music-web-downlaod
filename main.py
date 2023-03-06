@@ -78,14 +78,13 @@ try:
                if(st.button('Submit')):
                    st.info("Please Wait....")
                    bla=download_songs(query,download_directory='.')
-                   myr=bla(query,randomdir)
 #                  audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag)
 #                  a = audio.download()
 #                  ma = Path(a)
 #                  ma=ma.rename(ma.with_name(f"{title[:33]}.mp3"))   
 #                  with open(ma,'rb' ) as s:                
                    st.write(f"{title[:33]}")
-                   st.audio(myr)
+                   st.audio(bla)
                    st.download_button("Save Audio", data=bla, file_name=f"{yt.title[:33]}.mp3")     
       except Exception as e:
           st.info("Song not found")
