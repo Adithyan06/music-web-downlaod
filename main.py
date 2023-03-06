@@ -61,7 +61,7 @@ try:
           title = results[0]["title"]
           yt = YouTube(link)
           randomdir = f"/tmp/{str(randint(1,100000000))}"
-              os.mkdir(randomdir)
+          os.mkdir(randomdir)
           if (option == 'Video 🎥'):
                 res = st.selectbox("Select The resolution",("720p","360p","240p","144p"))
                 if(st.button('Submit')):
