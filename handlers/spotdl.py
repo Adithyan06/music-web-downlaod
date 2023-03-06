@@ -4,6 +4,7 @@ import subprocess
 from typing import List
 import streamlit as st
 import yt_dlp
+import spotdl
 
 def download_from_spotify(download_path: str, query: List[str]):
     os.mkdir(download_path)
@@ -24,5 +25,5 @@ def send_songs_from_directory(
         except Exception:
             st.write("Note Found")
     
-    subprocess.run(['ffmpeg','rm','-r', directory_path])  
+    subprocess.run(['spotdl -h','ffmpeg','rm','-r', directory_path])  
 
