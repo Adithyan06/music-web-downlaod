@@ -9,7 +9,7 @@ import ffmpeg
 import uuid
 from youtube_search import YoutubeSearch
 
-async def download_songs(query, download_directory='.'):
+async def download_songs(query):
     ydl_opts = {
         'format': "bestaudio/best",
         'default_search': 'ytsearch',
@@ -61,11 +61,8 @@ try:
           link = f"https://youtube.com{results[0]['url_suffix']}"
           title = results[0]["title"]
           yt = YouTube(link)
-          randomdir = f"/tmp/{str(randint(1,100000000))}"
-          os.mkdir(randomdir)
-          download_path = os.getcwd() + "/" + str(uuid.uuid4())
           if (option == 'Video 🎥'):
-                res = st.selectbox("Select The resolution",("720p","360p","240p","144p"))
+                res = st.selectbox("Select The resolution",("720p","360p","144p"))
                 if(st.button('Submit')):
                      st.info("Please Wait....")
                      video = yt.streams.get_by_itag(yt.streams.filter(res=res , progressive="True" )[0].itag)      
@@ -79,7 +76,7 @@ try:
           else:
                if(st.button('Submit')):
                    st.info("Please Wait....")
-                   bla=download_songs(query,download_path).encode("utf-8")
+                   bla=download_songs(query)
 #                  audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag)
 #                  a = audio.download()
 #                  ma = Path(a)
