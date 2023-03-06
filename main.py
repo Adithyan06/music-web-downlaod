@@ -3,7 +3,7 @@ from pathlib import Path
 from pytube import YouTube
 from yt_dlp import YoutubeDL
 from random import randint
-import os , time,random,sys
+import os, random, sys
 import time
 import ffmpeg
 from youtube_search import YoutubeSearch
@@ -29,13 +29,13 @@ async def download_songs(query, download_directory='.'):
             info = ydl.extract_info(video)
             filename = ydl.prepare_filename(info)
             if not filename:
-               print(f"Track Not Found⚠️")
+               st.write("Track Not Found⚠️")
             else:
                 path_link = filename
                 return path_link
         except Exception as e:
             pass
-            print(e)
+            st.write(e)
     return video 
 
 st.cache()
