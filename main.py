@@ -77,7 +77,7 @@ try:
           else:
                if(st.button('Submit')):
                    st.info("Please Wait....")
-                   bla = await download_songs(query,randomdir)
+                   bla=download_songs(query,randomdir)
 #                  audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag)
 #                  a = audio.download()
 #                  ma = Path(a)
