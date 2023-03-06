@@ -9,4 +9,4 @@ pytube
 pathlib
 ffmpeg-python
 wget
-spotdl
+spotdl==v4.1.2
