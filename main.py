@@ -7,7 +7,7 @@ import ffmpeg
 from youtube_search import YoutubeSearch
 
 st.cache()
-st.set_page_config(page_title="Download Any songs now !!",page_icon="images/logo.png",menu_items={"Developer": "t.me/Peterparker6"})
+st.set_page_config(page_title="Download Any songs now !!",page_icon="images/logo.png",menu_items={"Get help": "t.me/Peterparker6"})
 
 st.title("Download any Songs You Want 🤩") 
 st.caption("Download any Video/Audio Songs.Just copy the name or YouTube link of the song you want 🥳")
