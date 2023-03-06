@@ -15,7 +15,7 @@ async def download_songs(query):
         'default_search': 'ytsearch',
         'noplaylist': True,
         "nocheckcertificate": True,
-        "outtmpl": f"{download_directory}/%(title)s.mp3",
+        "outtmpl": "(title)s.mp3",
         "quiet": True,
         "addmetadata": True,
         "prefer_ffmpeg": True,
@@ -79,12 +79,12 @@ try:
                    bla=download_songs(query)
 #                  audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag)
 #                  a = audio.download()
-                   ma = Path(bla)
-                   ma=ma.rename(ma.with_name(f"{title[:33]}.mp3"))   
-                   with open(ma,'rb' ) as s:                
-                       st.write(f"{title[:33]}")
-                       st.audio(s)
-                       st.download_button("Save Audio", data=s, file_name=f"{yt.title[:33]}.mp3")     
+#                  ma = Path(bla)
+#                  ma=ma.rename(ma.with_name(f"{title[:33]}.mp3"))   
+#                  with open(ma,'rb' ) as s:                
+                    st.write(f"{title[:33]}")
+                    st.audio(bla)
+                    st.download_button("Save Audio", data=bla, file_name=f"{yt.title[:33]}.mp3")     
       except Exception as e:
           st.info("Song not found")
           st.write(e)
