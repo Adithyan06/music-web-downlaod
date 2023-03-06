@@ -15,7 +15,7 @@ async def download_songs(query):
         'default_search': 'ytsearch',
         'noplaylist': True,
         "nocheckcertificate": True,
-        "outtmpl": "(title)s.mp3",
+        "outtmpl": "%(title)s.mp3",
         "quiet": True,
         "addmetadata": True,
         "prefer_ffmpeg": True,
