@@ -1,6 +1,6 @@
 requests
 ffmpeg
-yt-dlp
+yt-dlp==2023.2.17
 rapidfuzz
 youtube_search
 streamlit==1.15.1
