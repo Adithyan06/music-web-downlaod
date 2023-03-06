@@ -8,8 +8,7 @@ from youtube_search import YoutubeSearch
 
 st.cache()
 st.set_page_config(page_title="Download Any songs now !!",page_icon="images/logo.png",menu_items={
-      "Get help": "https://github.com/Adithyan06",
-      "Report a bug": "t.me/Peterparker6"
+      "Get help": "https://github.com/Adithyan06"
 })
 
 st.title("Download any Songs You Want 🤩") 
