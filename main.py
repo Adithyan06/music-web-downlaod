@@ -2,12 +2,12 @@ import streamlit as st
 from pathlib import Path
 from pytube import YouTube
 from yt_dlp import YoutubeDL
-from random import randint
 import os, random, sys
 import time
 import ffmpeg
-import uuid
 from youtube_search import YoutubeSearch
+import requests
+import wget
 
 async def download_songs(query):
     ydl_opts = {
@@ -74,6 +74,7 @@ try:
                          st.video(f)
                          st.download_button("Save Video", data=f, file_name=f"{title[:35]}.mp4") 
           else:
+               st.radio("Where should I download music from?", ('Youtube', 'JioSaavn'))
                if(st.button('Submit')):
                    st.info("Please Wait....")
                    bla=download_songs(query)
