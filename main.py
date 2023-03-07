@@ -84,12 +84,12 @@ try:
                   img = r['data']['results'][0]['image'][2]['link']
                   thumbnail = wget.download(img)
                   file = wget.download(slink)
-#                 ffile = file.replace(f"{file}", f"{sname}.mp3")
-#                 os.rename(file, ffile)
+                  ffile = file.replace("mp4", "mp3"")
+                  os.rename(file, ffile)
                   if(st.button('Submit')):
                        st.image(thumbnail)  
-                       st.audio(file)
-                       st.download_button("Save Audio", data=file, file_name=f"{sname}.mp3")  
+                       st.audio(ffile)
+                       st.download_button("Save Audio", data=ffile, file_name=f"{sname}.mp3")  
                else:                 
                    audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag) 
                    a = audio.download()
