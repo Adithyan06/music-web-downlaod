@@ -2,7 +2,7 @@ import streamlit as st
 from pathlib import Path
 from pytube import YouTube
 from yt_dlp import YoutubeDL
-import os, random, sys
+import os
 import time
 import ffmpeg
 from youtube_search import YoutubeSearch
@@ -79,8 +79,7 @@ try:
                if (musics == 'JioSaavn'):
                   r = requests.get(f"https://saavn.me/search/songs?query={query}&page=1&limit=1").json()    
                   sname = r['data']['results'][0]['name']
-                  slink = r['data']['results'][0]['url'][0]['link']
-                  ssingers = r['data']['results'][0]['primaryArtists']
+                  slink = r['data']['results'][0]['downloadUrl'][4]['link']
                   img = r['data']['results'][0]['image'][2]['link']
                   thumbnail = wget.download(img)
                   file = wget.download(slink)
@@ -102,7 +101,6 @@ try:
                            st.audio(s)
                            st.download_button("Save Audio", data=s, file_name=f"{yt.title[:33]}.mp3")     
       except Exception as e:
-          st.info("Song not found")
           st.write(e)
 except Exception:
     st.info("not found")
