@@ -83,7 +83,7 @@ try:
                    ma=ma.rename(ma.with_name(f"{title[:33]}.mp3"))   
                    with open(ma,'rb' ) as s:                
                        st.write(f"{title[:33]}")
-                       st.audio(ma)
+                       st.audio(s)
                        st.download_button("Save Audio", data=bla, file_name=f"{yt.title[:33]}.mp3")     
       except Exception as e:
           st.info("Song not found")
