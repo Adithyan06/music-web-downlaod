@@ -16,10 +16,10 @@ st.set_page_config(page_title="Download Any songs now !!",page_icon="images/logo
 
 st.title("Download any Songs You Want 🤩") 
 st.caption("Download any Video/Audio Songs.Just copy the name or YouTube link of the song you want 🥳")
-try:
-    query = st.text_input("Song Name or YouTube URL",placeholder="Song Name")
-    option = st.radio("Select Type: ", ('Audio 🎶', 'Video 🎥'))
 
+query = st.text_input("Song Name or YouTube URL",placeholder="Song Name")
+option = st.radio("Select Type: ", ('Audio 🎶', 'Video 🎥'))
+try:
     results = []
     count = 0
     while len(results) == 0 and count < 6:
