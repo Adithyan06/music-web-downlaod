@@ -31,48 +31,48 @@ try:
         link = f"https://youtube.com{results[0]['url_suffix']}"
         title = results[0]["title"]
         yt = YouTube(link)
-        if (option == 'Video 🎥'):
-           res = st.selectbox("Select The resolution",("720p","360p","144p"))
+    except:
+           if (option == 'Video 🎥'):
+              res = st.selectbox("Select The resolution",("720p","360p","144p"))
                 
-           video = yt.streams.get_by_itag(yt.streams.filter(res=res , progressive="True" )[0].itag)      
-           hi = video.download()           
-           p = Path(hi)
-           p=p.rename(p.with_name(f"{yt.title[:35]}.mp4"))
-           if(st.button('Submit')):
-                st.info("Please Wait....")
-                with open(p,'rb' ) as f:                
-                    st.write(f"{yt.title}")
-                    st.video(f)
-                    st.download_button("Save Video", data=f, file_name=f"{title[:35]}.mp4") 
-        else:
-             musics = st.radio("Where should I download music from?", ('Youtube', 'JioSaavn'))
-             if (musics == 'JioSaavn'):
-                r = requests.get(f"https://saavn.me/search/songs?query={query}&page=1&limit=1").json()    
-                sname = r['data']['results'][0]['name']
-                slink = r['data']['results'][0]['downloadUrl'][4]['link']
-                img = r['data']['results'][0]['image'][2]['link']
-                thumbnail = wget.download(img)
-                file = wget.download(slink)
-                ffile = file.replace("mp4", "mp3")
-                os.rename(file, ffile)
-                if(st.button('Submit')):
-                     st.image(thumbnail)  
-                     st.audio(ffile)
-                     st.download_button("Save Audio", data=ffile, file_name=f"{sname}.mp3")  
-             else:                 
-                  audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag) 
-                  a = audio.download()
-                  ma = Path(a)
-                  ma=ma.rename(ma.with_name(f"{title[:33]}.mp3"))  
-                  if(st.button('Submit')): 
-                       st.info("Please Wait....")
-                       with open(ma,'rb' ) as s:                
-                           st.write(f"{title[:33]}")
-                           st.audio(s)
-                           st.download_button("Save Audio", data=s, file_name=f"{yt.title[:33]}.mp3")  
-    except Exception as e:
-        st.write("⚠️ Something went wrong.please try again")    
-        print(e)  
+              video = yt.streams.get_by_itag(yt.streams.filter(res=res , progressive="True" )[0].itag)      
+              hi = video.download()           
+              p = Path(hi)
+              p=p.rename(p.with_name(f"{yt.title[:35]}.mp4"))
+              if(st.button('Submit')):
+                   st.info("Please Wait....")
+                   with open(p,'rb' ) as f:                
+                       st.write(f"{yt.title}")
+                       st.video(f)
+                       st.download_button("Save Video", data=f, file_name=f"{title[:35]}.mp4") 
+           else:
+                musics = st.radio("Where should I download music from?", ('Youtube', 'JioSaavn'))
+                if (musics == 'JioSaavn'):
+                   try:
+                       r = requests.get(f"https://saavn.me/search/songs?query={query}&page=1&limit=1").json() 
+                   except:   
+                       sname = r['data']['results'][0]['name']
+                       slink = r['data']['results'][0]['downloadUrl'][4]['link']
+                       img = r['data']['results'][0]['image'][2]['link']
+                       thumbnail = wget.download(img)
+                       file = wget.download(slink)
+                       ffile = file.replace("mp4", "mp3")
+                       os.rename(file, ffile)
+                       if(st.button('Submit')):
+                            st.image(thumbnail)  
+                            st.audio(ffile)
+                            st.download_button("Save Audio", data=ffile, file_name=f"{sname}.mp3")  
+                else:                 
+                     audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag) 
+                     a = audio.download()
+                     ma = Path(a)
+                     ma=ma.rename(ma.with_name(f"{title[:33]}.mp3"))  
+                     if(st.button('Submit')): 
+                          st.info("Please Wait....")
+                          with open(ma,'rb' ) as s:                
+                              st.write(f"{title[:33]}")
+                              st.audio(s)
+                              st.download_button("Save Audio", data=s, file_name=f"{yt.title[:33]}.mp3")  
 except Exception as e:
     st.write("Something went Wrong")    
     print(e) 
