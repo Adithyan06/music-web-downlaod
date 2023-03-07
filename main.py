@@ -84,7 +84,7 @@ try:
                   img = r['data']['results'][0]['image'][2]['link']
                   thumbnail = wget.download(img)
                   file = wget.download(slink)
-                  ffile = file.replace("mp4", "mp3"")
+                  ffile = file.replace("mp4", "mp3")
                   os.rename(file, ffile)
                   if(st.button('Submit')):
                        st.image(thumbnail)  
