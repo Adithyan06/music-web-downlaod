@@ -79,7 +79,7 @@ try:
                if (musics == 'JioSaavn'):
                   r = requests.get(f"https://saavn.me/search/songs?query={query}&page=1&limit=1").json()    
                   sname = r['data']['results'][0]['name']
-                  slink = r['data']['results'][0]['downloadUrl'][4]['link']
+                  slink = r['data']['results'][0]['downloadUrl'][5]['link']
                   ssingers = r['data']['results'][0]['primaryArtists']
                   img = r['data']['results'][0]['image'][2]['link']
                   thumbnail = wget.download(img)
