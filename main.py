@@ -75,5 +75,4 @@ try:
                            st.audio(s)
                            st.download_button("Save Audio", data=s, file_name=f"{yt.title[:33]}.mp3")  
     except Exception as e:
-        st.write("Something went Wrong")    
-        print(e) 
+        st.write(e)
