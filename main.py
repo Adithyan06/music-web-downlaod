@@ -76,18 +76,31 @@ try:
                          st.download_button("Save Video", data=f, file_name=f"{title[:35]}.mp4") 
           else:
                musics = st.radio("Where should I download music from?", ('Youtube', 'JioSaavn'))
-#              if (musics == 'JioSaavn'):
-                                       
-               audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag) 
-               a = audio.download()
-               ma = Path(a)
-               ma=ma.rename(ma.with_name(f"{title[:33]}.mp3"))  
-               if(st.button('Submit')): 
-                    st.info("Please Wait....")
-                    with open(ma,'rb' ) as s:                
-                        st.write(f"{title[:33]}")
-                        st.audio(s)
-                        st.download_button("Save Audio", data=s, file_name=f"{yt.title[:33]}.mp3")     
+               if (musics == 'JioSaavn'):
+                  r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=1").json()    
+                  sname = r['data']['results'][0]['name']
+                  slink = r['data']['results'][0]['downloadUrl'][4]['link']
+                  ssingers = r['data']['results'][0]['primaryArtists']
+                  img = r['data']['results'][0]['image'][3]['link']
+                  thumbnail = wget.download(img)
+                  file = wget.download(slink)
+                  ffile = file.replace(f"{file}", f"{sname}.mp3")
+                  os.rename(file, ffile)
+                  if(st.button('Submit')):
+                       st.image(thumbnail)  
+                       st.audio(ffile)
+                     st.download_button("Save Audio", data=ffile, file_name=f"{sname}.mp3")  
+               else:                 
+                   audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag) 
+                   a = audio.download()
+                   ma = Path(a)
+                   ma=ma.rename(ma.with_name(f"{title[:33]}.mp3"))  
+                   if(st.button('Submit')): 
+                       st.info("Please Wait....")
+                       with open(ma,'rb' ) as s:                
+                           st.write(f"{title[:33]}")
+                           st.audio(s)
+                           st.download_button("Save Audio", data=s, file_name=f"{yt.title[:33]}.mp3")     
       except Exception as e:
           st.info("Song not found")
           st.write(e)
