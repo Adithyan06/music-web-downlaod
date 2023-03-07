@@ -57,7 +57,7 @@ try:
               time.sleep(0.3)
           results = YoutubeSearch(query, max_results=1).to_dict()
           count += 1
-      try:
+#      try:
           link = f"https://youtube.com{results[0]['url_suffix']}"
           title = results[0]["title"]
           yt = YouTube(link)
@@ -100,7 +100,7 @@ try:
                            st.write(f"{title[:33]}")
                            st.audio(s)
                            st.download_button("Save Audio", data=s, file_name=f"{yt.title[:33]}.mp3")     
-      except Exception as e:
-          st.write(e)
+#     except Exception as e:
+#         st.write(e)
 except Exception:
     st.info("not found")
