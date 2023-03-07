@@ -103,4 +103,4 @@ try:
 #     except Exception as e:
 #         st.write(e)
 except Exception:
-    st.info("not found")
+    st.info("Enter Name")
