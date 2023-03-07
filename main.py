@@ -9,36 +9,6 @@ from youtube_search import YoutubeSearch
 import requests
 import wget
 
-async def download_songs(query):
-    ydl_opts = {
-        'format': "bestaudio/best",
-        'default_search': 'ytsearch',
-        'noplaylist': True,
-        "nocheckcertificate": True,
-        "outtmpl": "%(title)s.mp3",
-        "quiet": True,
-        "addmetadata": True,
-        "prefer_ffmpeg": True,
-        "geo_bypass": True,
-
-        "nocheckcertificate": True,
-    }
-
-    with YoutubeDL(ydl_opts) as ydl:
-        try:
-            video = ydl.extract_info(f"ytsearch:{query}", download=False)['entries'][0]['id']
-            info = ydl.extract_info(video)
-            filename = ydl.prepare_filename(info)
-            if not filename:
-               st.write("Track Not Found⚠️")
-            else:
-                path_link = filename
-                return path_link
-        except Exception as e:
-            pass
-            st.write(e)
-    return video 
-
 st.cache()
 st.set_page_config(page_title="Download Any songs now !!",page_icon="images/logo.png",menu_items={
       "Get help": "https://github.com/Adithyan06"
