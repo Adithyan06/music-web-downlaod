@@ -27,11 +27,11 @@ while len(results) == 0 and count < 6:
        time.sleep(0.3)
      results = YoutubeSearch(query, max_results=1).to_dict()
      count += 1
-
-link = f"https://youtube.com{results[0]['url_suffix']}"
-title = results[0]["title"]
-yt = YouTube(link)
-if (option == 'Video 🎥'):
+try:
+    link = f"https://youtube.com{results[0]['url_suffix']}"
+    title = results[0]["title"]
+    yt = YouTube(link)
+    if (option == 'Video 🎥'):
       res = st.selectbox("Select The resolution",("720p","360p","144p"))
                 
       video = yt.streams.get_by_itag(yt.streams.filter(res=res , progressive="True" )[0].itag)      
