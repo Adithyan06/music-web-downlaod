@@ -54,7 +54,7 @@ try:
       count = 0
       while len(results) == 0 and count < 6:
           if count>0:
-              time.sleep(0.5)
+              time.sleep(0.3)
           results = YoutubeSearch(query, max_results=1).to_dict()
           count += 1
       try:
@@ -68,11 +68,11 @@ try:
                      video = yt.streams.get_by_itag(yt.streams.filter(res=res , progressive="True" )[0].itag)      
                      hi = video.download()           
                      p = Path(hi)
-                     p=p.rename(p.with_name(f"{yt.title[:33]}.mp4"))
+                     p=p.rename(p.with_name(f"{yt.title[:35]}.mp4"))
                      with open(p,'rb' ) as f:                
                          st.write(f"{yt.title}")
                          st.video(f)
-                         st.download_button("Save Video", data=f, file_name=f"{title[:33]}.mp4") 
+                         st.download_button("Save Video", data=f, file_name=f"{title[:35]}.mp4") 
           else:
                if(st.button('Submit')):
                    st.info("Please Wait....")
