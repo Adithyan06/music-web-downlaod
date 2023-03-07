@@ -63,18 +63,21 @@ try:
           yt = YouTube(link)
           if (option == 'Video 🎥'):
                 res = st.selectbox("Select The resolution",("720p","360p","144p"))
+                
+                st.info("Please Wait....")
+                video = yt.streams.get_by_itag(yt.streams.filter(res=res , progressive="True" )[0].itag)      
+                hi = video.download()           
+                p = Path(hi)
+                p=p.rename(p.with_name(f"{yt.title[:35]}.mp4"))
                 if(st.button('Submit')):
-                     st.info("Please Wait....")
-                     video = yt.streams.get_by_itag(yt.streams.filter(res=res , progressive="True" )[0].itag)      
-                     hi = video.download()           
-                     p = Path(hi)
-                     p=p.rename(p.with_name(f"{yt.title[:35]}.mp4"))
                      with open(p,'rb' ) as f:                
                          st.write(f"{yt.title}")
                          st.video(f)
                          st.download_button("Save Video", data=f, file_name=f"{title[:35]}.mp4") 
           else:
-               st.radio("Where should I download music from?", ('Youtube', 'JioSaavn'))
+               musics = st.radio("Where should I download music from?", ('Youtube', 'JioSaavn'))
+#              if (musics == 'JioSaavn'):
+                     
                if(st.button('Submit')):
                    st.info("Please Wait....")
                    bla=download_songs(query)
