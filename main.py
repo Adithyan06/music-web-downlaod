@@ -77,7 +77,7 @@ try:
           else:
                musics = st.radio("Where should I download music from?", ('Youtube', 'JioSaavn'))
                if (musics == 'JioSaavn'):
-                  r = requests.get(f"https://saavn.me/search/songs?query={args}&page=1&limit=1").json()    
+                  r = requests.get(f"https://saavn.me/search/songs?query={query}&page=1&limit=1").json()    
                   sname = r['data']['results'][0]['name']
                   slink = r['data']['results'][0]['downloadUrl'][4]['link']
                   ssingers = r['data']['results'][0]['primaryArtists']
