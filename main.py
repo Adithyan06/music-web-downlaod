@@ -81,7 +81,7 @@ try:
                   sname = r['data']['results'][0]['name']
                   slink = r['data']['results'][0]['downloadUrl'][4]['link']
                   ssingers = r['data']['results'][0]['primaryArtists']
-                  img = r['data']['results'][0]['image'][3]['link']
+                  img = r['data']['results'][0]['image'][2]['link']
                   thumbnail = wget.download(img)
                   file = wget.download(slink)
                   ffile = file.replace(f"{file}", f"{sname}.mp3")
