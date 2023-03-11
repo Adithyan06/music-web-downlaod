@@ -39,6 +39,7 @@ if(st.button('Submit')):
          thums = urlhp["album"]["cover_big"]
          thumb = wget.download(thums)
          st.image(thumb)
+         st.download_button("Download Image",thumb, file_name="image.jpg")
          rpl = lyrics(query)
          st.write(rpl)
      except Exception:
