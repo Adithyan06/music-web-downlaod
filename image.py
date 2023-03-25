@@ -27,20 +27,10 @@ st.set_page_config(page_title="Download Now",page_icon="kannan/logo.png",menu_it
 
 st.cache()
 st.title("Download Cover Images of any Song 🥳")
-query = st.text_input("Enter a Song Name 🎶")
+hello = st.text_input("Enter your name")
+color = st.text_input("Enter Your Colour")
 if(st.button('Submit')):
-     result = query.title()
-     st.success(result)
-     link = f"https://api.deezer.com/search?q={query}&limit=1"
+     link = f"http://api.safone.me/logo?text={hello}&color={color}"
      dato = requests.get(url=link).json()
-     try:
-         match = dato.get("data")
-         urlhp = match[0]
-         thums = urlhp["album"]["cover_big"]
-         thumb = wget.download(thums)
-         st.image(thumb)
-         st.download_button("Download Image",thumb)
-         rpl = lyrics(query)
-         st.write(rpl)
-     except Exception:
-         st.write("Results Not Found")
+     st.image(dato)
+     st.download_button("Download Image",dato)
