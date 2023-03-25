@@ -32,5 +32,6 @@ color = st.text_input("Enter Your Colour")
 if(st.button('Submit')):
      link = f"http://api.safone.me/logo?text={hello}&color={color}"
      dato = requests.get(url=link).json()
-     st.image(dato)
-     st.download_button("Download Image",dato)
+     image = dato.get("image")
+     st.image(image)
+     st.download_button("Download Image",image)
