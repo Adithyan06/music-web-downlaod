@@ -32,10 +32,7 @@ color = st.text_input("Enter Your Colour")
 if(st.button('Submit')):
      link = f"http://api.safone.me/image?query={hello}&limit={color}"
      dato = requests.get(url=link).json()
-     match = dato.get("results")
-     thums = match['imageUrl']
-#    thums = dato['results'][0]["imageUrl"]
-     image = wget.download(thums)
+#    image = wget.download(thums)
      st.write(dato)
-     st.image(image)
+#    st.image(image)
 #    st.download_button("Download Image",data=image)
