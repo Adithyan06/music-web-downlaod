@@ -28,12 +28,11 @@ st.set_page_config(page_title="Download Now",page_icon="kannan/logo.png",menu_it
 st.cache()
 st.title("Download Cover Images of any Song 🥳")
 hello = st.text_input("Enter your name")
-color = st.text_input("Enter Your Colour")
 if(st.button('Submit')):
-     link = f"http://api.safone.me/image?query={hello}&limit={color}"
+     link = f"http://api.safone.me/image?query={hello}&limit=1"
      dato = requests.get(url=link).json()
      pr = dato['results'][0]['imageUrl']
      image = wget.download(pr)
      st.write(pr)
      st.image(image)
-#    st.download_button("Download Image",data=image)
+     st.download_button("Download Image",data=image)
