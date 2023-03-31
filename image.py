@@ -33,6 +33,6 @@ if(st.button('Submit')):
      link = f"http://api.safone.me/logo?text={hello}&color={color}"
      dato = requests.get(url=link).json()
      thums = dato.get("image")
-     image = wget.download(thums)
-     st.image(image)
-     st.download_button("Download Image",data=image)
+#    image = wget.download(thums)
+     st.image(thums)
+#    st.download_button("Download Image",data=image)
