@@ -34,5 +34,6 @@ if(st.button('Submit')):
      dato = requests.get(url=link).json()
      thums = dato.get('imageUrl')
      image = wget.download(thums)
-     st.image(image)
+     st.write(dato)
+     st.image(thums)
 #    st.download_button("Download Image",data=image)
