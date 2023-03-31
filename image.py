@@ -30,9 +30,9 @@ st.title("Download Cover Images of any Song 🥳")
 hello = st.text_input("Enter your name")
 color = st.text_input("Enter Your Colour")
 if(st.button('Submit')):
-     link = f"http://api.safone.me/logo?text={hello}&color={color}"
+     link = f"http://api.safone.me/image?query={hello}&limit={color}"
      dato = requests.get(url=link).json()
-     thums = dato.get("image")
+     thums = dato.get("imageUrl")
 #    image = wget.download(thums)
      st.image(thums)
 #    st.download_button("Download Image",data=image)
