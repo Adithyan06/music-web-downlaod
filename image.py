@@ -4,6 +4,7 @@ import time
 import streamlit as st
 import requests
 from pathlib import Path
+from yt_dlp import YoutubeDL
 
 
 API = "https://apis.xditya.me/lyrics?song="
@@ -27,13 +28,20 @@ st.set_page_config(page_title="Download Now",page_icon="kannan/logo.png",menu_it
 
 st.cache()
 st.title("Download Cover Images of any Song 🥳")
-hello = st.text_input("Enter your name")
-if(st.button('Submit')):
-     link = f"http://api.safone.me/image?query={hello}&limit=2"
-     dato = requests.get(url=link).json()
-     pr = dato['results'][0]['imageUrl']
-     title = dato['results'][0]['title']
-     image = wget.download(pr)
-     st.write(title)
-     st.image(image)
-     st.download_button("Download Image",data=image)
+URL = st.text_input("Link")
+if(st.button('submit')):
+     with YoutubeDL() as ydl:
+     code = ydl.download(URL)
+     time.sleep(1)
+     st.video(code)
+
+# hello = st.text_input("Enter your query")
+# if(st.button('Submit')):
+#    link = f"http://api.safone.me/image?query={hello}&limit=2"
+#    dato = requests.get(url=link).json()
+#    pr = dato['results'][0]['imageUrl']
+#    title = dato['results'][0]['title']
+#    image = wget.download(pr)
+#    st.write(title)
+#    st.image(image)
+#    st.download_button("Download Image",data=image)
