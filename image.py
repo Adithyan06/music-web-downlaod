@@ -33,7 +33,7 @@ URL = st.text_input("Link")
 yt = YouTube(URL)
 if(st.button('submit')):
      ydl_opts = {"outtmpl": f"{yt.title}.mp4"}
-     with YoutubeDL(ydl_opts) as ydl:
+     with YoutubeDL() as ydl:
          info = ydl.extract_info(URL, download=False)
          video = ydl.prepare_filename(info)
          ydl.process_info(info)
