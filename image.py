@@ -32,6 +32,7 @@ st.title("Download Cover Images of any Song 🥳")
 URL = st.text_input("Link")
 yt = YouTube(URL)
 if(st.button('submit')):
+     z = st.info("Please Wait...")
      ydl_opts = {"outtmpl": f"{yt.title}.mp4"}
      with YoutubeDL() as ydl:
          info = ydl.extract_info(URL, download=False)
@@ -42,7 +43,8 @@ if(st.button('submit')):
          with open(p,'rb') as f:
              st.write(f"{yt.title}")
              st.video(f)
-             st.download_button("Download Video 📥",data=f,file_name=f"{yt.title[:33]}.mp4")  
+             st.download_button("Download Video 📥",data=f,file_name=f"{yt.title}.mp4") 
+             z.delete() 
 
 # hello = st.text_input("Enter your query")
 # if(st.button('Submit')):
