@@ -40,7 +40,7 @@ if(st.button('submit')):
          p = Path(video)
          p=p.rename(p.with_name(f"{yt.title[:33]}.mp4"))
          with open(p,'rb') as f:
-             st.video(video)
+             st.video(f)
              st.download_button("Download Video 📥",data=f)  
 
 # hello = st.text_input("Enter your query")
