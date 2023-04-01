@@ -5,6 +5,7 @@ import streamlit as st
 import requests
 from pathlib import Path
 from yt_dlp import YoutubeDL
+from pytube import YouTube
 
 
 API = "https://apis.xditya.me/lyrics?song="
@@ -29,6 +30,7 @@ st.set_page_config(page_title="Download Now",page_icon="kannan/logo.png",menu_it
 st.cache()
 st.title("Download Cover Images of any Song 🥳")
 URL = st.text_input("Link")
+yt = YouTube(URL)
 if(st.button('submit')):
      ydl_opts = {'format': 'bestvideo/best'}
      with YoutubeDL(ydl_opts) as ydl:
@@ -37,6 +39,7 @@ if(st.button('submit')):
          ydl.process_info(info)
          time.sleep(1)
          st.video(video)
+         st.download_button("Download Video 📥", data=video, file_name=f"{yt.title}.mp4")  
 
 # hello = st.text_input("Enter your query")
 # if(st.button('Submit')):
