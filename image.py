@@ -42,7 +42,7 @@ if(st.button('submit')):
          with open(p,'rb') as f:
              st.write(f"{yt.title}")
              st.video(f)
-             st.download_button("Download Video 📥",data=f,file_name=f"{yt.title[:33]}.mp3")  
+             st.download_button("Download Video 📥",data=f,file_name=f"{yt.title[:33]}.mp4")  
 
 # hello = st.text_input("Enter your query")
 # if(st.button('Submit')):
