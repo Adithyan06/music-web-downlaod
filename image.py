@@ -32,7 +32,9 @@ URL = st.text_input("Link")
 if(st.button('submit')):
      ydl_opts = {'format': 'bestvideo/best'}
      with YoutubeDL(ydl_opts) as ydl:
-         code = ydl.download(URL)
+         info = ydl.extract_info(URL, download=False)
+         video = ydl.prepare_filename(info)
+         ydl.process_info(info)
          time.sleep(1)
          st.video(code)
 
