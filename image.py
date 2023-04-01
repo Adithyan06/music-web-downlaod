@@ -36,7 +36,7 @@ if(st.button('submit')):
          video = ydl.prepare_filename(info)
          ydl.process_info(info)
          time.sleep(1)
-         st.video(code)
+         st.video(video)
 
 # hello = st.text_input("Enter your query")
 # if(st.button('Submit')):
