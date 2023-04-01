@@ -30,7 +30,8 @@ st.cache()
 st.title("Download Cover Images of any Song 🥳")
 URL = st.text_input("Link")
 if(st.button('submit')):
-     with YoutubeDL() as ydl:
+     ydl_opts = {'format': 'bestvideo/best'}
+     with YoutubeDL(ydl_opts) as ydl:
          code = ydl.download(URL)
          time.sleep(1)
          st.video(code)
