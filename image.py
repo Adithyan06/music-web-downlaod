@@ -31,9 +31,9 @@ st.title("Download Cover Images of any Song 🥳")
 URL = st.text_input("Link")
 if(st.button('submit')):
      with YoutubeDL() as ydl:
-     code = ydl.download(URL)
-     time.sleep(1)
-     st.video(code)
+         code = ydl.download(URL)
+         time.sleep(1)
+         st.video(code)
 
 # hello = st.text_input("Enter your query")
 # if(st.button('Submit')):
