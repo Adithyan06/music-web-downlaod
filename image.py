@@ -28,10 +28,10 @@ st.set_page_config(page_title="Download Now",page_icon="kannan/logo.png",menu_it
 })                       
 
 st.cache()
-st.title("Download Cover Images of any Song 🥳")
-URL = st.text_input("Link")
+st.title("Download any YouTube videos with best quality 🥳")
+URL = st.text_input("Paste any YouTube URL/Link")
 yt = YouTube(URL)
-if(st.button('submit')):
+if(st.button('Apply')):
      z = st.info("Please Wait...")
      ydl_opts = {"outtmpl": f"{yt.title}.mp4"}
      with YoutubeDL() as ydl:
@@ -44,7 +44,6 @@ if(st.button('submit')):
              st.write(f"{yt.title}")
              st.video(f)
              st.download_button("Download Video 📥",data=f,file_name=f"{yt.title}.mp4") 
-             z.delete() 
 
 # hello = st.text_input("Enter your query")
 # if(st.button('Submit')):
