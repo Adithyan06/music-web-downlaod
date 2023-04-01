@@ -38,9 +38,8 @@ if(st.button('submit')):
          info = ydl.extract_info(URL, download=False)
          video = ydl.prepare_filename(info)
          ydl.process_info(info)
-         time.sleep(1)
          st.video(video)
-         st.download_button("Download Video 📥", data=video, file_name=f"{yt.title}.mp4")  
+         st.download_button("Download Video 📥", video, file_name=f"{yt.title}.mp4")  
 
 # hello = st.text_input("Enter your query")
 # if(st.button('Submit')):
