@@ -38,7 +38,7 @@ if(st.button('submit')):
          video = ydl.prepare_filename(info)
          ydl.process_info(info)
          p = Path(video)
-         p=p.rename(p.with_name(f"{yt.title}".mp4))
+         p=p.rename(p.with_name(f"{yt.title}.mp4"))
          with open(p,'rb') as f:
              st.video(f)
              st.download_button("Download Video 📥", f, file_name=f"{yt.title}.mp4")  
