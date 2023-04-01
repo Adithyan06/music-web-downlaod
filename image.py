@@ -40,8 +40,8 @@ if(st.button('submit')):
          file = video.replace(f"{video}", f"{yt.title}.mp4")
          os.rename(video, file)
          time.sleep(0.5)
-         st.video(file)
-         st.download_button("Download Video 📥", video, file_name=f"{yt.title}.mp4")  
+         st.video(video)
+         st.download_button("Download Video 📥", file, file_name=f"{yt.title}.mp4")  
 
 # hello = st.text_input("Enter your query")
 # if(st.button('Submit')):
