@@ -10,7 +10,7 @@ import requests
 import wget
 
 st.cache()
-st.set_page_config(page_title="Download Any songs now !!",page_icon="images/logo.png",menu_items={
+st.set_page_config(page_title="Download Any songs now !!",page_icon="❤️",menu_items={
       "Get help": "https://github.com/Adithyan06"
 })
 
