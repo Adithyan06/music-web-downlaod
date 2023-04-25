@@ -8,6 +8,8 @@ import ffmpeg
 from youtube_search import YoutubeSearch
 import requests
 import wget
+from streamlit_lottie import st_lottie
+import requests
 
 st.cache()
 st.set_page_config(page_title="Download Any songs now !!",page_icon="❤️",menu_items={
