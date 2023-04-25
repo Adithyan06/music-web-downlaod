@@ -13,7 +13,10 @@ st.cache()
 st.set_page_config(page_title="Download Any songs now !!",page_icon="❤️",menu_items={
       "Get help": "https://github.com/Adithyan06"
 })
-
+st.image(
+    "https://emojipedia-us.s3.amazonaws.com/source/skype/289/parrot_1f99c.png",
+    width=125,
+)
 st.title("Download any Songs You Want 🤩") 
 st.caption("Download any Video/Audio Songs.Just copy the name or YouTube link of the song you want 🥳")
 
