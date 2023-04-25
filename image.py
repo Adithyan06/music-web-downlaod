@@ -21,7 +21,7 @@ yt = YouTube(URL)
 if(st.button('Apply')):
      ytregex = r"^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$"
      if not ytregex:
-         st.write("Give me link")
+         await st.write("Give me link")
          return
      z = st.info("Please Wait...")
      ydl_opts = {"outtmpl": f"{yt.title}.mp4"}
@@ -35,14 +35,3 @@ if(st.button('Apply')):
              st.write(f"{yt.title}")
              st.video(f)
              st.download_button("Download Video 📥",data=f,file_name=f"{yt.title}.mp4") 
-
-# hello = st.text_input("Enter your query")
-# if(st.button('Submit')):
-#    link = f"http://api.safone.me/image?query={hello}&limit=2"
-#    dato = requests.get(url=link).json()
-#    pr = dato['results'][0]['imageUrl']
-#    title = dato['results'][0]['title']
-#    image = wget.download(pr)
-#    st.write(title)
-#    st.image(image)
-#    st.download_button("Download Image",data=image)
