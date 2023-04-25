@@ -1,4 +1,4 @@
-import os , time,random,sys
+important os , time,random,sys
 import wget
 import time
 import streamlit as st
@@ -19,7 +19,6 @@ st.title("Download any YouTube videos with best quality 🥳")
 URL = st.text_input("Paste any YouTube URL/Link")
 yt = YouTube(URL)
 if(st.button('Apply')):
-     ytregex = r"^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$"
      z = st.info("Please Wait...")
      ydl_opts = {"outtmpl": f"{yt.title}.mp4"}
      with YoutubeDL() as ydl:
