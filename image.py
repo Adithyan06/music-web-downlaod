@@ -2,6 +2,16 @@ import streamlit as st
 from pathlib import Path
 from yt_dlp import YoutubeDL
 from pytube import YouTube
+from streamlit_lottie import st_lottie
+import requests
+
+def load_lottieurl(url):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
+
+lottie_coding = load_lottieurl("https://assets1.lottiefiles.com/packages/lf20_bwk2zS.json")
 
 st.set_page_config(page_title="Download Now",page_icon="🧡",menu_items={
     "Get help": "https://github.com/dudegladiator/YoutubeDownloader",
@@ -9,6 +19,10 @@ st.set_page_config(page_title="Download Now",page_icon="🧡",menu_items={
     
 })                       
 st.cache()
+column = st.columns(1)
+with column:
+        st_lottie(lottie_coding, height=300, key="coding")
+
 st.title("Download any YouTube videos with best quality 🥳")
 URL = st.text_input("Paste any YouTube URL/Link")
 yt = YouTube(URL)
