@@ -1,19 +1,13 @@
-important os , time,random,sys
-import wget
-import time
 import streamlit as st
-import requests
 from pathlib import Path
 from yt_dlp import YoutubeDL
 from pytube import YouTube
-from utils.util import humanbytes
 
-st.set_page_config(page_title="Download Now",page_icon="kannan/logo.png",menu_items={
+st.set_page_config(page_title="Download Now",page_icon="🧡",menu_items={
     "Get help": "https://github.com/dudegladiator/YoutubeDownloader",
     "Report a bug" : "https://github.com/dudegladiator/YoutubeDownloader/issues"
     
 })                       
-
 st.cache()
 st.title("Download any YouTube videos with best quality 🥳")
 URL = st.text_input("Paste any YouTube URL/Link")
