@@ -20,9 +20,6 @@ URL = st.text_input("Paste any YouTube URL/Link")
 yt = YouTube(URL)
 if(st.button('Apply')):
      ytregex = r"^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$"
-     if not ytregex:
-         await st.write("Give me link")
-         return
      z = st.info("Please Wait...")
      ydl_opts = {"outtmpl": f"{yt.title}.mp4"}
      with YoutubeDL() as ydl:
