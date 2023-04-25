@@ -8,20 +8,6 @@ from yt_dlp import YoutubeDL
 from pytube import YouTube
 from utils.util import humanbytes
 
-
-API = "https://apis.xditya.me/lyrics?song="
-
-def search(query):
-        r = requests.get(API + query)
-        find = r.json()
-        return find
-       
-def lyrics(query):
-        fin = search(query)
-        text = f'**🎶 Successfully Extracted Lyrics Of {query} 🎶**\n\n\n\n'
-        text += f'{fin["lyrics"]}'
-        return text
-
 st.set_page_config(page_title="Download Now",page_icon="kannan/logo.png",menu_items={
     "Get help": "https://github.com/dudegladiator/YoutubeDownloader",
     "Report a bug" : "https://github.com/dudegladiator/YoutubeDownloader/issues"
@@ -33,6 +19,10 @@ st.title("Download any YouTube videos with best quality 🥳")
 URL = st.text_input("Paste any YouTube URL/Link")
 yt = YouTube(URL)
 if(st.button('Apply')):
+     ytregex = r"^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$"
+     if not ytregex:
+         st.write("Give me link")
+         return
      z = st.info("Please Wait...")
      ydl_opts = {"outtmpl": f"{yt.title}.mp4"}
      with YoutubeDL() as ydl:
