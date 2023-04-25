@@ -50,7 +50,7 @@ try:
             ma = Path(a)
             ma=ma.rename(ma.with_name(f"{title[:33]}.mp3"))  
             if(st.button('Submit')): 
-                 st.spinner("Please Wait....")
+                 st.info("Please Wait....")
                  with open(ma,'rb' ) as s:                
                      st.write(f"{title[:33]}")
                      st.audio(s)
