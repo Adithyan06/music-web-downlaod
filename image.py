@@ -19,9 +19,7 @@ st.set_page_config(page_title="Download Now",page_icon="🧡",menu_items={
     
 })                       
 st.cache()
-column = st.columns(1)
-with column:
-        st_lottie(lottie_coding, height=300, key="coding")
+st_lottie(lottie_coding, height=300, key="coding")
 
 st.title("Download any YouTube videos with best quality 🥳")
 URL = st.text_input("Paste any YouTube URL/Link")
