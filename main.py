@@ -14,7 +14,7 @@ st.set_page_config(page_title="Download Any songs now !!",page_icon="❤️",men
       "Get help": "https://github.com/Adithyan06"
 })
 st.image(
-    "https://emojipedia-us.s3.amazonaws.com/source/skype/289/parrot_1f99c.png",
+    "https://assets1.lottiefiles.com/packages/lf20_bwk2zS.json",
     width=125,
 )
 st.title("Download any Songs You Want 🤩") 
