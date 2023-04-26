@@ -17,7 +17,7 @@ def load_lottieurl(url):
         return None
     return r.json()
 
-lottie_coding = load_lottieurl("https://assets1.lottiefiles.com/private_files/lf30_t26law.json")
+lottie_coding = load_lottieurl("https://assets8.lottiefiles.com/packages/lf20_ej2lfhv2.json")
 
 st.cache()
 st.set_page_config(page_title="Download Any songs now !!",page_icon="❤️",menu_items={
