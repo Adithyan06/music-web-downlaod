@@ -13,7 +13,7 @@ st.cache()
 st.title("Download any YouTube videos with best quality 🥳")
 URL = st.text_input("Paste any YouTube URL/Link")
 results = YoutubeSearch(URL, max_results=1).to_dict()
-link = f"https://youtube.com{results[0]['url_suffix']}"
+link=f"https://youtube.com{results[0]['url_suffix']}"
 title = results[0]["title"]
 yt = YouTube(link)
 if(st.button('Apply')):
