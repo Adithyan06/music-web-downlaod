@@ -34,7 +34,7 @@ if query is None:
 option = st.radio("Select Type: ", ('Video 🎥', 'Audio 🎶'))
 results = YoutubeSearch(query, max_results=1).to_dict()
 try:
-   link=f"https://youtube.com{results[0]['url_suffix']}"
+   link = f"https://youtube.com{results[0]['url_suffix']}"
    title = results[0]["title"]
    yt = YouTube(f"https://youtube.com{results[0]['url_suffix']}")
 #  option = st.radio("Select Type: ", ('Audio 🎶', 'Video 🎥'))
