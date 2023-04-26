@@ -43,7 +43,6 @@ if (option == 'Video 🎥'):
    p = Path(hi)
    p=p.rename(p.with_name(f"{yt.title[:35]}.mp4"))
    if(st.button('Submit')):
-        st.info("Please Wait....")
         with open(p,'rb' ) as f:                
             st.write(f"{yt.title}")
             st.video(f)
@@ -54,7 +53,6 @@ else:
      ma = Path(a)
      ma=ma.rename(ma.with_name(f"{title[:33]}.mp3"))  
      if(st.button('Submit')): 
-          st.info("Please Wait....")
           with open(ma,'rb' ) as s:                
                st.write(f"{title[:33]}")
                st.audio(s)
