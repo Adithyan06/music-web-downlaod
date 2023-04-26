@@ -42,7 +42,7 @@ if (option == 'Video 🎥'):
    p=p.rename(p.with_name(f"{yt.title[:35]}.mp4"))
    if(st.button('Submit')):
         with st.spinner('Wait for it...'):
-#           time.sleep(1)
+            time.sleep(0.1)
             with open(p,'rb' ) as f:                
                 st.write(f"{yt.title}")
                 st.video(f)
