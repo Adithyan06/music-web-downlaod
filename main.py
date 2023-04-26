@@ -11,6 +11,14 @@ import wget
 from streamlit_lottie import st_lottie
 import requests
 
+def load_lottieurl(url):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
+
+lottie_coding = load_lottieurl("https://assets1.lottiefiles.com/private_files/lf30_t26law.json")
+
 st.cache()
 st.set_page_config(page_title="Download Any songs now !!",page_icon="❤️",menu_items={
       "Get help": "https://github.com/Adithyan06"
