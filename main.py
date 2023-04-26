@@ -33,9 +33,9 @@ if query is None:
    st.info("give something") 
 # option = st.radio("Select Type: ", ('Audio 🎶', 'Video 🎥'))
 results = YoutubeSearch(query, max_results=1).to_dict()
-link=f"https://youtube.com{results[0]['url_suffix']}"
+# link=f"https://youtube.com{results[0]['url_suffix']}"
 title = results[0]["title"]
-yt = YouTube(link)
+yt = YouTube(f"https://youtube.com{results[0]['url_suffix']}")
 option = st.radio("Select Type: ", ('Audio 🎶', 'Video 🎥'))
 
 if (option == 'Video 🎥'):
@@ -50,7 +50,7 @@ if (option == 'Video 🎥'):
             with open(p,'rb' ) as f:                
                 st.write(f"{yt.title}")
                 st.video(f)
-                st.write("Link -", link)
+                st.write("Link -", f"https://youtube.com{results[0]['url_suffix']}")
                 st.download_button("Save Video", data=f, file_name=f"{title[:35]}.mp4") 
 else:                 
      audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag) 
