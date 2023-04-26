@@ -54,7 +54,8 @@ else:
      ma=ma.rename(ma.with_name(f"{title[:33]}.mp3"))  
      if(st.button('Submit')): 
           with st.spinner('Wait for it...'):
-               with open(ma,'rb' ) as s:                
-                   st.write(f"{title[:33]}")
-                   st.audio(s)
-                   st.download_button("Save Audio", data=s, file_name=f"{yt.title[:33]}.mp3")  
+              time.sleep(1)
+              with open(ma,'rb' ) as s:                
+                  st.write(f"{title[:33]}")
+                  st.audio(s)
+                  st.download_button("Save Audio", data=s, file_name=f"{yt.title[:33]}.mp3")  
