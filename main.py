@@ -23,9 +23,10 @@ st.cache()
 st.set_page_config(page_title="Download Any songs now !!",page_icon="❤️",menu_items={
       "Get help": "https://github.com/Adithyan06"
 })
-st_lottie(lottie_coding, height=300, key="download")
-st.title("Download any Songs You Want 🤩") 
+# st_lottie(lottie_coding, height=300, key="download")
+st.title("YouTube Videos Downloader") 
 st.caption("Download any Video/Audio Songs.Just copy the name or YouTube link of the song you want 🥳")
+st_lottie(lottie_coding, height=250, key="coding")
 
 query = st.text_input("Song Name or YouTube URL",placeholder="Song Name")
 option = st.radio("Select Type: ", ('Audio 🎶', 'Video 🎥'))
