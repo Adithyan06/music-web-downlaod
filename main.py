@@ -18,9 +18,11 @@ def load_lottieurl(url):
 lottie_coding = load_lottieurl("https://assets8.lottiefiles.com/packages/lf20_ej2lfhv2.json")
 
 st.cache()
-st.set_page_config(page_title="Download Any songs now !!",page_icon="❤️",menu_items={
-      "Get help": "https://github.com/Adithyan06"
-})
+st.set_page_config(
+    page_title="Download Any songs now !!",
+    page_icon="random",
+    menu_items={"Get help": "https://github.com/Adithyan06"})
+
 # st_lottie(lottie_coding, height=300, key="download")
 st.title("YouTube Videos Downloader") 
 st.caption("Download any Video/Audio Songs.Just copy the name or YouTube link of the song you want 🥳")
