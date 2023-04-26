@@ -28,13 +28,13 @@ st.title("YouTube Videos Downloader")
 st.caption("Download any Video/Audio Songs.Just copy the name or YouTube link of the song you want 🥳")
 st_lottie(lottie_coding, height=280, key="YouTube")
 
-query = st.text_input(Yotube, "Song Name or YouTube URL",placeholder="Song Name")
+query = st.text_input("Song Name or YouTube URL",placeholder="Song Name")
 if query is None:
    st.info("give something") 
 option = st.radio("Select Type: ", ('Video 🎥', 'Audio 🎶'))
 results = YoutubeSearch(query, max_results=1).to_dict()
 try:
-   link = f"https://youtube.com{results[0]['url_suffix']}"
+   link = (f"https://youtube.com{results[0]['url_suffix']}")
    title = results[0]["title"]
    yt = YouTube(f"https://youtube.com{results[0]['url_suffix']}")
 #  option = st.radio("Select Type: ", ('Audio 🎶', 'Video 🎥'))
