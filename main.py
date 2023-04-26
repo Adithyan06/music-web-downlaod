@@ -28,8 +28,9 @@ st.title("YouTube Videos Downloader")
 st.caption("Download any Video/Audio Songs.Just copy the name or YouTube link of the song you want 🥳")
 st_lottie(lottie_coding, height=280, key="YouTube")
 
-query = st.text_input("Song Name or YouTube URL",placeholder="Song Name")
 option = st.radio("Select Type: ", ('Audio 🎶', 'Video 🎥'))
+query = st.text_input("Song Name or YouTube URL",placeholder="Song Name")
+# option = st.radio("Select Type: ", ('Audio 🎶', 'Video 🎥'))
 try:
     results = []
     count = 0
