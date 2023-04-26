@@ -6,8 +6,6 @@ import os
 import time
 import ffmpeg
 from youtube_search import YoutubeSearch
-import requests
-import wget
 from streamlit_lottie import st_lottie
 import requests
 
@@ -46,7 +44,7 @@ if (option == 'Video 🎥'):
         with open(p,'rb' ) as f:                
             st.write(f"{yt.title}")
             st.video(f)
-            st.write("Link -" link)
+            st.write("Link -", link)
             st.download_button("Save Video", data=f, file_name=f"{title[:35]}.mp4") 
 else:                 
      audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag) 
