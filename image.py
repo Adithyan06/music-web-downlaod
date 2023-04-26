@@ -2,6 +2,7 @@ import streamlit as st
 from pathlib import Path
 from yt_dlp import YoutubeDL
 from pytube import YouTube
+from youtube_search import YoutubeSearch
 
 st.set_page_config(page_title="Download Now",page_icon="🧡",menu_items={
     "Get help": "https://github.com/dudegladiator/YoutubeDownloader",
@@ -12,6 +13,10 @@ st.cache()
 st.title("Download any YouTube videos with best quality 🥳")
 URL = st.text_input("Paste any YouTube URL/Link")
 yt = YouTube(URL)
+results = YoutubeSearch(URL, max_results=1).to_dict()
+count += 1
+link = f"https://youtube.com{results[0]['url_suffix']}"
+title = results[0]["title"]
 if(st.button('Apply')):
      z = st.info("Please Wait...")
 #    ydl_opts = {"outtmpl": f"{yt.title}.mp4"}
