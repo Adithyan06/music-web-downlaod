@@ -31,7 +31,7 @@ st_lottie(lottie_coding, height=280, key="YouTube")
 query = st.text_input("Song Name or YouTube URL",placeholder="Song Name")
 if query is None:
    st.info("give something") 
-option = st.radio("Select Type: ", ('Audio 🎶', 'Video 🎥'))
+option = st.radio("Select Type: ", ('Video 🎥', 'Audio 🎶'))
 results = YoutubeSearch(query, max_results=1).to_dict()
 try:
    link=f"https://youtube.com{results[0]['url_suffix']}"
@@ -63,3 +63,5 @@ try:
                      st.write(f"{title[:33]}")
                      st.audio(s)
                      st.download_button("Save Audio", data=s, file_name=f"{yt.title[:33]}.mp3")  
+except Exception as e:
+    st.write(e)
