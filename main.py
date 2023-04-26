@@ -31,7 +31,7 @@ st_lottie(lottie_coding, height=280, key="YouTube")
 query = st.text_input("Song Name or YouTube URL",placeholder="Song Name")
 # option = st.radio("Select Type: ", ('Audio 🎶', 'Video 🎥'))
 results = YoutubeSearch(query, max_results=1).to_dict()
-link = f"https://youtube.com{results[0]['url_suffix']}"
+link=f"https://youtube.com{results[0]['url_suffix']}"
 title = results[0]["title"]
 yt = YouTube(link)
 option = st.radio("Select Type: ", ('Audio 🎶', 'Video 🎥'))
