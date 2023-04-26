@@ -35,4 +35,6 @@ while len(results) == 0 and count < 6:
                 with open(p,'rb') as f:
                     st.write(f"{title}")
                     st.video(f)
-                    st.download_button("Download Video 📥",data=f,file_name=f"{title}.mp4") 
+                    st.download_button("Download Video 📥",data=f,file_name=f"{title}.mp4")
+    except Exception:
+        st.error("❌')  
