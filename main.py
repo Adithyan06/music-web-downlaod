@@ -41,18 +41,20 @@ if (option == 'Video 🎥'):
    p = Path(hi)
    p=p.rename(p.with_name(f"{yt.title[:35]}.mp4"))
    if(st.button('Submit')):
-        with open(p,'rb' ) as f:                
-            st.write(f"{yt.title}")
-            st.video(f)
-            st.write("Link -", link)
-            st.download_button("Save Video", data=f, file_name=f"{title[:35]}.mp4") 
+        with st.spinner('Wait for it...'):
+            with open(p,'rb' ) as f:                
+                st.write(f"{yt.title}")
+                st.video(f)
+                st.write("Link -", link)
+                st.download_button("Save Video", data=f, file_name=f"{title[:35]}.mp4") 
 else:                 
      audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag) 
      a = audio.download()
      ma = Path(a)
      ma=ma.rename(ma.with_name(f"{title[:33]}.mp3"))  
      if(st.button('Submit')): 
-          with open(ma,'rb' ) as s:                
-               st.write(f"{title[:33]}")
-               st.audio(s)
-               st.download_button("Save Audio", data=s, file_name=f"{yt.title[:33]}.mp3")  
+          with st.spinner('Wait for it...'):
+               with open(ma,'rb' ) as s:                
+                   st.write(f"{title[:33]}")
+                   st.audio(s)
+                   st.download_button("Save Audio", data=s, file_name=f"{yt.title[:33]}.mp3")  
