@@ -23,10 +23,7 @@ st.cache()
 st.set_page_config(page_title="Download Any songs now !!",page_icon="❤️",menu_items={
       "Get help": "https://github.com/Adithyan06"
 })
-st.image(
-    "https://assets1.lottiefiles.com/packages/lf20_bwk2zS.json",
-    width=125,
-)
+st_lottie(lottie_coding, height=300, key="download")
 st.title("Download any Songs You Want 🤩") 
 st.caption("Download any Video/Audio Songs.Just copy the name or YouTube link of the song you want 🥳")
 
