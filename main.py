@@ -46,7 +46,7 @@ if (option == 'Video 🎥'):
         with open(p,'rb' ) as f:                
             st.write(f"{yt.title}")
             st.video(f)
-            st.write(link)
+            st.write("Link -" link)
             st.download_button("Save Video", data=f, file_name=f"{title[:35]}.mp4") 
 else:                 
      audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag) 
