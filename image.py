@@ -17,7 +17,7 @@ results = YoutubeSearch(URL, max_results=1).to_dict()
 link=f"https://youtube.com{results[0]['url_suffix']}"
 title = results[0]["title"]
 yt = YouTube(link)
-if(st.button('Apply'))
+if(st.button('Apply')):
      with st.spinner('Wait for it...'):
          time.sleep(5)
      z = st.info("Please Wait...")
