@@ -26,7 +26,7 @@ st.set_page_config(page_title="Download Any songs now !!",page_icon="❤️",men
 # st_lottie(lottie_coding, height=300, key="download")
 st.title("YouTube Videos Downloader") 
 st.caption("Download any Video/Audio Songs.Just copy the name or YouTube link of the song you want 🥳")
-st_lottie(lottie_coding, height=250, key="coding")
+st_lottie(lottie_coding, height=300, key="YouTube")
 
 query = st.text_input("Song Name or YouTube URL",placeholder="Song Name")
 option = st.radio("Select Type: ", ('Audio 🎶', 'Video 🎥'))
