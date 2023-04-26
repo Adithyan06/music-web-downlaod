@@ -19,13 +19,13 @@ yt = YouTube(link)
 if(st.button('Apply')):
      z = st.info("Please Wait...")
 #    ydl_opts = {"outtmpl": f"{yt.title}.mp4"}
-      with YoutubeDL() as ydl:
-          info = ydl.extract_info(link, download=False)
-          video = ydl.prepare_filename(info)
-          ydl.process_info(info)
-          p = Path(video)
-          p=p.rename(p.with_name(f"{title[:33]}.mp4"))
-          with open(p,'rb') as f:
-              st.write(f"{title}")
-              st.video(f)
-              st.download_button("Download Video 📥",data=f,file_name=f"{title}.mp4")
+     with YoutubeDL() as ydl:
+         info = ydl.extract_info(link, download=False)
+         video = ydl.prepare_filename(info)
+         ydl.process_info(info)
+         p = Path(video)
+         p=p.rename(p.with_name(f"{title[:33]}.mp4"))
+         with open(p,'rb') as f:
+             st.write(f"{title}")
+             st.video(f)
+             st.download_button("Download Video 📥",data=f,file_name=f"{title}.mp4")
