@@ -29,17 +29,14 @@ st.caption("Download any Video/Audio Songs.Just copy the name or YouTube link of
 st_lottie(lottie_coding, height=280, key="YouTube")
 
 query = st.text_input("Song Name or YouTube URL",placeholder="Song Name")
-if query is None:
-   st.info("give something") 
 option = st.radio("Select Type: ", ('Video 🎥', 'Audio 🎶'))
-results = YoutubeSearch(query, max_results=1).to_dict()
-# title = results[0]["title"]
-yt = YouTube(f"https://youtube.com{results[0]['url_suffix']}")
 if(st.button('Submit')):
      with st.spinner('Wait for it...'):
          try:
              if (option == 'Video 🎥'):
-                res = st.selectbox("Select The resolution",("720p","360p","144p"))                       
+                res = st.selectbox("Select The resolution",("720p","360p","144p")) 
+                results = YoutubeSearch(query, max_results=1).to_dict()
+                yt = YouTube(f"https://youtube.com{results[0]['url_suffix']}")                      
                 video = yt.streams.get_by_itag(yt.streams.filter(res=res , progressive="True" )[0].itag)      
                 hi = video.download()           
                 p = Path(hi)
@@ -49,7 +46,9 @@ if(st.button('Submit')):
                     st.video(f)
                     st.write("Link -", f"https://youtube.com{results[0]['url_suffix']}")
                     st.download_button("Save Video", data=f, file_name=f"{yt.title[:35]}.mp4") 
-             else:                 
+             else:   
+                  results = YoutubeSearch(query, max_results=1).to_dict()
+                  yt = YouTube(f"https://youtube.com{results[0]['url_suffix']}")              
                   audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag) 
                   a = audio.download()
                   ma = Path(a)
