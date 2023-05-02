@@ -13,19 +13,15 @@ st.set_page_config(page_title="Download Now",page_icon="🧡",menu_items={
 st.cache()
 st.title("Download any YouTube videos with best quality 🥳")
 
-URL = st.text_input("Paste any YouTube URL/Link")
+URL = st.text_input("Paste any YouTube URL/Link",placeholder="Enter Name/URL")
 option = st.radio("Select Type: ", ('YouTube', 'URL Upload'))
 if(st.button('Apply')):
-     with st.spinner('Wait for it...'):
+     with st.spinner('Downloading...'):
          if (option == 'YouTube'):
             results = YoutubeSearch(URL, max_results=1).to_dict()
             link=f"https://youtube.com{results[0]['url_suffix']}"
             title = results[0]["title"]
             yt = YouTube(link)
-#  if(st.button('Apply')):
-#       with st.spinner('Wait for it...'):
-#        time.sleep(5)
-#        ydl_opts = {"outtmpl": f"{yt.title}.mp4"}
             with YoutubeDL() as ydl:
                 info = ydl.extract_info(link, download=False)
                 video = ydl.prepare_filename(info)
@@ -37,8 +33,6 @@ if(st.button('Apply')):
                     st.video(f)
                     st.download_button("Download Video 📥",data=f,file_name=f"{title}.mp4")
          else:
-#    if(st.button('Apply')):
-#         with st.spinner('Processing...'):
               with YoutubeDL() as ydl:
                   info = ydl.extract_info(URL, download=False)
                   video = ydl.prepare_filename(info)
@@ -46,6 +40,6 @@ if(st.button('Apply')):
                   x = Path(video)
                   x=x.rename(x.with_name("XXX.mp4"))
                   with open(x,'rb') as xx:
-                      st.write("XXX.mp4")
+                      st.write(info)
                       st.video(xx)
                       st.download_button("Download 🥀",data=xx)
