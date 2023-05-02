@@ -40,6 +40,6 @@ if(st.button('Apply')):
                   x = Path(video)
                   x=x.rename(x.with_name("XXX.mp4"))
                   with open(x,'rb') as xx:
-                      st.write(info)
+                      st.write(video)
                       st.video(xx)
                       st.download_button("Download 🥀",data=xx)
