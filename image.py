@@ -38,8 +38,8 @@ if(st.button('Apply')):
                   video = ydl.prepare_filename(info)
                   ydl.process_info(info)
                   x = Path(video)
-                  x=x.rename(x.with_name("XXX.mp4"))
+                  x=x.rename(x.with_name(f"{video}.mp4"))
                   with open(x,'rb') as xx:
                       st.write(video)
                       st.video(xx)
-                      st.download_button("Download 🥀",data=xx)
+                      st.download_button("Download 🥀",data=xx,file_name=f"{video}.mp4")
