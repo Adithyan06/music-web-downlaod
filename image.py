@@ -12,8 +12,10 @@ st.set_page_config(page_title="Download Now",page_icon="🧡",menu_items={
 })                       
 st.cache()
 st.title("Download any YouTube videos with best quality 🥳")
-option = st.radio("Select Type: ", ('YouTube', 'URL Upload'))
+
 URL = st.text_input("Paste any YouTube URL/Link")
+option = st.radio("Select Type: ", ('YouTube', 'URL Upload'))
+if (option == 'YouTube'):
 results = YoutubeSearch(URL, max_results=1).to_dict()
 link=f"https://youtube.com{results[0]['url_suffix']}"
 title = results[0]["title"]
