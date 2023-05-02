@@ -33,7 +33,7 @@ if query is None:
    st.info("give something") 
 option = st.radio("Select Type: ", ('Video 🎥', 'Audio 🎶'))
 results = YoutubeSearch(query, max_results=1).to_dict()
-title = results[0]["title"]
+# title = results[0]["title"]
 yt = YouTube(f"https://youtube.com{results[0]['url_suffix']}")
 if(st.button('Submit')):
      with st.spinner('Wait for it...'):
@@ -48,14 +48,14 @@ if(st.button('Submit')):
                     st.write(f"{yt.title}")
                     st.video(f)
                     st.write("Link -", f"https://youtube.com{results[0]['url_suffix']}")
-                    st.download_button("Save Video", data=f, file_name=f"{title[:35]}.mp4") 
+                    st.download_button("Save Video", data=f, file_name=f"{yt.title[:35]}.mp4") 
              else:                 
                   audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag) 
                   a = audio.download()
                   ma = Path(a)
-                  ma=ma.rename(ma.with_name(f"{title[:33]}.mp3"))  
+                  ma=ma.rename(ma.with_name(f"{yt.title[:33]}.mp3"))  
                   with open(ma,'rb' ) as s:                
-                      st.write(f"{title[:33]}")
+                      st.write(f"{yt.title[:33]}")
                       st.audio(s)
                       st.download_button("Save Audio 🎶", data=s, file_name=f"{yt.title[:33]}.mp3")  
          except Exception as e:
