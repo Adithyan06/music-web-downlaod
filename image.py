@@ -16,15 +16,15 @@ st.title("Download any YouTube videos with best quality 🥳")
 URL = st.text_input("Paste any YouTube URL/Link")
 option = st.radio("Select Type: ", ('YouTube', 'URL Upload'))
 if (option == 'YouTube'):
-results = YoutubeSearch(URL, max_results=1).to_dict()
-link=f"https://youtube.com{results[0]['url_suffix']}"
-title = results[0]["title"]
-yt = YouTube(link)
-if(st.button('Apply')):
-     with st.spinner('Wait for it...'):
+   results = YoutubeSearch(URL, max_results=1).to_dict()
+   link=f"https://youtube.com{results[0]['url_suffix']}"
+   title = results[0]["title"]
+   yt = YouTube(link)
+   if(st.button('Apply')):
+        with st.spinner('Wait for it...'):
 #        time.sleep(5)
-#    ydl_opts = {"outtmpl": f"{yt.title}.mp4"}
-         with YoutubeDL() as ydl:
+#        ydl_opts = {"outtmpl": f"{yt.title}.mp4"}
+        with YoutubeDL() as ydl:
              info = ydl.extract_info(link, download=False)
              video = ydl.prepare_filename(info)
              ydl.process_info(info)
