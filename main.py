@@ -36,26 +36,28 @@ if(st.button('Submit')):
              if (option == 'Video 🎥'):
                 res = st.selectbox("Select The resolution",("720p","360p","144p")) 
                 results = YoutubeSearch(query, max_results=1).to_dict()
-                yt = YouTube(f"https://youtube.com{results[0]['url_suffix']}")                      
+                yt = YouTube(f"https://youtube.com{results[0]['url_suffix']}")    
+                title = results[0]["title"]                  
                 video = yt.streams.get_by_itag(yt.streams.filter(res=res , progressive="True" )[0].itag)      
                 hi = video.download()           
                 p = Path(hi)
-                p=p.rename(p.with_name(f"{yt.title[:35]}.mp4"))      
+                p=p.rename(p.with_name(f"{title[:35]}.mp4"))      
                 with open(p,'rb' ) as f:                
-                    st.write(f"{yt.title}")
+                    st.write(f"{title}")
                     st.video(f)
                     st.write("Link -", f"https://youtube.com{results[0]['url_suffix']}")
-                    st.download_button("Save Video", data=f, file_name=f"{yt.title[:35]}.mp4") 
+                    st.download_button("Save Video", data=f, file_name=f"{title[:35]}.mp4") 
              else:   
                   results = YoutubeSearch(query, max_results=1).to_dict()
-                  yt = YouTube(f"https://youtube.com{results[0]['url_suffix']}")              
+                  yt = YouTube(f"https://youtube.com{results[0]['url_suffix']}")   
+                  title = results[0]["title"]           
                   audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag) 
                   a = audio.download()
                   ma = Path(a)
-                  ma=ma.rename(ma.with_name(f"{yt.title[:33]}.mp3"))  
+                  ma=ma.rename(ma.with_name(f"{title[:33]}.mp3"))  
                   with open(ma,'rb' ) as s:                
-                      st.write(f"{yt.title[:33]}")
+                      st.write(f"{title[:33]}")
                       st.audio(s)
-                      st.download_button("Save Audio 🎶", data=s, file_name=f"{yt.title[:33]}.mp3")  
+                      st.download_button("Save Audio 🎶", data=s, file_name=f"{title[:33]}.mp3")  
          except Exception as e:
              st.write(e)
