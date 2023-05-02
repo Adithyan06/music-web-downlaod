@@ -33,7 +33,6 @@ if query is None:
    st.info("give something") 
 option = st.radio("Select Type: ", ('Video 🎥', 'Audio 🎶'))
 results = YoutubeSearch(query, max_results=1).to_dict()
-link = f"https://youtube.com{results[0]['url_suffix']}"
 title = results[0]["title"]
 yt = YouTube(f"https://youtube.com{results[0]['url_suffix']}")
 if(st.button('Submit')):
