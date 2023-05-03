@@ -29,7 +29,7 @@ st.caption("Download any Video/Audio Songs.Just copy the name or YouTube link of
 st_lottie(lottie_coding, height=280, key="YouTube")
 
 query = st.text_input("Song Name or YouTube URL",placeholder="Song Name")
-option = st.radio("Select Type: ", ('Video 🎥', 'Audio 🎶'))
+option = st.radio("Select Type: ", ('Video 🎥', 'Audio 🎶', 'URlUplaod'))
 if(st.button('Submit')):
      with st.spinner('Wait for it...'):
          try:
@@ -47,17 +47,28 @@ if(st.button('Submit')):
                     st.video(f)
                     st.write("Link -", f"https://youtube.com{results[0]['url_suffix']}")
                     st.download_button("Save Video", data=f, file_name=f"{title[:35]}.mp4") 
-             else:   
-                  results = YoutubeSearch(query, max_results=1).to_dict()
-                  yt = YouTube(f"https://youtube.com{results[0]['url_suffix']}")   
-                  title = results[0]["title"]           
-                  audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag) 
-                  a = audio.download()
-                  ma = Path(a)
-                  ma=ma.rename(ma.with_name(f"{title[:33]}.mp3"))  
-                  with open(ma,'rb' ) as s:                
-                      st.write(f"{title[:33]}")
-                      st.audio(s)
-                      st.download_button("Save Audio 🎶", data=s, file_name=f"{title[:33]}.mp3")  
+             if (option == 'Audio 🎶'):   
+                results = YoutubeSearch(query, max_results=1).to_dict()
+                yt = YouTube(f"https://youtube.com{results[0]['url_suffix']}")   
+                title = results[0]["title"]           
+                audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag) 
+                a = audio.download()
+                ma = Path(a)
+                ma=ma.rename(ma.with_name(f"{title[:33]}.mp3"))  
+                with open(ma,'rb' ) as s:                
+                    st.write(f"{title[:33]}")
+                    st.audio(s)
+                    st.download_button("Save Audio 🎶", data=s, file_name=f"{title[:33]}.mp3")  
+             else:                
+                 with YoutubeDL() as ydl:
+                     info = ydl.extract_info(query, download=False)
+                     video = ydl.prepare_filename(info)
+                     ydl.process_info(info)
+                     x = Path(video)
+                     x=x.rename(x.with_name(f"{video}.mp4"))
+                     with open(x,'rb') as xx:
+                         st.write(video)
+                         st.video(xx)
+                         st.download_button("Download 🥀",data=xx,file_name=f"{video}.mp4")
          except Exception as e:
              st.write(e)
