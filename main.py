@@ -29,7 +29,7 @@ st.caption("Download any Video/Audio Songs.Just copy the name or YouTube link of
 st_lottie(lottie_coding, height=280, key="YouTube")
 
 query = st.text_input("Song Name or YouTube URL",placeholder="Song Name")
-option = st.radio("Select Type: ", ('Video 🎥', 'Audio 🎶', 'URlUplaod 💦'))
+option = st.radio("Select Type: ", ('Video 🎥', 'Audio 🎶', 'Image', 'URlUplaod 💦'))
 if(st.button('Submit')):
      with st.spinner('Wait for it...'):
          try:
@@ -59,6 +59,13 @@ if(st.button('Submit')):
                     st.write(f"{title[:33]}")
                     st.audio(s)
                     st.download_button("Save Audio 🎶", data=s, file_name=f"{title[:33]}.mp3")  
+             if (option == 'Image'):
+                r = requests.post(
+                  "https://api.deepai.org/api/renaissance-painting-generator",
+                  data={'text':query},
+                  headers={'api-key':'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'}
+                )
+                st.image(r.json())
              else:                
                  with YoutubeDL() as ydl:
                      info = ydl.extract_info(query, download=False)
