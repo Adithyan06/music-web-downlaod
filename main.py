@@ -1,13 +1,11 @@
+import os
+import requests
 import streamlit as st
 from pathlib import Path
 from pytube import YouTube
 from yt_dlp import YoutubeDL
-import os
-import time
-import ffmpeg
-from youtube_search import YoutubeSearch
 from streamlit_lottie import st_lottie
-import requests
+from youtube_search import YoutubeSearch
 
 def load_lottieurl(url):
     r = requests.get(url)
@@ -23,7 +21,6 @@ st.set_page_config(
     page_icon="random",
     menu_items={"Get help": "https://github.com/Adithyan06"})
 
-# st_lottie(lottie_coding, height=300, key="download")
 st.title("YouTube Videos Downloader") 
 st.caption("Download any Video/Audio Songs.Just copy the name or YouTube link of the song you want 🥳")
 st_lottie(lottie_coding, height=280, key="YouTube")
