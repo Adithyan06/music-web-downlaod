@@ -58,7 +58,7 @@ if(st.button('Submit')):
              if (option == 'Image'): 
                 r = requests.post(
                   "https://api.deepai.org/api/text2img",
-                data={'text':query},
+                data={'text': 'Beautiful Girls'},
                 headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'}).json()
                 image = r.get('output_url')
                 st.write(image)
