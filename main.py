@@ -56,17 +56,12 @@ if(st.button('Submit')):
                 song = response.get('file')
                 st.audio(song)
              if (option == 'Image'): 
-                if 'https://youtu.be/' 'http://www.youtube.com/' in query:
-                    st.write("poda")
-                else:
-                     url = "https://spotify-scraper.p.rapidapi.com/v1/track/download"
-                     querystring = {"track":query}
-                     headers = {
-	                     "X-RapidAPI-Key": "33af2319cbmshd1a3ee767f631f3p16a1dfjsnd5800101f122",
-	                     "X-RapidAPI-Host": "spotify-scraper.p.rapidapi.com"}
-                     response = requests.get(url, headers=headers, params=querystring).json()
-                     song = response['youtubeVideo']['audio'][0]['url']
-                     st.audio(song)
+                r = requests.post(
+                  "https://api.deepai.org/api/text2img",
+                data={'text':query},
+                headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'}).json()
+                image = r.get('output_url')
+                st.image(image)
              else:               
                  with YoutubeDL() as ydl:
                      info = ydl.extract_info(query, download=False)
