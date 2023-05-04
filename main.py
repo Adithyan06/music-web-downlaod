@@ -45,17 +45,14 @@ if(st.button('Submit')):
                     st.write("Link -", f"https://youtube.com{results[0]['url_suffix']}")
                     st.download_button("Save Video", data=f, file_name=f"{title[:35]}.mp4") 
              if (option == 'Audio 🎶'):   
-                results = YoutubeSearch(query, max_results=1).to_dict()
-                yt = YouTube(f"https://youtube.com{results[0]['url_suffix']}")   
-                title = results[0]["title"]           
-                audio = yt.streams.get_by_itag(yt.streams.filter(type="audio",mime_type="audio/webm")[0].itag) 
-                a = audio.download()
-                ma = Path(a)
-                ma=ma.rename(ma.with_name(f"{title[:33]}.mp3"))  
-                with open(ma,'rb' ) as s:                
-                    st.write(f"{title[:33]}")
-                    st.audio(s)
-                    st.download_button("Save Audio 🎶", data=s, file_name=f"{title[:33]}.mp3")  
+                url = "https://t-one-youtube-converter.p.rapidapi.com/api/v1/createProcess"
+                querystring = {"url":query,"format":"mp3","responseFormat":"json","volume":"100","lang":"en"}
+                headers = {
+	                "X-RapidAPI-Key": "33af2319cbmshd1a3ee767f631f3p16a1dfjsnd5800101f122",
+	                "X-RapidAPI-Host": "t-one-youtube-converter.p.rapidapi.com"}
+                response = requests.get(url, headers=headers, params=querystring).json()
+                song = response['file']
+                st.audio(song)
              if (option == 'Image'):                
                 url = "https://spotify-scraper.p.rapidapi.com/v1/track/download/soundcloud"
                 querystring = {"track":query,"quality":"sq","candidate":"3"}
