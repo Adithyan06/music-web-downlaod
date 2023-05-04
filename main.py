@@ -46,7 +46,9 @@ if(st.button('Submit')):
                     st.download_button("Save Video", data=f, file_name=f"{title[:35]}.mp4") 
              if (option == 'Audio 🎶'):   
                 url = "https://t-one-youtube-converter.p.rapidapi.com/api/v1/createProcess"
-                querystring = {"url":query,"format":"mp3"}
+                results = YoutubeSearch(query, max_results=1).to_dict()
+                link = f"https://youtube.com{results[0]['url_suffix']}"
+                querystring = {"url":link,"format":"mp3"}
                 headers = {
 	                "X-RapidAPI-Key": "33af2319cbmshd1a3ee767f631f3p16a1dfjsnd5800101f122",
 	                "X-RapidAPI-Host": "t-one-youtube-converter.p.rapidapi.com"}
@@ -54,7 +56,7 @@ if(st.button('Submit')):
                 song = response.get('file')
                 st.audio(song)
              if (option == 'Image'): 
-                if 'https://youtu.be/''http://www.youtube.com/' in query:
+                if 'https://youtu.be/' in query:
                     st.write("poda")
                 else:
                      url = "https://spotify-scraper.p.rapidapi.com/v1/track/download/soundcloud"
