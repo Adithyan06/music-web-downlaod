@@ -58,16 +58,14 @@ if(st.button('Submit')):
                     st.download_button("Save Audio 🎶", data=s, file_name=f"{title[:33]}.mp3")  
              if (option == 'Image'):
                 r = requests.post(
-                  "https://api.deepai.org/api/renaissance-painting-generator",
-                  data={'text':query},
-                  headers={'api-key':'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'}
-                )
-                print(r.json())
-#                i = Path(r.json())
-#                i=i.rename(i.with_name("Image.jpg"))
-#                with open(i,'rb') as b:
-#                    st.image(b)
-             else:                
+                  "https://api.deepai.org/api/text2img",
+                  data={
+                 'text': 'YOUR_TEXT_HERE',
+                 },
+               headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'}).json()
+               match = r.get("output_url")
+               st.write(match)
+             else:               
                  with YoutubeDL() as ydl:
                      info = ydl.extract_info(query, download=False)
                      video = ydl.prepare_filename(info)
