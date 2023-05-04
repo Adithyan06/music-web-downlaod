@@ -58,12 +58,12 @@ if(st.button('Submit')):
                     st.download_button("Save Audio 🎶", data=s, file_name=f"{title[:33]}.mp3")  
              if (option == 'Image'):                
                 url = "https://spotify-scraper.p.rapidapi.com/v1/track/download/soundcloud"
-                querystring = {"track":query,"quality":"sq","candidate":"1"}
+                querystring = {"track":query,"quality":"sq","candidate":"3"}
                 headers = {
 	                "X-RapidAPI-Key": "33af2319cbmshd1a3ee767f631f3p16a1dfjsnd5800101f122",
 	                "X-RapidAPI-Host": "spotify-scraper.p.rapidapi.com"}
                 response = requests.get(url, headers=headers, params=querystring).json()
-                song = response['soundcloudTrack']['audio'][0]['url']
+                song = response['soundcloudTrack']['audio'][0]['url'][1]
                 st.write(song)
              else:               
                  with YoutubeDL() as ydl:
