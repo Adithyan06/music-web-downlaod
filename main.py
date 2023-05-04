@@ -62,10 +62,11 @@ if(st.button('Submit')):
                   data={'text':query},
                   headers={'api-key':'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'}
                 )
-                i = Path(r.json())
-                i=i.rename(i.with_name("Image.jpg"))
-                with open(i,'rb') as b:
-                    st.image(b)
+                print(r.json())
+#                i = Path(r.json())
+#                i=i.rename(i.with_name("Image.jpg"))
+#                with open(i,'rb') as b:
+#                    st.image(b)
              else:                
                  with YoutubeDL() as ydl:
                      info = ydl.extract_info(query, download=False)
