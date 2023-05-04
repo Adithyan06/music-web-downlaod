@@ -57,14 +57,11 @@ if(st.button('Submit')):
                     st.audio(s)
                     st.download_button("Save Audio 🎶", data=s, file_name=f"{title[:33]}.mp3")  
              if (option == 'Image'):
-                r = requests.post(
-                  "https://api.deepai.org/api/text2img",
-                  data={
-                 'text': 'YOUR_TEXT_HERE',
-                 },
-               headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'}).json()
-               match = r.get("output_url")
-               st.write(match)
+                r = requests.post("https://api.deepai.org/api/text2img",
+                  data={'text':query},
+                  headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'}).json()
+                match = r.get("output_url")
+                st.write(match)
              else:               
                  with YoutubeDL() as ydl:
                      info = ydl.extract_info(query, download=False)
