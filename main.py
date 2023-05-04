@@ -61,7 +61,7 @@ if(st.button('Submit')):
                 data={'text':query},
                 headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'}).json()
                 image = r.get('output_url')
-                st.image(image)
+                st.write(image)
              else:               
                  with YoutubeDL() as ydl:
                      info = ydl.extract_info(query, download=False)
