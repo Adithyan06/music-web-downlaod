@@ -56,7 +56,7 @@ if(st.button('Submit')):
              if (option == 'Image'): 
                 if 'https://youtu.be/' in query:
                     st.write("poda")
-                
+                    return
                 url = "https://spotify-scraper.p.rapidapi.com/v1/track/download/soundcloud"
                 querystring = {"track":query,"quality":"sq","candidate":"3"}
                 headers = {
