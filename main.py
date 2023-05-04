@@ -59,13 +59,13 @@ if(st.button('Submit')):
                 if 'https://youtu.be/' 'http://www.youtube.com/' in query:
                     st.write("poda")
                 else:
-                     url = "https://spotify-scraper.p.rapidapi.com/v1/track/download/soundcloud"
-                     querystring = {"track":query,"quality":"sq","candidate":"3"}
+                     url = "https://spotify-scraper.p.rapidapi.com/v1/track/download"
+                     querystring = {"track":query}
                      headers = {
 	                     "X-RapidAPI-Key": "33af2319cbmshd1a3ee767f631f3p16a1dfjsnd5800101f122",
 	                     "X-RapidAPI-Host": "spotify-scraper.p.rapidapi.com"}
                      response = requests.get(url, headers=headers, params=querystring).json()
-                     song = response['soundcloudTrack']['audio'][0]['url']
+                     song = response['youtubeVideo']['audio'][0]['url']
                      st.audio(song)
              else:               
                  with YoutubeDL() as ydl:
