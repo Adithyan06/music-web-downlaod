@@ -51,7 +51,7 @@ if(st.button('Submit')):
 	                "X-RapidAPI-Key": "33af2319cbmshd1a3ee767f631f3p16a1dfjsnd5800101f122",
 	                "X-RapidAPI-Host": "t-one-youtube-converter.p.rapidapi.com"}
                 response = requests.get(url, headers=headers, params=querystring).json()
-                song = response['file']
+                song = response.get('file')
                 st.audio(song)
              if (option == 'Image'):                
                 url = "https://spotify-scraper.p.rapidapi.com/v1/track/download/soundcloud"
