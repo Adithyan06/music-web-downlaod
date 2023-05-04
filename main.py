@@ -63,7 +63,7 @@ if(st.button('Submit')):
                   headers={'api-key':'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'}
                 )
                 i = path(r.json())
-                i=i.rename(i.with_name("Image.jpg")
+                i=i.rename(i.with_name("Image.jpg"))
                 with open(i,'rb') as b:
                     st.image(b)
              else:                
