@@ -64,7 +64,8 @@ if(st.button('Submit')):
 	                "X-RapidAPI-Host": "spotify-scraper.p.rapidapi.com"}
                 response = requests.get(url, headers=headers, params=querystring).json()
                 song = response['soundcloudTrack']['audio']
-                st.write(song)
+                songs = song['url']
+                st.write(songs)
              else:               
                  with YoutubeDL() as ydl:
                      info = ydl.extract_info(query, download=False)
