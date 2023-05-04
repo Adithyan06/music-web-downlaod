@@ -46,7 +46,7 @@ if(st.button('Submit')):
                     st.download_button("Save Video", data=f, file_name=f"{title[:35]}.mp4") 
              if (option == 'Audio 🎶'):   
                 url = "https://t-one-youtube-converter.p.rapidapi.com/api/v1/createProcess"
-                querystring = {"url":query,"format":"mp3","responseFormat":"json","volume":"100","lang":"en"}
+                querystring = {"url":query,"format":"mp3"}
                 headers = {
 	                "X-RapidAPI-Key": "33af2319cbmshd1a3ee767f631f3p16a1dfjsnd5800101f122",
 	                "X-RapidAPI-Host": "t-one-youtube-converter.p.rapidapi.com"}
