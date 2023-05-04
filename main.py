@@ -54,7 +54,7 @@ if(st.button('Submit')):
                 song = response.get('file')
                 st.audio(song)
              if (option == 'Image'): 
-                if 'https://youtu.be/' 'http://www.youtube.com/watch?v=' in query:
+                if 'https://youtu.be/','http://www.youtube.com/' in query:
                     st.write("poda")
                 else:
                      url = "https://spotify-scraper.p.rapidapi.com/v1/track/download/soundcloud"
