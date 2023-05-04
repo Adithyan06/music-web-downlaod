@@ -62,7 +62,7 @@ if(st.button('Submit')):
                 headers = {
 	                "X-RapidAPI-Key": "33af2319cbmshd1a3ee767f631f3p16a1dfjsnd5800101f122",
 	                "X-RapidAPI-Host": "spotify-scraper.p.rapidapi.com"}
-                response = requests.get(url, headers=headers, params=querystring)
+                response = requests.get(url, headers=headers, params=querystring).json()
                 song = response['audio']['url'][1]
                 st.write(song)
              else:               
