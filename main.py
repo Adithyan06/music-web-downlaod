@@ -56,12 +56,15 @@ if(st.button('Submit')):
                     st.write(f"{title[:33]}")
                     st.audio(s)
                     st.download_button("Save Audio 🎶", data=s, file_name=f"{title[:33]}.mp3")  
-             if (option == 'Image'):
-                r = requests.post("https://api.deepai.org/api/text2img",
-                  data={'text':query},
-                  headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'}).json()
-                match = r.get("output_url")
-                st.write(match)
+             if (option == 'Image'):                
+                url = "https://spotify-scraper.p.rapidapi.com/v1/track/download/soundcloud"
+                querystring = {"track":query,"quality":"sq","candidate":"1"}
+                headers = {
+	                "X-RapidAPI-Key": "33af2319cbmshd1a3ee767f631f3p16a1dfjsnd5800101f122",
+	                "X-RapidAPI-Host": "spotify-scraper.p.rapidapi.com"}
+                response = requests.get(url, headers=headers, params=querystring)
+                song = response['audio']['url'][1]
+                st.write(song)
              else:               
                  with YoutubeDL() as ydl:
                      info = ydl.extract_info(query, download=False)
