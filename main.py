@@ -53,7 +53,10 @@ if(st.button('Submit')):
                 response = requests.get(url, headers=headers, params=querystring).json()
                 song = response.get('file')
                 st.audio(song)
-             if (option == 'Image'):                
+             if (option == 'Image'): 
+                if 'https://youtu.be/' in query:
+                    st.write("poda")
+                
                 url = "https://spotify-scraper.p.rapidapi.com/v1/track/download/soundcloud"
                 querystring = {"track":query,"quality":"sq","candidate":"3"}
                 headers = {
