@@ -56,12 +56,23 @@ if(st.button('Submit')):
                 song = response.get('file')
                 st.audio(song)
              if (option == 'Image'): 
-                r = requests.post(
-                  "https://api.deepai.org/api/text2img",
-                data={'text': 'Beautiful Girls'},
-                headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'}).json()
-                image = r.get('output_url')
-                st.write(image)
+
+
+                txt = st.text_area('Text to analyze', '''
+
+                    It was the best of times, it was the worst of times, it was
+
+                    the age of wisdom, it was the age of foolishness, it was
+
+                    the epoch of belief, it was the epoch of incredulity, it
+
+                    was the season of Light, it was the season of Darkness, it
+
+                    was the spring of hope, it was the winter of despair, (...)
+
+                    ''')
+
+                st.write('Sentiment:', run_sentiment_analysis(txt))
              else:               
                  with YoutubeDL() as ydl:
                      info = ydl.extract_info(query, download=False)
