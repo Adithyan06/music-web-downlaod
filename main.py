@@ -26,7 +26,7 @@ st.caption("Download any Video/Audio Songs.Just copy the name or YouTube link of
 st_lottie(lottie_coding, height=280, key="YouTube")
 
 query = st.text_input("Song Name or YouTube URL",placeholder="Song Name")
-option = st.radio("Select Type: ", ('Video 🎥', 'Audio 🎶', 'Image', 'URlUplaod 💦'))
+option = st.radio("Select Type: ", ('Video 🎥', 'Audio 🎶', 'URlUplaod 💦'))
 if(st.button('Submit')):
      with st.spinner('Wait for it...'):
          try:
@@ -55,24 +55,6 @@ if(st.button('Submit')):
                 response = requests.get(url, headers=headers, params=querystring).json()
                 song = response.get('file')
                 st.audio(song)
-             if (option == 'Image'): 
-
-
-                txt = st.text_area('Text to analyze', '''
-
-                    It was the best of times, it was the worst of times, it was
-
-                    the age of wisdom, it was the age of foolishness, it was
-
-                    the epoch of belief, it was the epoch of incredulity, it
-
-                    was the season of Light, it was the season of Darkness, it
-
-                    was the spring of hope, it was the winter of despair, (...)
-
-                    ''')
-
-                st.write('Sentiment:', run_sentiment_analysis(txt))
              else:               
                  with YoutubeDL() as ydl:
                      info = ydl.extract_info(query, download=False)
