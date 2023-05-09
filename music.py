@@ -2,6 +2,18 @@ import streamlit as st
 
 from PIL import Image, ImageDraw, ImageFont
 
+st.cache()
+
+st.set_page_config(
+
+    page_title="Download Any songs now !!",
+
+    page_icon="random",
+
+    menu_items={"Get help": "https://github.com/Adithyan06"})
+
+st.title("YouTube Videos Downloader") 
+
 def generate_logo(text, font_size, text_color, bg_color, output_path):
 
     # Create a blank image with the desired background color
