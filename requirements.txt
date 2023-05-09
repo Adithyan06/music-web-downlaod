@@ -9,4 +9,5 @@ pytube
 pathlib
 ffmpeg-python
 wget
-spotdlpip install chatterbot
+spotdl
+pip install chatterbot
