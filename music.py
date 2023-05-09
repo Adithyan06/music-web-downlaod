@@ -29,21 +29,9 @@ st.set_page_config(
    page_icon="random",
    menu_items={"Get help": "https://github.com/Adithyan06"})
    
-    
-def main():
-
-    chatbot = train_chatbot()
-
-    st.title("AI Chatbot")
-
-    user_input = st.text_input("User Input:")
-
-    if st.button("Send"):
-
-        bot_response = get_bot_response(chatbot, user_input)
-
-        st.text_area("Bot Response:", value=bot_response)
-
-if __name__ == '__main__':
-
-    main()
+chatbot = train_chatbot()
+st.title("AI Chatbot")
+user_input = st.text_input("User Input:")
+if st.button("Send"):
+  bot_response = get_bot_response(chatbot, user_input)
+  st.text_area("Bot Response:", value=bot_response)
