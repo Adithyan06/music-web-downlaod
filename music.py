@@ -1,33 +1,26 @@
 import streamlit as st
-from PIL import Image, ImageDraw, ImageFont
 
-def generate_logo(text, font_size, text_color, bg_color, output_path):
-# Create a blank image with the desired background color
-    image = Image.new('RGB', (500, 500), bg_color)
+from chatterbot import ChatBot
 
-    draw = ImageDraw.Draw(image)
+from chatterbot.trainers import ChatterBotCorpusTrainer
 
-    # Load a font (adjust the path to your font file)
+def train_chatbot():
 
-    font = ImageFont.truetype("Arial.ttf", font_size)
+    chatbot = ChatBot('My Chatbot')
 
-    # Calculate the width and height of the text
+    trainer = ChatterBotCorpusTrainer(chatbot)
 
-    text_width, text_height = draw.textsize(text, font=font)
+    trainer.train('chatterbot.corpus.english.greetings',
 
-    # Calculate the x and y coordinates to center the text
+                  'chatterbot.corpus.english.conversations')
 
-    x = (image.width - text_width) // 2
+    return chatbot
 
-    y = (image.height - text_height) // 2
+def get_bot_response(chatbot, user_input):
 
-    # Draw the text on the image
+    response = chatbot.get_response(user_input)
 
-    draw.text((x, y), text, font=font, fill=text_color)
-
-    # Save the generated logo to the output path
-
-    image.save(output_path)
+    return response
 
 # Main function to run the Streamlit app
 st.cache()
@@ -35,18 +28,22 @@ st.set_page_config(
    page_title="Download Any songs now !!",
    page_icon="random",
    menu_items={"Get help": "https://github.com/Adithyan06"})
+   
     
-st.title("Logo Generator")
+def main():
 
-    # User inputs
-text = st.text_input("Enter text for the logo:")
-font_size = st.slider("Select font size:", 20, 100, 50)
-text_color = st.color_picker("Select text color:", "#FFFFFF")
-bg_color = st.color_picker("Select background color:", "#000000")
-output_path = st.text_input("Enter output path to save the logo:", "logo.png")# Generate and display the logo
+    chatbot = train_chatbot()
 
-if st.button("Generate Logo"):
-    generate_logo(text, font_size, text_color, bg_color, output_path)
-    st.success("Logo generated successfully!")
-    # Display the generated logo
-    st.image(output_path)
+    st.title("AI Chatbot")
+
+    user_input = st.text_input("User Input:")
+
+    if st.button("Send"):
+
+        bot_response = get_bot_response(chatbot, user_input)
+
+        st.text_area("Bot Response:", value=bot_response)
+
+if __name__ == '__main__':
+
+    main()
