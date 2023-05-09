@@ -10,4 +10,3 @@ pathlib
 ffmpeg-python
 wget
 spotdl
-altair.vegalite
