@@ -1,1 +1,1 @@
-chatterbot
+pip install chatterbot
