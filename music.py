@@ -1,10 +1,8 @@
 import streamlit as st
 from PIL import Image, ImageDraw, ImageFont
 
- def generate_logo(text, font_size, text_color, bg_color, output_path):
-
-    # Create a blank image with the desired background color
-
+def generate_logo(text, font_size, text_color, bg_color, output_path):
+# Create a blank image with the desired background color
     image = Image.new('RGB', (500, 500), bg_color)
 
     draw = ImageDraw.Draw(image)
