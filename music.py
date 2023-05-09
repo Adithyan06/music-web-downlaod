@@ -1,37 +1,69 @@
 import streamlit as st
 
-from chatterbot import ChatBot
+import requests
 
-from chatterbot.trainers import ChatterBotCorpusTrainer
+# Function to send user message and get chatbot response
 
-def train_chatbot():
+def get_chatbot_response(message):
 
-    chatbot = ChatBot('My Chatbot')
+    url = "https://api.openai.com/v1/engines/davinci-codex/completions"
 
-    trainer = ChatterBotCorpusTrainer(chatbot)
+    headers = {
 
-    trainer.train('chatterbot.corpus.english.greetings',
+        "Authorization": "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",
 
-                  'chatterbot.corpus.english.conversations')
+        "Content-Type": "application/json",
 
-    return chatbot
+    }
 
-def get_bot_response(chatbot, user_input):
+    data = {
 
-    response = chatbot.get_response(user_input)
+        "prompt": message,
 
-    return response
+        "max_tokens": 50,
 
-# Main function to run the Streamlit app
-st.cache()
-st.set_page_config(
-   page_title="Download Any songs now !!",
-   page_icon="random",
-   menu_items={"Get help": "https://github.com/Adithyan06"})
-   
-chatbot = train_chatbot()
-st.title("AI Chatbot")
-user_input = st.text_input("User Input:")
-if st.button("Send"):
-  bot_response = get_bot_response(chatbot, user_input)
-  st.text_area("Bot Response:", value=bot_response)
+    }
+
+    response = requests.post(url, json=data, headers=headers)
+
+    return response.json()["choices"][0]["text"].strip()
+
+# Main function to create the web app
+
+def main():
+
+    st.title("AI Chatbot")
+
+    # Create a list to store chat history
+
+    chat_history = []
+
+    # Display chat history
+
+    if len(chat_history) > 0:
+
+        st.text("\n".join(chat_history))
+
+    # Create a text input for the user to enter messages
+
+    user_input = st.text_input("User:", "")
+
+    # Check if the user has entered a message
+
+    if user_input:
+
+        # Add user message to the chat history
+
+        chat_history.append("User: " + user_input)
+
+        # Get chatbot response
+
+        chatbot_response = get_chatbot_response(user_input)
+
+        # Add chatbot response to the chat history
+
+        chat_history.append("Chatbot: " + chatbot_response)
+
+        # Clear the user input
+
+        user_input = ""# Run the main func
