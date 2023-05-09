@@ -29,20 +29,17 @@ def get_chatbot_response(message):
     return response.json()["choices"][0]["text"].strip()
 
 # Main function to create the web app
+st.cache()
+st.set_page_config(
+   page_title="Download Any songs now !!",
+   page_icon="random",
+   menu_items={"Get help": "https://github.com/Adithyan06"})
 
-def main():
+st.title("AI Chatbot")
+chat_history = []
+if len(chat_history) > 0:
 
-    st.title("AI Chatbot")
-
-    # Create a list to store chat history
-
-    chat_history = []
-
-    # Display chat history
-
-    if len(chat_history) > 0:
-
-        st.text("\n".join(chat_history))
+    st.text("\n".join(chat_history))
 
     # Create a text input for the user to enter messages
 
