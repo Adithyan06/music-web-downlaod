@@ -1,65 +1,70 @@
 import streamlit as st
 
-import requests
+from pytube import YouTube
 
-# Function to send user message and get chatbot response
+# Streamlit app title and description
 
-def get_chatbot_response(message):
+st.title("YouTube Video Downloader")
 
-    url = "https://simple-chatgpt-api.p.rapidapi.com/ask"
-    headers = {
-       "content-type": "application/json",
-       "X-RapidAPI-Key": "33af2319cbmshd1a3ee767f631f3p16a1dfjsnd5800101f122",
-       "X-RapidAPI-Host": "simple-chatgpt-api.p.rapidapi.com"
-    }
-    payload = {"question": message}
+st.markdown("Download YouTube videos in different qualities")
 
-    response = requests.post(url, json=payload, headers=headers)
+# Get YouTube video URL from user
 
-    return response.json()["choices"][0]["text"].strip
-# Main function to create the web app
+video_url = st.text_input("Enter YouTube video URL:", "")
 
-def main():
+# Check if the user has entered a valid YouTube video URL
 
-    st.title("AI Chatbot")
+if video_url:
 
-    # Create a list to store chat history
+    try:
 
-    chat_history = []
+        # Create a YouTube object from the video URL
 
-    # Display chat history
+        yt = YouTube(video_url)
 
-    if len(chat_history) > 0:
+        # Display video details
 
-        st.text("\n".join(chat_history))
+        st.subheader("Video Details:")
 
-    # Create a text input for the user to enter messages
+        st.write("Title:", yt.title)
 
-    user_input = st.text_input("User:", "")
+        st.write("Author:", yt.author)
 
-    # Check if the user has entered a message
+        st.write("Duration:", yt.length, "seconds")
 
-    if user_input:
+        # Get available video streams
 
-        # Add user message to the chat history
+        streams = yt.streams.filter(progressive=True)
 
-        chat_history.append("User: " + user_input)
+        # Display available video qualities
 
-        # Get chatbot response
+        st.subheader("Available Qualities:")
 
-        chatbot_response = get_chatbot_response(user_input)
+        for stream in streams:
 
-        # Add chatbot response to the chat history
+            st.write(f"Quality: {stream.resolution}, Format: {stream.mime_type}")
 
-        chat_history.append("Chatbot: " + chatbot_response)
+        # Allow user to select desired video quality
 
-        # Clear the user input
+        selected_quality = st.selectbox("Select Video Quality:", options=[stream.resolution for stream in streams])
 
-        user_input = ""
+        # Find the selected video stream
 
-# Run the main function
+        selected_stream = next(stream for stream in streams if stream.resolution == selected_quality)
 
-if __name__ == "__main__":
+        # Display download button
 
-    main()
+        if st.button("Download"):
+
+            # Download the selected video stream
+
+            selected_stream.download()
+
+            st.success("Video downloaded successfully!")
+
+    except Exception as e:
+
+        st.error("Error: Invalid YouTube URL or unable to fetch video details.")
+
+        st.error(str(e))
 
