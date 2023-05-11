@@ -3,6 +3,15 @@ import streamlit as st
 from pytube import YouTube
 
 # Streamlit app title and description
+st.cache()
+
+st.set_page_config(
+
+    page_title="Download Any songs now !!",
+
+    page_icon="random",
+
+    menu_items={"Get help": "https://github.com/Adithyan06"})
 
 st.title("YouTube Video Downloader")
 
