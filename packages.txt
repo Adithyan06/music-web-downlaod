@@ -1,2 +1,2 @@
 ffmpeg
-%pip install altair vega_datasets
+altair
