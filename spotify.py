@@ -4,7 +4,7 @@ import openai
 
 # Set up OpenAI API credentials
 
-openai.api_key = "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"
+openai.api_key = "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"
 
 # Set up Streamlit app title and sidebar
 
