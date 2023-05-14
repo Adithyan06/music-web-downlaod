@@ -19,24 +19,14 @@ trainer.train('chatterbot.corpus.english.greetings',
               'chatterbot.corpus.english.conversations')
 
 # Define the Streamlit web app
-
-def main():
-
-    st.title('AI Chatbot')
+st.title('AI Chatbot')
 
     # Get user input
-
-    user_input = st.text_input('You:', '')
+user_input = st.text_input('You:', '')
 
     # Get chatbot response
 
-    response = chatbot.get_response(user_input)
+response = chatbot.get_response(user_input)
 
     # Display chatbot response
-
-    st.text_area('Chatbot:', value=str(response))
-
-if __name__ == '__main__':
-
-    main()
-
+st.text_area('Chatbot:', value=str(response))
