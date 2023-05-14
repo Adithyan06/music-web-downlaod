@@ -11,3 +11,4 @@ ffmpeg-python
 wget
 spotdl
 spotipy
+altair==4.1.0
