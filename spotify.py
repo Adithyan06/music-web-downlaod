@@ -1,56 +1,42 @@
 import streamlit as st
 
-import openai
+from chatterbot import ChatBot
 
-# Set up Streamlit app title and sidebar
+from chatterbot.trainers import ChatterBotCorpusTrainer
 
-st.title("AI Chat")
+# Create a chatbot instance
 
-st.sidebar.header("User Input")
+chatbot = ChatBot('My Chatbot')
 
-# Get user input
+# Create a new trainer for the chatbot
 
-user_input = st.sidebar.text_input("You:", value="", key="user_input")
+trainer = ChatterBotCorpusTrainer(chatbot)
 
-# Define AI response function
+# Train the chatbot with some example data
 
-def generate_response(user_input):
+trainer.train('chatterbot.corpus.english.greetings',
 
-    response = openai.Completion.create(
+              'chatterbot.corpus.english.conversations')
 
-        engine="davinci",
+# Define the Streamlit web app
 
-        prompt=user_input,
+def main():
 
-        max_tokens=50,
+    st.title('AI Chatbot')
 
-        temperature=0.7,
+    # Get user input
 
-        n=1,
+    user_input = st.text_input('You:', '')
 
-        stop=None,
+    # Get chatbot response
 
-        frequency_penalty=0.0,
+    response = chatbot.get_response(user_input)
 
-        presence_penalty=0.0
+    # Display chatbot response
 
-    )
+    st.text_area('Chatbot:', value=str(response))
 
-    return response.choices[0].text.strip()
+if __name__ == '__main__':
 
-# Generate AI response
-
-if st.sidebar.button("Send"):
-
-    try:
-
-        with openai.AuthClient() as client:
-
-            ai_response = generate_response(user_input)
-
-            st.text_area("AI:", value=ai_response, key="ai_response")
-
-    except openai.error.AuthenticationError:
-
-        st.error("Invalid OpenAI API key. Please check your API key.")
+    main()
 
