@@ -36,7 +36,7 @@ if st.button("Download"):
 
         try:
 
-            spotdl.main([spotify_url])
+            spotdl([spotify_url])
 
             st.success("Download complete!")
 
