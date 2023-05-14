@@ -2,10 +2,6 @@ import streamlit as st
 
 import openai
 
-# Set up OpenAI API credentials
-
-openai.api_key = "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"
-
 # Set up Streamlit app title and sidebar
 
 st.title("AI Chat")
@@ -46,7 +42,15 @@ def generate_response(user_input):
 
 if st.sidebar.button("Send"):
 
-    ai_response = generate_response(user_input)
+    try:
 
-    st.text_area("AI:", value=ai_response, key="ai_response")
+        with openai.AuthClient() as client:
+
+            ai_response = generate_response(user_input)
+
+            st.text_area("AI:", value=ai_response, key="ai_response")
+
+    except openai.error.AuthenticationError:
+
+        st.error("Invalid OpenAI API key. Please check your API key.")
 
