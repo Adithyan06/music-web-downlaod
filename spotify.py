@@ -1,50 +1,52 @@
-import os
-
 import streamlit as st
 
-import spotdl
+import openai
 
-# Set up the Streamlit app
+# Set up OpenAI API credentials
 
-st.title("Spotify Song Downloader")
+openai.api_key = "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"
 
-# Input field for the Spotify song URL
+# Set up Streamlit app title and sidebar
 
-spotify_url = st.text_input("Enter the Spotify song URL")
+st.title("AI Chat")
 
-# Download button
+st.sidebar.header("User Input")
 
-if st.button("Download"):
+# Get user input
 
-    if spotify_url:
+user_input = st.sidebar.text_input("You:", value="", key="user_input")
 
-        # Specify the download directory
+# Define AI response function
 
-        download_dir = "downloads"
+def generate_response(user_input):
 
-        # Create the download directory if it doesn't exist
+    response = openai.Completion.create(
 
-        if not os.path.exists(download_dir):
+        engine="davinci",
 
-            os.makedirs(download_dir)
+        prompt=user_input,
 
-        # Change the current working directory to the download directory
+        max_tokens=50,
 
-        os.chdir(download_dir)
+        temperature=0.7,
 
-        # Download the song from Spotify
+        n=1,
 
-        try:
+        stop=None,
 
-            spotdl([spotify_url])
+        frequency_penalty=0.0,
 
-            st.success("Download complete!")
+        presence_penalty=0.0
 
-        except Exception as e:
+    )
 
-            st.error(f"An error occurred: {e}")
+    return response.choices[0].text.strip()
 
-    else:
+# Generate AI response
 
-        st.warning("Please enter a Spotify song URL")
+if st.sidebar.button("Send"):
+
+    ai_response = generate_response(user_input)
+
+    st.text_area("AI:", value=ai_response, key="ai_response")
 
