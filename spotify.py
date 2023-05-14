@@ -59,7 +59,7 @@ if song_name:
             # Download logic goes here
 
             # ...
-
+            st.audio(track_name)
             st.success(f"Song '{track_name}' by {artist_name} downloaded successfully!")
 
     else:
