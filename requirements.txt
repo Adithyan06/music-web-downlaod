@@ -13,4 +13,3 @@ spotdl
 spotipy
 altair==4.1.0
 openai
-chatterbot
