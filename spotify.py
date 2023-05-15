@@ -38,7 +38,8 @@ def get_image_from_text(text):
 
     else:
 
-        raise ValueError("An error occurred. Please try again.")
+        raise ValueError(f"An error occurred: {response.content.decode()}. Please try again.")
+
 
 # Set up Streamlit app title and sidebar
 
