@@ -6,7 +6,7 @@ import openai
 
 # Set up OpenAI API credentials
 
-openai.api_key = "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"  # Replace with your OpenAI API key
+openai.api_key = "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"  # Replace with your OpenAI API key
 
 # Function to generate images from text using DALL-E
 
