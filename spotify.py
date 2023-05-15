@@ -1,32 +1,84 @@
 import streamlit as st
 
-from chatterbot import ChatBot
+import requests
 
-from chatterbot.trainers import ChatterBotCorpusTrainer
+from PIL import Image
 
-# Create a chatbot instance
+API_KEY = "e4f21595-772e-41d5-ba54-67948b227d18"  # Replace with your API key
 
-chatbot = ChatBot('My Chatbot')
+@st.cache(allow_output_mutation=True)
 
-# Create a new trainer for the chatbot
+def get_image_from_text(text):
 
-trainer = ChatterBotCorpusTrainer(chatbot)
+    url = "https://api.deepai.org/api/text2img"
 
-# Train the chatbot with some example data
+    payload = {"text": text}
 
-trainer.train('chatterbot.corpus.english.greetings',
+    headers = {"api-key": API_KEY}
 
-              'chatterbot.corpus.english.conversations')
+    response = requests.post(url, data=payload, headers=headers)
 
-# Define the Streamlit web app
-st.title('AI Chatbot')
+    
 
-    # Get user input
-user_input = st.text_input('You:', '')
+    if response.status_code == 200:
 
-    # Get chatbot response
+        json_data = response.json()
 
-response = chatbot.get_response(user_input)
+        image_url = json_data.get("output_url")
 
-    # Display chatbot response
-st.text_area('Chatbot:', value=str(response))
+        if image_url:
+
+            image = Image.open(requests.get(image_url, stream=True).raw)
+
+            return image, image_url
+
+        else:
+
+            raise ValueError("Failed to generate image. Please try again.")
+
+    else:
+
+        raise ValueError("An error occurred. Please try again.")
+
+# Set up Streamlit app title and sidebar
+
+st.title("Image Generation")
+
+st.sidebar.header("Text Input")
+
+# Get user input
+
+text_input = st.sidebar.text_input("Enter text:", value="", key="text_input")
+
+# Generate image from text
+
+if st.sidebar.button("Generate Image"):
+
+    if text_input:
+
+        try:
+
+            with st.spinner("Generating image..."):
+
+                image, image_url = get_image_from_text(text_input)
+
+        except ValueError as e:
+
+            st.error(str(e))
+
+        else:
+
+            st.image(image, caption="Generated Image", use_column_width=True)
+
+            st.markdown(f"**Image URL:** {image_url}")
+
+            if st.button("Save Image"):
+
+                image.save("generated_image.png")
+
+                st.success("Image saved successfully!")
+
+    else:
+
+        st.warning("Please enter some text to generate an image.")
+
