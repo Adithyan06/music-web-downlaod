@@ -1,59 +1,50 @@
 import streamlit as st
 
-import requests
-
 from PIL import Image
 
-API_KEY = "e4f21595-772e-41d5-ba54-67948b227d18"  # Replace with your API key
+import openai
 
-@st.cache(allow_output_mutation=True)
+# Set up OpenAI API credentials
 
-def get_image_from_text(text):
+openai.api_key = "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"  # Replace with your OpenAI API key
 
-    url = "https://api.deepai.org/api/text2img"
+# Function to generate images from text using DALL-E
 
-    payload = {"text": text}
+def generate_image_from_text(text):
 
-    headers = {"api-key": API_KEY}
+    response = openai.Completion.create(
 
-    response = requests.post(url, data=payload, headers=headers)
+        engine="davinci",
 
-    
+        prompt=text,
 
-    if response.status_code == 200:
+        max_tokens=50,
 
-        json_data = response.json()
+        n=1,
 
-        image_url = json_data.get("output_url")
+        stop=None,
 
-        if image_url:
+        temperature=0.8,
 
-            image = Image.open(requests.get(image_url, stream=True).raw)
+    )
 
-            return image, image_url
+    image_data = response.choices[0].image
 
-        else:
+    image = Image.open(image_data)
 
-            raise ValueError("Failed to generate image. Please try again.")
+    return image
 
-    else:
+# Set up Streamlit app
 
-        raise ValueError(f"An error occurred: {response.content.decode()}. Please try again.")
+st.title("Image Generation with DALL-E")
 
+text_input = st.text_input("Enter text:", value="", key="text_input")
 
-# Set up Streamlit app title and sidebar
+generate_image_button = st.button("Generate Image")
 
-st.title("Image Generation")
+# Generate and display the image
 
-st.sidebar.header("Text Input")
-
-# Get user input
-
-text_input = st.sidebar.text_input("Enter text:", value="", key="text_input")
-
-# Generate image from text
-
-if st.sidebar.button("Generate Image"):
+if generate_image_button:
 
     if text_input:
 
@@ -61,25 +52,15 @@ if st.sidebar.button("Generate Image"):
 
             with st.spinner("Generating image..."):
 
-                image, image_url = get_image_from_text(text_input)
-
-        except ValueError as e:
-
-            st.error(str(e))
-
-        else:
+                image = generate_image_from_text(text_input)
 
             st.image(image, caption="Generated Image", use_column_width=True)
 
-            st.markdown(f"**Image URL:** {image_url}")
+        except Exception as e:
 
-            if st.button("Save Image"):
-
-                image.save("generated_image.png")
-
-                st.success("Image saved successfully!")
+            st.error(f"An error occurred: {str(e)}")
 
     else:
 
-        st.warning("Please enter some text to generate an image.")
+        st.warning("Please enter some text.")
 
