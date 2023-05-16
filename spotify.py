@@ -3,8 +3,9 @@ import streamlit as st
 import spotipy
 
 from spotipy.oauth2 import SpotifyClientCredentials
-
+import wget
 import urllib.request
+import os
 
 # Set up Spotify API credentials
 
@@ -53,9 +54,10 @@ if st.button("Download"):
                     st.info(f"Downloading '{track_name}' by {artist_name}...")
 
                     file_name = f"{artist_name}_{track_name}.mp3"
-
+                    song_file = f"{song_name}.mp3"
                     urllib.request.urlretrieve(preview_url, file_name)
-
+                    os.system(f"wget -O '{song_file}' '{preview_url}'")
+                    st.audio(song_file)
                     st.success(f"Song downloaded successfully. File name: {file_name}")
 
                 else:
