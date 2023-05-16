@@ -1,60 +1,52 @@
 import streamlit as st
 
-from PIL import Image
+import yt_dlp
 
-import openai
+# Streamlit app
 
-# Set up OpenAI API credentials
+st.title("Song Downloader")
 
-openai.api_key = "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"  # Replace with your OpenAI API key
+# Input field for YouTube URL
 
-# Function to generate images from text using DALL-E
+youtube_url = st.text_input("Enter the YouTube URL:", value='', key='youtube_url')
 
-def generate_image_from_text(text):
+# Button for downloading the song
 
-    response = openai.Completion.create(
+if st.button("Download"):
 
-        engine="davinci",
-
-        prompt=text,
-
-        max_tokens=50,
-
-        n=1,
-
-        stop=None,
-
-        temperature=0.8,
-
-    )
-
-    image_data = response.choices[0].image
-
-    image = Image.open(image_data)
-
-    return image
-
-# Set up Streamlit app
-
-st.title("Image Generation with DALL-E")
-
-text_input = st.text_input("Enter text:", value="", key="text_input")
-
-generate_image_button = st.button("Generate Image")
-
-# Generate and display the image
-
-if generate_image_button:
-
-    if text_input:
+    if youtube_url:
 
         try:
 
-            with st.spinner("Generating image..."):
+            # Configure options for downloading the audio
 
-                image = generate_image_from_text(text_input)
+            ydl_opts = {
 
-            st.image(image, caption="Generated Image", use_column_width=True)
+                'format': 'bestaudio/best',
+
+                'postprocessors': [{
+
+                    'key': 'FFmpegExtractAudio',
+
+                    'preferredcodec': 'mp3',
+
+                    'preferredquality': '192',
+
+                }],
+
+            }
+
+            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+
+                info = ydl.extract_info(youtube_url, download=False)
+
+                video_title = info['title']
+
+                st.info(f"Downloading '{video_title}'...")
+
+                ydl.download([youtube_url])
+
+                st.success("Song downloaded successfully.")
 
         except Exception as e:
 
@@ -62,5 +54,5 @@ if generate_image_button:
 
     else:
 
-        st.warning("Please enter some text.")
+        st.warning("Please enter a YouTube URL.")
 
