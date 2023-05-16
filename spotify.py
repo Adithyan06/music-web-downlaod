@@ -3,7 +3,7 @@ import streamlit as st
 import spotipy
 
 from spotipy.oauth2 import SpotifyClientCredentials
-import wget
+#import wget
 import urllib.request
 import os
 
