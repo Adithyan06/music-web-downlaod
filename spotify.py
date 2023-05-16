@@ -1,62 +1,70 @@
 import streamlit as st
-from pathlib import Path
-import yt_dlp
-from youtube_search import YoutubeSearch
 
+import spotipy
 
+from spotipy.oauth2 import SpotifyClientCredentials
+
+import urllib.request
+
+# Set up Spotify API credentials
+
+client_id = '7d1c283593d94940a3b9b7a8445ceaa5'
+
+client_secret = '54c84a9e22974052a88288bc08610eb2'
+
+client_credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
+
+sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 # Streamlit app
 
-st.title("Song Downloader")
+st.title("Spotify Song Downloader")
 
-# Input field for YouTube URL
+# Input field for searching a song
 
-url = st.text_input("Enter the YouTube URL:", value='', key='youtube_url')
-youtube_url = YoutubeSearch(url, max_results=1).to_dict()
-link = f"https://youtube.com{youtube_url[0]['url_suffix']}" 
+song_name = st.text_input("Enter the song name:", value='', key='song_name')
 
-            
-
-# Button for downloading the song
+# Button for searching and downloading the song
 
 if st.button("Download"):
 
-    if youtube_url:
+    if song_name:
 
         try:
 
-            # Configure options for downloading the audio
+            # Search for the song on Spotify
 
-            ydl_opts = {
+            results = sp.search(q=song_name, type='track', limit=1)
 
-                'format': 'bestaudio/best',
+            if results and results['tracks']['items']:
 
-                'postprocessors': [{
+                track = results['tracks']['items'][0]
 
-                    'key': 'FFmpegExtractAudio',
+                track_name = track['name']
 
-                    'preferredcodec': 'mp3',
+                artist_name = track['artists'][0]['name']
 
-                    'preferredquality': '192',
+                preview_url = track['preview_url']
 
-                }],
+                # Download the song
 
-            }
+                if preview_url:
 
-            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                    st.info(f"Downloading '{track_name}' by {artist_name}...")
 
-                info = ydl.extract_info(link, download=False)
-                audio = ydl.prepare_filename(info)
-                ydl.process_info(info)
-                
-                video_title = info['title']
-                st.info(f"Downloading '{video_title}'...")
-                x = Path(audio)
-              # x=x.rename(x.with_name(f"{video_title}"))
-                with open(x,'rb') as xx:
-                    st.audio(xx)
-                    st.download_button("Download 🥀",data=xx,file_name=f"{video_title[:35]}.mp3")
-                    st.success("Song downloaded successfully.")
+                    file_name = f"{artist_name}_{track_name}.mp3"
+
+                    urllib.request.urlretrieve(preview_url, file_name)
+
+                    st.success(f"Song downloaded successfully. File name: {file_name}")
+
+                else:
+
+                    st.error("Sorry, the song preview is not available for download.")
+
+            else:
+
+                st.error("No results found for the given song name.")
 
         except Exception as e:
 
@@ -64,5 +72,7 @@ if st.button("Download"):
 
     else:
 
-        st.warning("Please enter a YouTube URL.")
+        st.warning("Please enter a song name.")
 
+
+                
