@@ -1,5 +1,5 @@
 import streamlit as st
-
+from pathlib import Path
 import yt_dlp
 from youtube_search import YoutubeSearch
 
@@ -43,14 +43,18 @@ if st.button("Download"):
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
 
                 info = ydl.extract_info(youtube_url, download=False)
-
-                video_title = info['title']
-
-                st.info(f"Downloading '{video_title}'...")
-
+                audio = ydl.prepare_filename(info)
+                ydl.process_info(info)
                 ydl.download([youtube_url])
-
-                st.success("Song downloaded successfully.")
+                
+                video_title = info['title']
+                st.info(f"Downloading '{video_title}'...")
+                x = Path(audio)
+                x=x.rename(x.with_name(f"{video_title}.mp3"))
+                with open(x,'rb') as xx:
+                    st.audio(xx)
+                    st.download_button("Download 🥀",data=xx,file_name=f"{video_title}.mp3")
+                    st.success("Song downloaded successfully.")
 
         except Exception as e:
 
