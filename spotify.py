@@ -13,6 +13,9 @@ st.title("Song Downloader")
 
 url = st.text_input("Enter the YouTube URL:", value='', key='youtube_url')
 youtube_url = YoutubeSearch(url, max_results=1).to_dict()
+link = f"https://youtube.com{youtube_url[0]['url_suffix']}" 
+
+            
 
 # Button for downloading the song
 
@@ -42,10 +45,9 @@ if st.button("Download"):
 
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
 
-                info = ydl.extract_info(youtube_url, download=False)
+                info = ydl.extract_info(link, download=False)
                 audio = ydl.prepare_filename(info)
                 ydl.process_info(info)
-                ydl.download([youtube_url])
                 
                 video_title = info['title']
                 st.info(f"Downloading '{video_title}'...")
