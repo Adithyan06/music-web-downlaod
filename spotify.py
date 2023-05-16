@@ -1,6 +1,9 @@
 import streamlit as st
 
 import yt_dlp
+from youtube_search import YoutubeSearch
+
+
 
 # Streamlit app
 
@@ -8,7 +11,8 @@ st.title("Song Downloader")
 
 # Input field for YouTube URL
 
-youtube_url = st.text_input("Enter the YouTube URL:", value='', key='youtube_url')
+url = st.text_input("Enter the YouTube URL:", value='', key='youtube_url')
+youtube_url = YoutubeSearch(url, max_results=1).to_dict()
 
 # Button for downloading the song
 
