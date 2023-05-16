@@ -52,10 +52,10 @@ if st.button("Download"):
                 video_title = info['title']
                 st.info(f"Downloading '{video_title}'...")
                 x = Path(audio)
-                x=x.rename(x.with_name(f"{video_title[:35]}.mp3"))
+              # x=x.rename(x.with_name(f"{video_title}"))
                 with open(x,'rb') as xx:
                     st.audio(xx)
-                    st.download_button("Download 🥀",data=xx,file_name=f"{video_title[:35]}")
+                    st.download_button("Download 🥀",data=xx,file_name=f"{video_title[:35]}.mp3")
                     st.success("Song downloaded successfully.")
 
         except Exception as e:
