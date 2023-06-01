@@ -1,79 +1,31 @@
 import streamlit as st
 
-from pytube import YouTube
+import requests
 
-# Streamlit app title and description
-st.cache()
+def search_wallpapers(query):
 
-st.set_page_config(
+    url = f"https://api.unsplash.com/search/photos?query={query}&client_id=dKRzg3P20iERjrsD0_rIOhSYpVAYLTWtlYXhKDA5T-Y"
 
-    page_title="Download Any songs now !!",
+    response = requests.get(url)
 
-    page_icon="random",
+    data = response.json()
 
-    menu_items={"Get help": "https://github.com/Adithyan06"})
+    return data["results"]
 
-st.title("YouTube Video Downloader")
+def display_wallpapers(wallpapers):
 
-st.markdown("Download YouTube videos in different qualities")
+    for wallpaper in wallpapers:
 
-# Get YouTube video URL from user
+        st.image(wallpaper["urls"]["regular"], caption=wallpaper["alt_description"])
 
-video_url = st.text_input("Enter YouTube video URL:", "")
+def main():
 
-# Check if the user has entered a valid YouTube video URL
+    st.title("Wallpaper Search")
 
-if video_url:
+    query = st.text_input("Enter a keyword to search wallpapers")
 
-    try:
+    if st.button("Search"):
 
-        # Create a YouTube object from the video URL
+        wallpapers = search_wallpapers(query)
 
-        yt = YouTube(video_url)
-
-        # Display video details
-
-        st.subheader("Video Details:")
-
-        st.write("Title:", yt.title)
-
-        st.write("Author:", yt.author)
-
-        st.write("Duration:", yt.length, "seconds")
-
-        # Get available video streams
-
-        streams = yt.streams.filter(progressive=True)
-
-        # Display available video qualities
-
-        st.subheader("Available Qualities:")
-
-        for stream in streams:
-
-            st.write(f"Quality: {stream.resolution}, Format: {stream.mime_type}")
-
-        # Allow user to select desired video quality
-
-        selected_quality = st.selectbox("Select Video Quality:", options=[stream.resolution for stream in streams])
-
-        # Find the selected video stream
-
-        selected_stream = next(stream for stream in streams if stream.resolution == selected_quality)
-
-        # Display download button
-
-        if st.button("Download"):
-
-            # Download the selected video stream
-
-            selected_stream.download()
-
-            st.success("Video downloaded successfully!")
-
-    except Exception as e:
-
-        st.error("Error: Invalid YouTube URL or unable to fetch video details.")
-
-        st.error(str(e))
-
+        display_wallpapers(wallpapers)
