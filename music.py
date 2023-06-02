@@ -2,11 +2,25 @@ import streamlit as st
 
 import requests
 
-def search_wallpapers(query):
+def search_wallpapers(query, max_results=10):
 
-    url = f"https://api.unsplash.com/search/photos?query={query}&client_id=dKRzg3P20iERjrsD0_rIOhSYpVAYLTWtlYXhKDA5T-Y"
+    url = f"https://api.unsplash.com/search/photos"
 
-    response = requests.get(url)
+    params = {
+
+        "query": query,
+
+        "client_id": "dKRzg3P20iERjrsD0_rIOhSYpVAYLTWtlYXhKDA5T-Y",
+
+        "per_page": max_results,
+
+        "orientation": "landscape",  # Forces landscape-oriented wallpapers
+
+        "content_filter": "high",  # Filters for high-quality wallpapers
+
+    }
+
+    response = requests.get(url, params=params)
 
     data = response.json()
 
@@ -24,10 +38,8 @@ def display_wallpapers(wallpapers, max_results=10):
 
         st.image(wallpaper["urls"]["regular"], caption=wallpaper["alt_description"])
 
-        st.write(f"Photo by {wallpaper['user']['name']} on Unsplash")
-
-#        st.write(f"Download: [Link]({wallpaper['links']['download']})")
-        st.download_button("Save Image", data=f"({wallpaper['links']['download']})", file_name="image.jpg") 
+#       st.write(f"Download: [Link]({wallpaper['links']['download']})")
+        st.download_button("Save Image", data=f"({wallpaper['urls']['regular']})", file_name="image.jpg") 
 
         count += 1
 
