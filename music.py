@@ -26,7 +26,8 @@ def display_wallpapers(wallpapers, max_results=5):
 
         st.write(f"Photo by {wallpaper['user']['name']} on Unsplash")
 
-        st.write(f"Download: [Link]({wallpaper['links']['download']})")
+#        st.write(f"Download: [Link]({wallpaper['links']['download']})")
+        st.download_button("Save Image", data=f"({wallpaper['links']['download']}), file_name=f"image.jpg") 
 
         count += 1
 
