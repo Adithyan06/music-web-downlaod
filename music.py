@@ -12,7 +12,7 @@ def search_wallpapers(query):
 
     return data["results"]
 
-def display_wallpapers(wallpapers, max_results=5):
+def display_wallpapers(wallpapers, max_results=10):
 
     count = 0
 
