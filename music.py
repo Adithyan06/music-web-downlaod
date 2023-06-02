@@ -12,11 +12,24 @@ def search_wallpapers(query):
 
     return data["results"]
 
-def display_wallpapers(wallpapers):
+def display_wallpapers(wallpapers, max_results=5):
+
+    count = 0
 
     for wallpaper in wallpapers:
 
+        if count >= max_results:
+
+            break
+
         st.image(wallpaper["urls"]["regular"], caption=wallpaper["alt_description"])
+
+        st.write(f"Photo by {wallpaper['user']['name']} on Unsplash")
+
+        st.write(f"Download: [Link]({wallpaper['links']['download']})")
+
+        count += 1
+
 
 def main():
 
