@@ -29,3 +29,7 @@ def main():
         wallpapers = search_wallpapers(query)
 
         display_wallpapers(wallpapers)
+
+if __name__ == "__main__":
+
+    main()
