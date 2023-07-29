@@ -18,7 +18,7 @@ lottie_coding = load_lottieurl("https://assets8.lottiefiles.com/packages/lf20_ej
 st.cache()
 st.set_page_config(
     page_title="Download Any songs now !!",
-    page_icon="random",
+    page_icon="♥️",
     menu_items={"Get help": "https://github.com/Adithyan06"})
 
 st.title("YouTube Videos Downloader") 
@@ -27,6 +27,7 @@ st_lottie(lottie_coding, height=280, key="YouTube")
 
 query = st.text_input("Song Name or YouTube URL",placeholder="Song Name")
 option = st.radio("Select Type: ", ('Video 🎥', 'Audio 🎶', 'URlUplaod 💦'))
+st.caption("hey current video and audio function is not working properly so please use urlupload")
 if(st.button('Submit')):
      with st.spinner('Wait for it...'):
          try:
