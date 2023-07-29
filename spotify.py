@@ -1,5 +1,5 @@
 import streamlit as st
-
+import wget
 import spotipy
 
 from spotipy.oauth2 import SpotifyClientCredentials
