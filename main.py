@@ -46,16 +46,16 @@ if(st.button('Submit')):
                     st.write("Link -", f"https://youtube.com{results[0]['url_suffix']}")
                     st.download_button("Save Video", data=f, file_name=f"{title[:35]}.mp4") 
              if (option == 'Audio 🎶'):   
-#                url = "https://t-one-youtube-converter.p.rapidapi.com/api/v1/createProcess"
-#                results = YoutubeSearch(query, max_results=1).to_dict()
-#                link = f"https://youtube.com{results[0]['url_suffix']}"
-#                querystring = {"url":link,"format":"mp3"}
-#                headers = {
-#	                "X-RapidAPI-Key": "33af2319cbmshd1a3ee767f631f3p16a1dfjsnd5800101f122",
-#	                "X-RapidAPI-Host": "t-one-youtube-converter.p.rapidapi.com"}
-#                response = requests.get(url, headers=headers, params=querystring).json()
-#                song = response.get('file')
-#                st.audio(song)
+                 url = "https://t-one-youtube-converter.p.rapidapi.com/api/v1/createProcess"
+                 results = YoutubeSearch(query, max_results=1).to_dict()
+                 link = f"https://youtube.com{results[0]['url_suffix']}"
+                 querystring = {"url":link,"format":"mp3"} 
+                 headers = {
+ 	                "X-RapidAPI-Key": "33af2319cbmshd1a3ee767f631f3p16a1dfjsnd5800101f122",
+ 	                "X-RapidAPI-Host": "t-one-youtube-converter.p.rapidapi.com"}
+                 response = requests.get(url, headers=headers, params=querystring).json()
+                 song = response.get('file')
+                 st.audio(song)
 		 st.write("Select UrlUpload to download videos")
              else:               
                  with YoutubeDL() as ydl:
