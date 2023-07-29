@@ -22,13 +22,13 @@ if(st.button('Apply')):
             results = YoutubeSearch(URL, max_results=1).to_dict()
             link=f"https://youtube.com{results[0]['url_suffix']}"
             title = results[0]["title"]
-            yt = YouTube(link)
-            with YoutubeDL(ydl_opts) as ydl:
+            yt = YouTube(link, '-f mp4')
+            with YoutubeDL() as ydl:
                 info = ydl.extract_info(link, download=False)
                 video = ydl.prepare_filename(info)
                 ydl.process_info(info)
                 p = Path(video)
-                p=p.rename(p.with_name(f"{title}"))
+                p=p.rename(p.with_name(f"{title}.mp4"))
                 with open(p,'rb') as f:
                     st.write(f"{title}")
                     st.video(f)
