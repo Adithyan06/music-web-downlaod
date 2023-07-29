@@ -28,11 +28,11 @@ if(st.button('Apply')):
                 video = ydl.prepare_filename(info)
                 ydl.process_info(info)
                 p = Path(video)
-#               p=p.rename(p.with_name(f"{title[:33]}.mp4"))
-#               with open(p,'rb') as f:
+                p=p.rename(p.with_name(f"{title}"))
+                with open(p,'rb') as f:
                 st.write(f"{title}")
-                st.video(info)
-                st.download_button("Download Video 📥",data=video,file_name=f"{title}.mp4")
+                st.video(f)
+                st.download_button("Download Video 📥",data=f,file_name=f"{title}.mp4")
          else:
               with YoutubeDL() as ydl:
                   info = ydl.extract_info(URL, download=False)
