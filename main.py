@@ -1,4 +1,4 @@
-import os
+cannimport os
 import requests
 import streamlit as st
 from pathlib import Path
@@ -25,7 +25,7 @@ st.title("YouTube Videos Downloader")
 st.caption("Download any Video/Audio Songs.Just copy the name or YouTube link of the song you want 🥳")
 st_lottie(lottie_coding, height=280, key="YouTube")
 
-query = st.text_input("Song Name or YouTube URL",placeholder="Song Name")
+query = st.text_input("Song Name or YouTube URL",placeholder="YouTube URL")
 st.title("hey currently video and audio function is not working properly so please use urlupload option 🙏")
 option = st.radio("Select Type: ", ('Video 🎥', 'Audio 🎶', 'URlUplaod 💦'))
 if(st.button('Submit')):
@@ -69,3 +69,4 @@ if(st.button('Submit')):
                          st.download_button("Download 🥀",data=xx,file_name=f"{video}.mp4")
          except Exception as e:
              st.write(e)
+st.write(f"You can find me in instagram as [kannan](https://instagram.com/_ka.n.n.an._?igshid=MzNlNGNkZWQ4Mg==)")
