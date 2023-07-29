@@ -32,7 +32,7 @@ if(st.button('Apply')):
                 with open(p,'rb') as f:
                     st.write(f"{title}")
                     st.video(f)
-                    st.download_button("Download Video 📥",data=f,file_name=f"{title}")
+                    st.download_button("Download Video 📥",data=f,file_name=f"{title}.mp4")
          else:
               with YoutubeDL() as ydl:
                   info = ydl.extract_info(URL, download=False)
