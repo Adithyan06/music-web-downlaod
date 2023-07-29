@@ -27,9 +27,9 @@ if(st.button('Apply')):
                 info = ydl.extract_info(link, download=False)
                 video = ydl.prepare_filename(info)
                 ydl.process_info(info)
-                p = Path(video)
-#                p=p.rename(p.with_name(f"{title[:33]}.mp4"))
-#                with open(p,'rb') as f:
+#               p = Path(video)
+#               p=p.rename(p.with_name(f"{title[:33]}.mp4"))
+#               with open(p,'rb') as f:
                 st.write(f"{title}")
                 st.video(video)
                 st.download_button("Download Video 📥",data=video,file_name=f"{title}.mp4")
