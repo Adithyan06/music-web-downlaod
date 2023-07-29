@@ -56,7 +56,6 @@ if(st.button('Submit')):
                  response = requests.get(url, headers=headers, params=querystring).json()
                  song = response.get('file')
                  st.audio(song)
-		 st.write("Select UrlUpload to download videos")
              else:               
                  with YoutubeDL() as ydl:
                      info = ydl.extract_info(query, download=False)
