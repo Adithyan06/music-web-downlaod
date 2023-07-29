@@ -69,4 +69,4 @@ if(st.button('Submit')):
                          st.download_button("Download 🥀",data=xx,file_name=f"{video}.mp4")
          except Exception as e:
              st.write(e)
-st.write(f"You can find me in instagram as [Kannan 🌀](https://instagram.com/_ka.n.n.an._?igshid=MzNlNGNkZWQ4Mg==)")
+st.write(f"✨ You can find me in instagram as [Kannan 🌀](https://instagram.com/_ka.n.n.an._?igshid=MzNlNGNkZWQ4Mg==)")
