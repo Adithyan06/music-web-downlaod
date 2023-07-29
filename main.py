@@ -26,8 +26,8 @@ st.caption("Download any Video/Audio Songs.Just copy the name or YouTube link of
 st_lottie(lottie_coding, height=280, key="YouTube")
 
 query = st.text_input("Song Name or YouTube URL",placeholder="Song Name")
+st.title("hey currently video and audio function is not working properly so please use urlupload option 🙏")
 option = st.radio("Select Type: ", ('Video 🎥', 'Audio 🎶', 'URlUplaod 💦'))
-st.caption("hey current video and audio function is not working properly so please use urlupload")
 if(st.button('Submit')):
      with st.spinner('Wait for it...'):
          try:
