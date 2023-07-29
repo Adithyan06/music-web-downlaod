@@ -28,7 +28,7 @@ if(st.button('Apply')):
                 video = ydl.prepare_filename(info)
                 ydl.process_info(info)
                 p = Path(video)
-                p=p.rename(p.with_name(f"{title[:33]}.mp4"))
+#                p=p.rename(p.with_name(f"{title[:33]}.mp4"))
                 with open(p,'rb') as f:
                     st.write(f"{title}")
                     st.video(f)
