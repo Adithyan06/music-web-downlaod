@@ -18,11 +18,12 @@ option = st.radio("Select Type: ", ('YouTube', 'URL Upload'))
 if(st.button('Apply')):
      with st.spinner('Downloading...'):
          if (option == 'YouTube'):
+            ydl_opts = {"outtmpl": "%(title)s.mp4"}
             results = YoutubeSearch(URL, max_results=1).to_dict()
             link=f"https://youtube.com{results[0]['url_suffix']}"
             title = results[0]["title"]
             yt = YouTube(link)
-            with YoutubeDL() as ydl:
+            with YoutubeDL(ydl_opts) as ydl:
                 info = ydl.extract_info(link, download=False)
                 video = ydl.prepare_filename(info)
                 ydl.process_info(info)
