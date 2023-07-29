@@ -27,7 +27,7 @@ st_lottie(lottie_coding, height=280, key="YouTube")
 
 query = st.text_input("Song Name or YouTube URL",placeholder="YouTube URL")
 st.title("hey currently video and audio function is not working properly so please use urlupload option 🙏")
-option = st.radio("Select Type: ", ('Video 🎥', 'Audio 🎶', 'URlUplaod 💦'))
+option = st.radio("Select Type: ", ('Video 🎥', 'Audio 🎶', 'URlUpload 💦'))
 if(st.button('Submit')):
      with st.spinner('Wait for it...'):
          try:
