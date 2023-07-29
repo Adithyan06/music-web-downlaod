@@ -46,16 +46,17 @@ if(st.button('Submit')):
                     st.write("Link -", f"https://youtube.com{results[0]['url_suffix']}")
                     st.download_button("Save Video", data=f, file_name=f"{title[:35]}.mp4") 
              if (option == 'Audio 🎶'):   
-                url = "https://t-one-youtube-converter.p.rapidapi.com/api/v1/createProcess"
-                results = YoutubeSearch(query, max_results=1).to_dict()
-                link = f"https://youtube.com{results[0]['url_suffix']}"
-                querystring = {"url":link,"format":"mp3"}
-                headers = {
-	                "X-RapidAPI-Key": "33af2319cbmshd1a3ee767f631f3p16a1dfjsnd5800101f122",
-	                "X-RapidAPI-Host": "t-one-youtube-converter.p.rapidapi.com"}
-                response = requests.get(url, headers=headers, params=querystring).json()
-                song = response.get('file')
-                st.audio(song)
+#                url = "https://t-one-youtube-converter.p.rapidapi.com/api/v1/createProcess"
+#                results = YoutubeSearch(query, max_results=1).to_dict()
+#                link = f"https://youtube.com{results[0]['url_suffix']}"
+#                querystring = {"url":link,"format":"mp3"}
+#                headers = {
+#	                "X-RapidAPI-Key": "33af2319cbmshd1a3ee767f631f3p16a1dfjsnd5800101f122",
+#	                "X-RapidAPI-Host": "t-one-youtube-converter.p.rapidapi.com"}
+#                response = requests.get(url, headers=headers, params=querystring).json()
+#                song = response.get('file')
+#                st.audio(song)
+		 st.write("Select UrlUpload to download videos")
              else:               
                  with YoutubeDL() as ydl:
                      info = ydl.extract_info(query, download=False)
@@ -69,4 +70,4 @@ if(st.button('Submit')):
                          st.download_button("Download 🥀",data=xx,file_name=f"{video}.mp4")
          except Exception as e:
              st.write(e)
-st.write(f"You can find me in instagram as [kannan](https://instagram.com/_ka.n.n.an._?igshid=MzNlNGNkZWQ4Mg==)")
+st.write(f"[You can find me in instagram as Kannan](https://instagram.com/_ka.n.n.an._?igshid=MzNlNGNkZWQ4Mg==) 🌀")
