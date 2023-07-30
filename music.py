@@ -42,12 +42,11 @@ def main():
                wall = requests.get(url=url).json()
                wallpaper = wall['results'][0]['imageUrl']
                title = wall['results'][0]['title']
-               file = wget.download(wallpaper)
-               y = Path(file)
+#              y = Path(file)
 #              y=y.rename(y.with_name(f"{title[:4]}.jpg"))
-               with open(y,'rb') as yy:                  
-                   st.image(yy)  
-                   st.download_button("Save Image", data=yy, file_name=f"{title[:4]}.jpg")
+#              with open(y,'rb') as yy:                  
+               st.image(wallpaper)  
+               st.download_button("Save Image", data=wallpaper, file_name=f"{title[:4]}.jpg")
             
 if __name__ == "__main__":
     main()
