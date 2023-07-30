@@ -1,6 +1,7 @@
 import streamlit as st
 import requests
 import wget
+from pathlib import Path
 
 def search_wallpapers(query, max_results=10):
     url = f"https://api.unsplash.com/search/photos"
@@ -41,6 +42,10 @@ def main():
                    url = f"http://api.safone.me/wall?query={query}&limit=3"
                    wall = requests.get(url=url).json()
                    wallpaper = wall['results'][0]['imageUrl']
+                   title = wall['results'][0]['title']
+                   y = Path(wallpaper)
+                   y=y.rename(y.with_name(f"{title}"))
+                     with open(x,'rb') as xx:
 #                   file = wget.download(wallpaper)
                    st.image(wallpaper)  
                    st.download_button("Save Image", data=wallpaper, file_name=f"{query}.jpg")
