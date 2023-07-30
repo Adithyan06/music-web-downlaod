@@ -55,7 +55,10 @@ def main():
            if (option == 'Unsplash'):
              wallpapers = search_wallpapers(query)
              display_wallpapers(wallpapers)
-
+    else:
+        url = f"http://api.safone.me/wall?query={query}&limit=5"
+        wall = requests.get(url=url).json()
+    
 if __name__ == "__main__":
 
     main()
