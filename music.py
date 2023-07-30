@@ -37,13 +37,10 @@ def main():
              display_wallpapers(wallpapers)
     else:
         url = f"http://api.safone.me/wall?query={query}&limit=5"
-        try:
-           wall = requests.get(url=url).json()
-           wallpaper = wall.get('results')
-           wallpapers = wallpaper['imageUrl']
-           st.write(wall)
-        except Exception as e:
-            st.write(e)
+        wall = requests.get(url=url).json()
+        wallpaper = wall.get('results')
+        wallpapers = wallpaper['imageUrl']
+        st.write(wall)
         
 if __name__ == "__main__":
     main()
