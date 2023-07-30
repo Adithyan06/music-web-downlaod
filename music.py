@@ -42,6 +42,7 @@ def main():
             wallpaper = wall['results'][0]['imageUrl'][]
 #           wallpapers = wallpaper['imageUrl']
             st.write(wallpaper)
-        
+            st.image(wallpaper)
+            
 if __name__ == "__main__":
     main()
