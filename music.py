@@ -38,8 +38,9 @@ def main():
     else:
         url = f"http://api.safone.me/wall?query={query}&limit=5"
         wall = requests.get(url=url).json()
-        wallpaper = wall.get('imageUrl')
-        st.write(wallpaper)
+        wallpaper = wall.get('results')
+        wallpapers = wallpaper['imageUrl']
+        st.write(wallpapers)
         
 if __name__ == "__main__":
     main()
