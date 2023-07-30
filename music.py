@@ -40,10 +40,10 @@ def main():
                with st.spinner('Downloading...'):
                    url = f"http://api.safone.me/wall?query={query}&limit=5"
                    wall = requests.get(url=url).json()
-                   wallpaper = wall['results'][0]['imageUrl']
-                   file = wget.download(wallpaper)
+                   wallpaper = wall['results'][5]['imageUrl']
+#                   file = wget.download(wallpaper)
                    st.image(wallpaper)          
-                   st.download_button("Save Image", data=file, file_name=f"({wall['results'][0]['title']}).jpg")
+                   st.download_button("Save Image", data=wallpaper, file_name=f"({wall['results'][0]['title']}).jpg")
             
 if __name__ == "__main__":
     main()
