@@ -41,7 +41,7 @@ def main():
            wall = requests.get(url=url).json()
            wallpaper = wall.get('results')
            wallpapers = wallpaper['imageUrl']
-           st.write(wallpapers)
+           st.write(wall)
         except Exception as e:
             st.write(e)
         
