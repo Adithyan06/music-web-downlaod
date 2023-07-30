@@ -41,7 +41,7 @@ def main():
                    wall = requests.get(url=url).json()
                    wallpaper = wall['results'][0]['imageUrl']
                    st.image(wallpaper)
-                   st.download_button("Save Image", data=f"({wall['results'][0]['imageUrl']})", file_name=f"({wall['results'][0]['title']})")
+                   st.download_button("Save Image", data=f"({wall['results'][0]['imageUrl']})", file_name=f"({wall['results'][0]['title']}).jpg")
             
 if __name__ == "__main__":
     main()
