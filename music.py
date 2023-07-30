@@ -49,12 +49,12 @@ def main():
     st.title("Wallpaper Search")
 
     query = st.text_input("Enter a keyword to search wallpapers")
-
-    if st.button("Search"):
-
-        wallpapers = search_wallpapers(query)
-
-        display_wallpapers(wallpapers)
+    option = st.radio("Select Type: ", ('Unsplash', 'Wallpaper'))
+    if(st.button('Search')):
+       with st.spinner('Downloading...'):
+           if (option == 'Unsplash'):
+             wallpapers = search_wallpapers(query)
+             display_wallpapers(wallpapers)
 
 if __name__ == "__main__":
 
