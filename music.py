@@ -42,7 +42,8 @@ def main():
                    wall = requests.get(url=url).json()
                    wallpaper = wall['results'][0]['imageUrl'][5]
 #                   file = wget.download(wallpaper)
-                   st.image(wallpaper)          
+#                   st.image(wallpaper)  
+                   st.writr(wallpaper)
                    st.download_button("Save Image", data=wallpaper, file_name=f"({wall['results'][0]['title']}).jpg")
             
 if __name__ == "__main__":
