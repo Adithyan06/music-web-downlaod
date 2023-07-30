@@ -38,17 +38,16 @@ def main():
              wallpapers = search_wallpapers(query)
              display_wallpapers(wallpapers)
            else:
-               with st.spinner('Downloading...'):
-                   url = f"http://api.safone.me/wall?query={query}&limit=3"
-                   wall = requests.get(url=url).json()
-                   wallpaper = wall['results'][0]['imageUrl']
-                   title = wall['results'][0]['title']
-                   y = Path(wallpaper)
-                   y=y.rename(y.with_name(f"{title[:4]}.jpg"))
-                   with open(y,'rb') as yy:
-#                      file = wget.download(wallpaper)
-                       st.image(yy)  
-                       st.download_button("Save Image", data=yy, file_name=f"{title[:4]}.jpg")
+               url = f"http://api.safone.me/wall?query={query}&limit=3"
+               wall = requests.get(url=url).json()
+               wallpaper = wall['results'][0]['imageUrl']
+               title = wall['results'][0]['title']
+               y = Path(wallpaper)
+#              y=y.rename(y.with_name(f"{title[:4]}.jpg"))
+               with open(y,'rb') as yy:
+#                  file = wget.download(wallpaper)
+                   st.image(yy)  
+                   st.download_button("Save Image", data=yy, file_name=f"{title[:4]}.jpg")
             
 if __name__ == "__main__":
     main()
