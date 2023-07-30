@@ -39,7 +39,7 @@ def main():
         with st.spinner('Downloading...'):
             url = f"http://api.safone.me/wall?query={query}&limit=5"
             wall = requests.get(url=url).json()
-            wallpaper = wall['results'][0]['imageUrl'][]
+            wallpaper = wall['results'][0]['imageUrl']
 #           wallpapers = wallpaper['imageUrl']
             st.write(wallpaper)
             st.image(wallpaper)
