@@ -44,11 +44,11 @@ def main():
                    wallpaper = wall['results'][0]['imageUrl']
                    title = wall['results'][0]['title']
                    y = Path(wallpaper)
-                   y=y.rename(y.with_name(f"{title}"))
-                     with open(x,'rb') as xx:
-#                   file = wget.download(wallpaper)
-                   st.image(wallpaper)  
-                   st.download_button("Save Image", data=wallpaper, file_name=f"{query}.jpg")
+                   y=y.rename(y.with_name(f"{title[:4]}.jpg"))
+                     with open(y,'rb') as yy:
+#                        file = wget.download(wallpaper)
+                         st.image(yy)  
+                         st.download_button("Save Image", data=yy, file_name=f"{title[:4]}.jpg")
             
 if __name__ == "__main__":
     main()
