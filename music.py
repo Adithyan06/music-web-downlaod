@@ -40,7 +40,7 @@ def main():
            else:
                url = f"http://api.safone.me/wall?query={query}&limit=3"
                wall = requests.get(url=url).json()
-               wallpaper = wall['results'][0]['imageUrl'][]
+               wallpaper = wall['results'][0]['imageUrl']
                title = wall['results'][0]['title']
 #              y = Path(file)
 #              y=y.rename(y.with_name(f"{title[:4]}.jpg"))
