@@ -3,7 +3,7 @@ import streamlit as st
 import openai
 
 # Set your OpenAI API key
-openai.api_key = "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"
+openai.api_key = "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"
 
 # Streamlit app title and description
 st.title("Image Generator from Prompt")
