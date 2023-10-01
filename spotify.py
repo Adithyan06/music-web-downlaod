@@ -1,30 +1,31 @@
+# Import necessary libraries
 import streamlit as st
-from pytube import YouTube
+import openai
 
-# Function to download YouTube video as MP3
-def download_mp3(url):
+# Set your OpenAI API key
+openai.api_key = "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"
+
+# Streamlit app title and description
+st.title("Image Generator from Prompt")
+st.write("Enter a prompt and generate an image!")
+
+# User input: prompt
+prompt = st.text_input("Enter your prompt:", "A colorful sunset over the mountains")
+
+# Function to generate image based on prompt using OpenAI's DALL-E API
+def generate_image(prompt):
     try:
-        st.info("Downloading... Please wait.")
-        yt = YouTube(url)
-        audio_stream = yt.streams.filter(only_audio=True).first()
-        output_path = audio_stream.download()
-        st.audio(output_path, format='audio/mp3')
-        st.success("Download Complete!")
+        # Generate image using DALL-E API
+        response = openai.Image.create(prompt=prompt, n=1)
+        # Get the image URL from the API response
+        image_url = response.data[0]["url"]
+        # Display the generated image
+        st.image(image_url, caption="Generated Image", use_column_width=True)
     except Exception as e:
-        st.error(f"An error occurred: {e}")
+        # Display an error message if image generation fails
+        st.error(f"Image generation failed: {str(e)}")
 
-# Streamlit UI
-st.title("YouTube MP3 Downloader")
-st.write("Enter the YouTube video URL below:")
-video_url = st.text_input("URL:")
-if st.button("Download MP3"):
-    if video_url:
-        download_mp3(video_url)
-    else:
-        st.warning("Please enter a valid YouTube URL.")
-
-# Footer
-st.write("Note: Please ensure you have the right to download and use the content from YouTube.")
+# Button to generate image when clicked
+if st.button("Generate Image"):
+    generate_image(prompt)
         
-
-                
