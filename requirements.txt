@@ -5,7 +5,7 @@ rapidfuzz
 youtube_search
 streamlit==1.15.1
 streamlit_lottie==0.0.2
-pytube
+pytube==v15.0.0
 pytube3
 pathlib
 ffmpeg-python
