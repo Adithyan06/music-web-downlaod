@@ -1,5 +1,5 @@
 import streamlit as st
-from pytube3 import YouTube
+from pytube import YouTube
 
 # Function to download YouTube video as MP3
 def download_mp3(url):
