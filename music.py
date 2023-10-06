@@ -2,7 +2,7 @@ import openai
 import streamlit as st
 
 # Set your OpenAI API key here
-openai.api_key = "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"
+openai.api_key = "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"
 
 # Streamlit app title and description
 st.title("Advanced Chatbot with GPT-3.5")
