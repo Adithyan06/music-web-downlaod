@@ -1,52 +1,34 @@
+import openai
 import streamlit as st
-import requests
-import wget
-from pathlib import Path
 
-def search_wallpapers(query, max_results=10):
-    url = f"https://api.unsplash.com/search/photos"
-    params = {
-        "query": query,
-        "client_id": "dKRzg3P20iERjrsD0_rIOhSYpVAYLTWtlYXhKDA5T-Y",
-        "per_page": max_results,
-        "orientation": "landscape",  # Forces landscape-oriented wallpapers
-        "content_filter": "high",  # Filters for high-quality wallpapers
-    }
-    response = requests.get(url, params=params)
-    data = response.json()
-    return data["results"]
+# Set your OpenAI API key here
+openai.api_key = "YOUR_OPENAI_API_KEY"
 
-def display_wallpapers(wallpapers, max_results=10):
-    count = 0
-    for wallpaper in wallpapers:
-        if count >= max_results:
-            break
-        st.image(wallpaper["urls"]["regular"], caption=wallpaper["alt_description"])
-#       st.write(f"Download: [Link]({wallpaper['links']['download']})")
-        st.download_button("Save Image", data=f"({wallpaper['urls']['regular']})", file_name="image.jpg") 
-        count += 1
+# Streamlit app title and description
+st.title("Advanced Chatbot with GPT-3.5")
+st.write("Enter your message below and the chatbot will respond!")
 
-def main():
+# User input: text box for entering messages
+user_input = st.text_input("You:", "")
 
-    st.title("Wallpaper Search")
+# Function to generate chatbot response using OpenAI's GPT-3.5 API
+def generate_response(input_text):
+    # Use the OpenAI API to generate a response based on user input
+    response = openai.Completion.create(
+        engine="text-davinci-003",  # Use the text-davinci-003 engine (GPT-3.5)
+        prompt=input_text,
+        max_tokens=150,  # Limit the response length
+        n=1,  # Generate only 1 response
+    )
+    # Get the generated response from the API
+    bot_response = response.choices[0].text.strip()
+    return bot_response
 
-    query = st.text_input("Enter a keyword to search wallpapers")
-    option = st.radio("Select Type: ", ('Unsplash', 'Wallpaper'))
-    if(st.button('Search')):
-       with st.spinner('Downloading...'):
-           if (option == 'Unsplash'):
-             wallpapers = search_wallpapers(query)
-             display_wallpapers(wallpapers)
-           else:
-               url = f"http://api.safone.me/wall?query={query}&limit=3"
-               wall = requests.get(url=url).json()
-               wallpaper = wall['results'][0]['imageUrl']
-               title = wall['results'][0]['title']
-#              y = Path(file)
-#              y=y.rename(y.with_name(f"{title[:4]}.jpg"))
-#              with open(y,'rb') as yy:                  
-               st.image(wallpaper)  
-               st.download_button("Save Image", data=wallpaper, file_name=f"{title[:4]}.jpg")
-            
-if __name__ == "__main__":
-    main()
+# Button to generate chatbot response when clicked
+if st.button("Send"):
+    # Get chatbot response based on user input
+    bot_response = generate_response(user_input)
+    # Display chatbot response
+    st.text_area("Chatbot:", value=bot_response, height=200)
+
+st.write("have a nice day ☺️")
