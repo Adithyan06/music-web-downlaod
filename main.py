@@ -70,3 +70,4 @@ if(st.button('Submit')):
          except Exception as e:
              st.write(e)
 st.write(f"✨ You can find me in instagram as [Kannan 🌀](https://instagram.com/_ka.n.n.an._?igshid=MzNlNGNkZWQ4Mg==)")
+st write(f"✨ [DEVU](https://instagram.com/__dev_i_x_?igshid=OGQ5ZDc2ODk2ZA==)")
