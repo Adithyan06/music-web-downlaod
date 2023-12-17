@@ -49,7 +49,7 @@ if(st.button('Submit')):
                               st.write("Link -", f"https://youtube.com{results[0]['url_suffix']}")
                               st.download_button("Save Video", data=f, file_name=f"{title[:35]}.mp4") 
                          except Exception as e:
-                            st.write(e)
+                             st.write(e)
              if (option == 'Audio 🎶'):   
                  url = "https://t-one-youtube-converter.p.rapidapi.com/api/v1/createProcess"
                  results = YoutubeSearch(query, max_results=1).to_dict()
