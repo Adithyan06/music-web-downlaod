@@ -33,21 +33,23 @@ if(st.button('Submit')):
          try:
              if (option == 'Video 🎥'):
                 res = st.selectbox("Select The resolution",("720p","360p","144p")) 
-                try:
-                   results = YoutubeSearch(query, max_results=1).to_dict()
-                   yt = YouTube(f"https://youtube.com{results[0]['url_suffix']}")    
-                   title = results[0]["title"]                  
-                   video = yt.streams.get_by_itag(yt.streams.filter(res=res , progressive="True" )[0].itag)      
-                   hi = video.download()           
-                   p = Path(hi)
-                   p=p.rename(p.with_name(f"{title[:35]}.mp4"))      
-                   with open(p,'rb' ) as f:                
-                      st.write(f"{title}")
-                      st.video(f)
-                      st.write("Link -", f"https://youtube.com{results[0]['url_suffix']}")
-                      st.download_button("Save Video", data=f, file_name=f"{title[:35]}.mp4") 
-                except Exception as e:
-                    st.write(e)
+                if(st.button('Apply')):
+                    with st.spinner('Wait for it...'):
+                        results = YoutubeSearch(query, max_results=1).to_dict()
+                        yt = YouTube(f"https://youtube.com{results[0]['url_suffix']}")    
+                        title = results[0]["title"]                  
+                        video = yt.streams.get_by_itag(yt.streams.filter(res=res , progressive="True" )[0].itag)      
+                        hi = video.download()           
+                        p = Path(hi)
+                        p=p.rename(p.with_name(f"{title[:35]}.mp4"))      
+                        try:
+                           with open(p,'rb' ) as f:                
+                              st.write(f"{title}")
+                               st.video(f)
+                               st.write("Link -", f"https://youtube.com{results[0]['url_suffix']}")
+                               st.download_button("Save Video", data=f, file_name=f"{title[:35]}.mp4") 
+                         except Exception as e:
+                            st.write(e)
              if (option == 'Audio 🎶'):   
                  url = "https://t-one-youtube-converter.p.rapidapi.com/api/v1/createProcess"
                  results = YoutubeSearch(query, max_results=1).to_dict()
