@@ -45,9 +45,9 @@ if(st.button('Submit')):
                         try:
                            with open(p,'rb' ) as f:                
                               st.write(f"{title}")
-                               st.video(f)
-                               st.write("Link -", f"https://youtube.com{results[0]['url_suffix']}")
-                               st.download_button("Save Video", data=f, file_name=f"{title[:35]}.mp4") 
+                              st.video(f)
+                              st.write("Link -", f"https://youtube.com{results[0]['url_suffix']}")
+                              st.download_button("Save Video", data=f, file_name=f"{title[:35]}.mp4") 
                          except Exception as e:
                             st.write(e)
              if (option == 'Audio 🎶'):   
