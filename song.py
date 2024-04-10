@@ -3,6 +3,7 @@ import streamlit as st
 import yt_dlp
 import os
 
+@st.cache(allow_output_mutation=True)
 def download_song(song_name):
     # Download the song using youtube_dl
     ydl_opts = {
