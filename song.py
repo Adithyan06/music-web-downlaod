@@ -33,19 +33,16 @@ def main():
     
     if st.button('Download'):
         if song_name:
-            song_file = download_song(song_name)
-            if song_file:
-                st.success('Download complete!')
-                st.write('Here is the song:')
-                audio_file = open(song_file, 'rb')
-                audio_bytes = audio_file.read()
-                st.audio(audio_bytes, format='audio/flac')
-                st.download_button("Download 🥀",data=audio_bytes,file_name=f"{title}.flac")
-            else:
-                st.error('Failed to download the song.')
-        else:
-            st.warning('Please enter a song name.')
-            
-
+          song_file = download_song(song_name)
+          if song_file:
+              st.success('Download complete!')
+              st.write('Here is the song:')
+              audio_file = open(song_file, 'rb')
+              audio_bytes = audio_file.read()
+              st.audio(audio_bytes, format='audio/flac')
+              st.download_button("Download 🥀",data=audio_bytes,file_name=f"{title}.flac")
+          else:
+              st.error('Failed to download the song.')
+ 
 if __name__ == "__main__":
     main()
