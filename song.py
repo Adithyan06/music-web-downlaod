@@ -30,6 +30,7 @@ def main():
     song_name = st.text_input('Song Name')
     results = YoutubeSearch(song_name, max_results=1).to_dict()
     title = results[0]["title"]
+    
     if st.button('Download'):
         if song_name:
             song_file = download_song(song_name)
