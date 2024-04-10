@@ -7,6 +7,26 @@ from yt_dlp import YoutubeDL
 from streamlit_lottie import st_lottie
 from youtube_search import YoutubeSearch
 
+def download_song(query):
+    # Download the song using youtube_dl
+    ydl_opts = {
+        'format': 'bestaudio/best',
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'flac',
+            'preferredquality': '192',
+        }],
+        'outtmpl': '%(title)s.%(ext)s',
+    }
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        ydl.download([f"ytsearch1:{query}"])
+
+    # Find the downloaded file
+    for file in os.listdir('.'):
+        if file.endswith('.flac'):
+            return file
+
+
 def load_lottieurl(url):
     r = requests.get(url)
     if r.status_code != 200:
@@ -51,24 +71,16 @@ if(st.button('Submit')):
                         except Exception as e:
                              st.write(e)
              if (option == 'Audio 🎶'):   
-                 ydl_opts = {
-                          'format': 'bestaudio/best',
-                          'postprocessors': [{
-                              'key': 'FFmpegExtractAudio',
-                              'preferredcodec': 'flac',
-                              'preferredquality': '192',
-                           }],
-                           'outtmpl': '%(title)s.%(ext)s',
-                 }
-                 with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-                     ydl.download([f"ytsearch1:{query}"])
-
-                 # Find the downloaded file
-                 for file in os.listdir('.'):
-                    if file.endswith('.flac'):
-                      return file
-                      st.audio(file)
-             else:               
+                song_file = download_song(query)
+                if song_file:
+                  st.success('Download complete!')
+                  st.write('Here is the song:')
+                  audio_file = open(song_file, 'rb')
+                  audio_bytes = audio_file.read()
+                  st.audio(audio_bytes, format='audio/flac')
+                else:
+                    st.error('Failed to download the song.')
+             else:              
                  with YoutubeDL() as ydl:
                      info = ydl.extract_info(query, download=False)
                      video = ydl.prepare_filename(info)
