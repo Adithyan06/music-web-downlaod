@@ -38,7 +38,7 @@ def main():
               audio_file = open(song_file, 'rb')
               audio_bytes = audio_file.read()
               st.audio(audio_bytes, format='audio/flac')
-              st.download_button("SAVE",data=audio_bytes)
+              st.download_button("SAVE",data=audio_bytes,file_name=f"{song_name}.flac")
           else:
               st.error('Failed to download the song!')
 if __name__ == "__main__":
