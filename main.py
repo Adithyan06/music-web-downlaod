@@ -51,16 +51,23 @@ if(st.button('Submit')):
                         except Exception as e:
                              st.write(e)
              if (option == 'Audio 🎶'):   
-                 url = "https://t-one-youtube-converter.p.rapidapi.com/api/v1/createProcess"
-                 results = YoutubeSearch(query, max_results=1).to_dict()
-                 link = f"https://youtube.com{results[0]['url_suffix']}"
-                 querystring = {"url":link,"format":"mp3"} 
-                 headers = {
- 	                "X-RapidAPI-Key": "33af2319cbmshd1a3ee767f631f3p16a1dfjsnd5800101f122",
- 	                "X-RapidAPI-Host": "t-one-youtube-converter.p.rapidapi.com"}
-                 response = requests.get(url, headers=headers, params=querystring).json()
-                 song = response.get('file')
-                 st.audio(song)
+                 ydl_opts = {
+                          'format': 'bestaudio/best',
+                          'postprocessors': [{
+                              'key': 'FFmpegExtractAudio',
+                              'preferredcodec': 'flac',
+                              'preferredquality': '192',
+                           }],
+                           'outtmpl': '%(title)s.%(ext)s',
+                 }
+                 with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+                     ydl.download([f"ytsearch1:{query}"])
+
+                 # Find the downloaded file
+                 for file in os.listdir('.'):
+                    if file.endswith('.flac'):
+                      return file
+                            st.audio(file)
              else:               
                  with YoutubeDL() as ydl:
                      info = ydl.extract_info(query, download=False)
@@ -75,4 +82,3 @@ if(st.button('Submit')):
          except Exception as e:
              st.write(e)
 st.write(f"✨ You can find me in instagram as [Kannan 🌀](https://instagram.com/_ka.n.n.an._?igshid=MzNlNGNkZWQ4Mg==)")
-st.write(f"✨ [DEVU](https://instagram.com/__dev_i_x_?igshid=OGQ5ZDc2ODk2ZA==)")
