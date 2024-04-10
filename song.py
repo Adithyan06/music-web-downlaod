@@ -32,11 +32,13 @@ def main():
         if song_name:
             song_file = download_song(song_name)
             if song_file:
-                st.success(f'Download complete! [Click to download]({song_file})')
+                st.success('Download complete!')
+                st.write('Download the song here:')
+                st.markdown(f'<a href="{song_file}" download>Download {song_file}</a>', unsafe_allow_html=True)
             else:
                 st.error('Failed to download the song.')
         else:
             st.warning('Please enter a song name.')
 
 if __name__ == "__main__":
-    main()        
+    main()
