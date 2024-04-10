@@ -1,4 +1,4 @@
-
+from youtube_search import YoutubeSearch
 import streamlit as st
 import yt_dlp
 import os
@@ -27,7 +27,8 @@ def main():
     st.write('Enter the name of the song you want to download in FLAC format:')
     
     song_name = st.text_input('Song Name')
-    
+    results = YoutubeSearch(song_name, max_results=1).to_dict()
+    title = results[0]["title"]
     if st.button('Download'):
         if song_name:
             song_file = download_song(song_name)
@@ -37,7 +38,7 @@ def main():
                 audio_file = open(song_file, 'rb')
                 audio_bytes = audio_file.read()
                 st.audio(audio_bytes, format='audio/flac')
-                st.download_button("Download 🥀",data=audio_bytes,file_name=f"{song_name}.flac")
+                st.download_button("Download 🥀",data=audio_bytes,file_name=f"{title}.flac")
             else:
                 st.error('Failed to download the song.')
         else:
