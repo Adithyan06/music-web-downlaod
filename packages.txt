@@ -1,2 +1,2 @@
 ffmpeg
-yt-dlp -U
+yt-dlp 
