@@ -27,7 +27,7 @@ def main():
     st.title('Song Downloader')
     st.write('Enter the name of the song you want to download in FLAC format:')
     
-    if st.button('Download'):
+    if st.button('Download')
         if song_name:
           song_file = download_song(song_name)
           if song_file:
@@ -39,6 +39,8 @@ def main():
               st.download_button("Download 🥀",data=audio_bytes)
           else:
               st.error('Failed to download the song.')
+    else:
+        st.error('Something wrong!')
  
 if __name__ == "__main__":
     main()
