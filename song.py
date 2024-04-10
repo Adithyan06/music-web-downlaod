@@ -11,7 +11,7 @@ def download_song(song_name):
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'flac',
-            'preferredquality': '128',
+            'preferredquality': '192',
         }],
         'outtmpl': '%(title)s.%(ext)s',
     }
@@ -38,7 +38,7 @@ def main():
               audio_file = open(song_file, 'rb')
               audio_bytes = audio_file.read()
               st.audio(audio_bytes, format='audio/flac')
-              st.download_button("Download 🥀",data=audio_bytes)
+              st.download_button("SAVE",data=audio_bytes)
           else:
               st.error('Failed to download the song!')
 if __name__ == "__main__":
