@@ -67,7 +67,7 @@ if(st.button('Submit')):
                  for file in os.listdir('.'):
                     if file.endswith('.flac'):
                       return file
-                            st.audio(file)
+                      st.audio(file)
              else:               
                  with YoutubeDL() as ydl:
                      info = ydl.extract_info(query, download=False)
