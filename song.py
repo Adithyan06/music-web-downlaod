@@ -29,7 +29,7 @@ def main():
 
     song_name = st.text_input('Song Name')
     
-    if st.button('Download')
+    if st.button('Download'):
         if song_name:
           song_file = download_song(song_name)
           if song_file:
