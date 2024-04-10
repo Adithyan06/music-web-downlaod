@@ -16,8 +16,6 @@ def download_song(song_name):
         'outtmpl': '%(title)s.%(ext)s',
     }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        info = ydl.extract_info(query, download=False)
-        video = ydl.prepare_filename(info)
         ydl.download([f"ytsearch1:{song_name}"])
 
     # Find the downloaded file
