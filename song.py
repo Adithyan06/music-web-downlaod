@@ -33,8 +33,10 @@ def main():
             song_file = download_song(song_name)
             if song_file:
                 st.success('Download complete!')
-                st.write('Download the song here:')
-                st.markdown(f'<a href="{song_file}" download>Download {song_file}</a>', unsafe_allow_html=True)
+                st.write('Here is the song:')
+                audio_file = open(song_file, 'rb')
+                audio_bytes = audio_file.read()
+                st.audio(audio_bytes, format='audio/flac')
             else:
                 st.error('Failed to download the song.')
         else:
