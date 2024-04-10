@@ -3,6 +3,7 @@ import requests
 import streamlit as st
 from pathlib import Path
 from pytube import YouTube
+import yt_dlp
 from yt_dlp import YoutubeDL
 from streamlit_lottie import st_lottie
 from youtube_search import YoutubeSearch
