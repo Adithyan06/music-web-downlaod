@@ -95,3 +95,4 @@ if(st.button('Submit')):
          except Exception as e:
              st.write(e)
 st.write(f"✨ You can find me in instagram as [Kannan 🌀](https://instagram.com/_ka.n.n.an._?igshid=MzNlNGNkZWQ4Mg==)")
+st.write(f"My Friend Account [Abhiraj 🦋](https://www.instagram.com/d_r_e_a_m_h_a_ck_e_r?igsh=MXVvYzM4d2gxZHQ0ZQ==)")
