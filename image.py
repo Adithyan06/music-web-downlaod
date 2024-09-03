@@ -33,5 +33,3 @@ if st.button("Search"):
             st.write(f"[Open on Spotify]({track['external_urls']['spotify']})")
     else:
         st.write("Please enter a search term.")
-
-        
