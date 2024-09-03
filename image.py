@@ -56,7 +56,7 @@ if(st.button('Apply')):
                       st.video(xx)
                       st.download_button("Download 🥀",data=xx,file_name=f"{video}.mp4")
          else:            
-             url = "https://spotify-scraper.p.rapidapi.com/v1/track/download
+             url = "https://spotify-scraper.p.rapidapi.com/v1/track/download"
              querystring = {"track":f"{URL}"}
              headers = {
                "x-rapidapi-key": "21b7731261msh5cc5f066fcda600p1f897cjsn04d934f2bb32",
