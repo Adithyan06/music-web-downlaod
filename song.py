@@ -1,45 +1,39 @@
-from youtube_search import YoutubeSearch
 import streamlit as st
-import yt_dlp
-import os
+from pytube import YouTube
 
-@st.cache(allow_output_mutation=True)
-def download_song(song_name):
-    # Download the song using youtube_dl
-    ydl_opts = {
-        'format': 'bestaudio/best',
-        'postprocessors': [{
-            'key': 'FFmpegExtractAudio',
-            'preferredcodec': 'flac',
-            'preferredquality': '192',
-        }],
-        'outtmpl': '%(title)s.%(ext)s',
-    }
-    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        ydl.download([f"ytsearch1:{song_name}"])
+# Set the title of the web app
+st.title("YouTube Song Downloader")
 
-    # Find the downloaded file
-    for file in os.listdir('.'):
-        if file.endswith('.flac'):
-            return file
+# Input field for YouTube URL
+youtube_url = st.text_input("Enter the URL of the YouTube video:")
 
-def main():
-    st.title('Song Downloader')
-    st.write('Enter the name of the song you want to download in FLAC format:')
-
-    song_name = st.text_input('Song Name')
+if youtube_url:
+    try:
+        # Fetch YouTube video object
+        yt = YouTube(youtube_url)
+        
+        # Display video information
+        st.write(f"**Title**: {yt.title}")
+        st.write(f"**Length**: {yt.length // 60} minutes {yt.length % 60} seconds")
+        st.write(f"**Views**: {yt.views}")
+        
+        # Fetch available audio streams
+        audio_streams = yt.streams.filter(only_audio=True)
+        
+        # Allow user to select audio quality
+        stream = st.selectbox("Choose an audio stream:", [f"{s.abr} - {s.mime_type}" for s in audio_streams])
+        
+        # Button to download the selected stream
+        if st.button("Download"):
+            # Extract the selected stream
+            selected_stream = audio_streams.get_by_itag(audio_streams[int(stream.split(' ')[0])].itag)
+            
+            # Download the audio file
+            audio_file = selected_stream.download(filename=f"{yt.title}.mp3")
+            
+            # Confirm download success and provide download link
+            st.success(f"Downloaded: {yt.title}")
+            st.write(f"[Click here to download the file](./{audio_file})")
     
-    if st.button('Download'):
-        if song_name:
-          song_file = download_song(song_name)
-          if song_file:
-              st.success('Download complete!')
-              st.write('Here is the song:')
-              audio_file = open(song_file, 'rb')
-              audio_bytes = audio_file.read()
-              st.audio(audio_bytes, format='audio/flac')
-              st.download_button("SAVE",data=audio_bytes,file_name=f"{song_name}.flac")
-          else:
-              st.error('Failed to download the song!')
-if __name__ == "__main__":
-    main()
+    except Exception as e:
+        st.error(f"An error occurred: {e}")
