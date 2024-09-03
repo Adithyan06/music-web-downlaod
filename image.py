@@ -1,6 +1,6 @@
 import streamlit as st
 from pathlib import Path
-import requests 
+import spotdl 
 from yt_dlp import YoutubeDL
 from pytube import YouTube
 from youtube_search import YoutubeSearch
@@ -58,6 +58,8 @@ if(st.button('Apply')):
                       st.video(xx)
                       st.download_button("Download 🥀",data=xx,file_name=f"{video}.mp4")
          else:     
-             s = Savify(api_credentials=("b1dcbb0c6d0f452f9f01710440ffce9c","2b01cc24bb674e87a18d773e671c8660"))
-             song = s.download(f"{URL}", query_type=Type.TRACK)
+      #       s = Savify(api_credentials=("b1dcbb0c6d0f452f9f01710440ffce9c","2b01cc24bb674e87a18d773e671c8660"))
+     #        song = s.download(f"{URL}", query_type=Type.TRACK)
+             sed = ("spotdl Tum hi ho")
+             st.song(sed)
   #           st.song(song)
