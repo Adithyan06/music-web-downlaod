@@ -4,6 +4,10 @@ import requests
 from yt_dlp import YoutubeDL
 from pytube import YouTube
 from youtube_search import YoutubeSearch
+from savify import Savify
+from savify.types import Type, Format, Quality
+
+s = Savify()
 
 st.set_page_config(page_title="Download Now",page_icon="🧡",menu_items={
     "Get help": "https://github.com/dudegladiator/YoutubeDownloader",
@@ -56,11 +60,5 @@ if(st.button('Apply')):
                       st.video(xx)
                       st.download_button("Download 🥀",data=xx,file_name=f"{video}.mp4")
          else:            
-             url = "https://spotify-scraper.p.rapidapi.com/v1/track/download"
-             querystring = {"track":f"{URL}"}
-             headers = {
-               "x-rapidapi-key": "21b7731261msh5cc5f066fcda600p1f897cjsn04d934f2bb32",
-               "x-rapidapi-host": "spotify-scraper.p.rapidapi.com"
-             }
-             response = requests.get(url, headers=headers, params=querystring)
-             st.write(response.json())
+             song = s.download(f"{URL}", query_type=Type.TRACK)
+             st.song(song)
