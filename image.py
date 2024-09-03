@@ -7,8 +7,6 @@ from youtube_search import YoutubeSearch
 from savify import Savify
 from savify.types import Type, Format, Quality
 
-s = Savify(api_credentials=("b1dcbb0c6d0f452f9f01710440ffce9c","2b01cc24bb674e87a18d773e671c8660"))
-
 st.set_page_config(page_title="Download Now",page_icon="🧡",menu_items={
     "Get help": "https://github.com/dudegladiator/YoutubeDownloader",
     "Report a bug" : "https://github.com/dudegladiator/YoutubeDownloader/issues"
@@ -59,6 +57,7 @@ if(st.button('Apply')):
                       st.write(video)
                       st.video(xx)
                       st.download_button("Download 🥀",data=xx,file_name=f"{video}.mp4")
-         else:            
+         else:     
+             s = Savify(api_credentials=("b1dcbb0c6d0f452f9f01710440ffce9c","2b01cc24bb674e87a18d773e671c8660"))
              song = s.download(f"{URL}", query_type=Type.TRACK)
-             st.song(song)
+  #           st.song(song)
