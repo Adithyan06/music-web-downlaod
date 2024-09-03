@@ -14,7 +14,7 @@ st.cache()
 st.title("Download any YouTube videos with best quality 🥳")
 
 URL = st.text_input("Paste any YouTube URL/Link",placeholder="Enter Name/URL")
-option = st.radio("Select Type: ", ('YouTube', 'URL Upload'))
+option = st.radio("Select Type: ", ('YouTube', 'URL Upload', 'Spotify'))
 if(st.button('Apply')):
      with st.spinner('Downloading...'):
          if (option == 'YouTube'):
@@ -44,7 +44,7 @@ if(st.button('Apply')):
                     st.write(f"{title}")
                     st.video(f)
                     st.download_button("Download Video 📥",data=f)
-         else:
+         if (option == 'URL Upload'):
               with YoutubeDL() as ydl:
                   info = ydl.extract_info(URL, download=False)
                   video = ydl.prepare_filename(info)
@@ -55,3 +55,12 @@ if(st.button('Apply')):
                       st.write(video)
                       st.video(xx)
                       st.download_button("Download 🥀",data=xx,file_name=f"{video}.mp4")
+         else:            
+             url = "https://spotify-scraper.p.rapidapi.com/v1/track/download
+             querystring = {"track":f"{URL}"}
+             headers = {
+               "x-rapidapi-key": "21b7731261msh5cc5f066fcda600p1f897cjsn04d934f2bb32",
+               "x-rapidapi-host": "spotify-scraper.p.rapidapi.com"
+             }
+             response = requests.get(url, headers=headers, params=querystring)
+             st.write(response.json())
