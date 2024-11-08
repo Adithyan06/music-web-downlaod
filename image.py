@@ -35,3 +35,4 @@ if st.button("Search"):
         st.write("Please enter a search term.")
 
 st.write("Anas is killadi")
+x = st.text_input("Enter a number:")
