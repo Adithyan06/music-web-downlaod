@@ -11,6 +11,7 @@ st.title("🎨 AI Image Generator")
 st.write("Generate images using NVIDIA Stable Diffusion")
 
 prompt = st.text_input("Enter your prompt:")
+aspect_ratio = st.selectbox("Select Image Ratio",["1:1", "16:9", "9:16", "4:3", "3:4"])
 
 if st.button("Generate Image"):
     if prompt == "":
@@ -27,7 +28,7 @@ if st.button("Generate Image"):
             }
             data = {
                 "prompt": prompt,
-                "aspect_ratio": "9:16",
+                "aspect_ratio": aspect_ratio,
                 "cfg_scale": 5,
                 "mode": "text-to-image",
                 "model": "sd3",
@@ -39,7 +40,6 @@ if st.button("Generate Image"):
             response = requests.post(url, headers=headers, json=data)
 
             if response.status_code == 200:
-                st.text(response.text)
                 result = response.json()
                 
                 if "image" in result:
@@ -47,6 +47,12 @@ if st.button("Generate Image"):
                     image_bytes = base64.b64decode(image_base64)
                     st.image(image_bytes, caption="Generated Image")
                     st.success("Image generated successfully!")
+                    st.download_button(
+                        label="📥 Download Image",
+                        data=image_bytes,
+                        file_name="generated_image.jpg",
+                        mime="image/jpeg"
+                    )
                 else:
                     st.error("Invalid response")
                     st.write(result)
