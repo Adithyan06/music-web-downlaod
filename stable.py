@@ -39,6 +39,7 @@ if st.button("Generate Image"):
             response = requests.post(url, headers=headers, json=data)
 
             if response.status_code == 200:
+                st.text(response.text)
                 result = response.json()
 
                 image_base64 = result["image"][0]["b64_json"]
