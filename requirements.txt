@@ -5,11 +5,8 @@ rapidfuzz
 youtube_search
 streamlit==1.15.1
 streamlit_lottie==0.0.2
-pytube
 pathlib
 ffmpeg-python
 wget
-spotdl
-spotipy
 altair==4.1.0
-savify
+pybase64
