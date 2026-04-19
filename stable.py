@@ -41,7 +41,7 @@ if st.button("Generate Image"):
             if response.status_code == 200:
                 result = response.json()
 
-                image_base64 = result["data"][0]["b64_json"]
+                image_base64 = result["image"][0]["b64_json"]
                 image_bytes = base64.b64decode(image_base64)
 
                 st.image(image_bytes, caption="Generated Image", use_column_width=True)
