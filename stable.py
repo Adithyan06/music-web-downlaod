@@ -21,15 +21,19 @@ if st.button("Generate Image"):
             url = "https://ai.api.nvidia.com/v1/genai/stabilityai/stable-diffusion-3-medium"
 
             headers = {
-                "Authorization": f"Bearer {API_KEY}",
-                "Content-Type": "application/json"
+                "accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {API_KEY}"   
             }
-
             data = {
                 "prompt": prompt,
-                "model": "stabilityai/stable-diffusion-xl",
-                "width": 1024,
-                "height": 1024
+                "aspect_ratio": "9:16",
+                "cfg_scale": 5,
+                "mode": "text-to-image",
+                "model": "sd3",
+                "output_format": "jpeg",
+                "seed": 0,
+                "steps": 50,
             }
 
             response = requests.post(url, headers=headers, json=data)
