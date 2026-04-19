@@ -18,7 +18,7 @@ if st.button("Generate Image"):
     else:
         with st.spinner("Generating image..."):
 
-            url = "https://integrate.api.nvidia.com/v1/images/generations"
+            url = "https://ai.api.nvidia.com/v1/genai/stabilityai/stable-diffusion-3-medium"
 
             headers = {
                 "Authorization": f"Bearer {API_KEY}",
