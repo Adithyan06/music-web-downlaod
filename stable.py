@@ -45,7 +45,7 @@ if st.button("Generate Image"):
                 if "image" in result:
                     image_base64 = result["image"] 
                     image_bytes = base64.b64decode(image_base64)
-                    st.image(image_bytes, caption="Generated Image", use_column_width=True)
+                    st.image(image_bytes, caption="Generated Image")
                     st.success("Image generated successfully!")
                 else:
                     st.error("Invalid response")
