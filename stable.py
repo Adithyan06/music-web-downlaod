@@ -22,8 +22,8 @@ if st.button("Generate Image"):
 
             headers = {
                 "accept": "application/json",
-                "Content-Type": "application/json",
-                "Authorization": f"Bearer {API_KEY}"   
+                "content-type": "application/json",
+                "authorization": f"Bearer {API_KEY}"   
             }
             data = {
                 "prompt": prompt,
@@ -41,12 +41,15 @@ if st.button("Generate Image"):
             if response.status_code == 200:
                 st.text(response.text)
                 result = response.json()
-
-                image_base64 = result["image"][0]["b64_json"]
-                image_bytes = base64.b64decode(image_base64)
-
-                st.image(image_bytes, caption="Generated Image", use_column_width=True)
-                st.success("Image generated successfully!")
+                
+                if "image" in result:
+                    image_base64 = result["image"] 
+                    image_bytes = base64.b64decode(image_base64)
+                    st.image(image_bytes, caption="Generated Image", use_column_width=True)
+                    st.success("Image generated successfully!")
+                else:
+                    st.error("Invalid response")
+                    st.write(result)
             else:
                 st.error("Error generating image")
                 st.text(response.text)
