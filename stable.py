@@ -9,7 +9,7 @@ st.set_page_config(page_title="AI Image Generator", layout="centered")
 
 st.title("🎨 AI Image Generator")
 st.write("Generate images using NVIDIA Stable Diffusion")
-
+st.text("Sanju monna")
 prompt = st.text_input("Enter your prompt:")
 aspect_ratio = st.selectbox("Select Image Ratio",["1:1", "16:9", "9:16", "4:3", "3:4"])
 
