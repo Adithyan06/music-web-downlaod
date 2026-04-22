@@ -17,8 +17,6 @@ aspect_ratio = st.selectbox(
     ["1:1", "16:9", "9:16", "4:3", "3:4"]
 )
 
-steps = st.slider("Quality (Steps)", 1, 10, 4)
-
 # 🧮 Convert ratio → width & height
 def get_dimensions(ratio):
     if ratio == "1:1":
@@ -54,7 +52,7 @@ if st.button("Generate Image"):
                 "width": width,
                 "height": height,
                 "seed": 0,
-                "steps": steps
+                "steps": 4
             }
 
             response = requests.post(url, headers=headers, json=payload)
