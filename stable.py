@@ -61,7 +61,6 @@ if st.button("Generate Image"):
 
             if response.status_code == 200:
                 result = response.json()
-
                 if "artifacts" in result:
                     image_base64 = result["artifacts"][0]["base64"]
                     image_bytes = base64.b64decode(image_base64)
@@ -73,9 +72,9 @@ if st.button("Generate Image"):
                         mime="image/jpeg"
                     )
                     st.success("Image generated successfully!")
-              else:
-                 st.error("Invalid response")
-                 st.write(result)
+                else:
+                   st.error("Invalid response")
+                   st.write(result)
             else:
                 st.error(f"Error: {response.status_code}")
                 st.text(response.text)
