@@ -3,7 +3,7 @@ import requests
 import base64
 
 # 🔴 Replace with your NEW API key
-API_KEY = "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"
+API_KEY = "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"
 
 st.set_page_config(page_title="AI Image Generator", layout="centered")
 
@@ -18,22 +18,18 @@ if st.button("Generate Image"):
     else:
         with st.spinner("Generating image..."):
 
-            url = "https://ai.api.nvidia.com/v1/genai/stabilityai/stable-diffusion-3-medium"
+            url = "https://ai.api.nvidia.com/v1/genai/black-forest-labs/flux.2-klein-4b"
 
             headers = {
-                "accept": "application/json",
-                "content-type": "application/json",
-                "authorization": f"Bearer {API_KEY}"   
+                "Accept": "application/json",
+                "Authorization": f"Bearer {API_KEY}"   
             }
             data = {
-                "prompt": prompt,
-                "aspect_ratio": aspect_ratio,
-                "cfg_scale": 5,
-                "mode": "text-to-image",
-                "model": "sd3",
-                "output_format": "jpeg",
-                "seed": 0,
-                "steps": 50,
+                     "prompt": prompt,
+                     "width": 1024,
+                     "height": 1024,
+                     "seed": 0,
+                     "steps": 4
             }
 
             response = requests.post(url, headers=headers, json=data)
