@@ -3,7 +3,7 @@ import requests
 import base64
 
 # 🔴 Use your NEW API key (keep it secret)
-API_KEY = "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"
+API_KEY = "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"
 
 st.set_page_config(page_title="AI Image Generator", layout="centered")
 
